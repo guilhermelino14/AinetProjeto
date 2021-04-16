@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -228,7 +230,7 @@ class EstampasSeeder extends Seeder
 
     private function saveEstampa($id, $file, $publico = true)
     {
-        $fileName = $publico ? database_path('seeds/estampas_catalogo') : database_path('seeds/estampas_proprias');
+        $fileName = $publico ? database_path('seeders/estampas_catalogo') : database_path('seeders/estampas_proprias');
         $fileName .= '/' . $file;
         $targetDir = $publico ? storage_path('app/' . $this->estampasPublicPath) : storage_path('app/' . $this->estampasClientesPath);
         $newfilename = $id . "_" . uniqid() . '.png';
@@ -267,12 +269,12 @@ class EstampasSeeder extends Seeder
 
     private function buildSet2()
     {
-        $path = database_path('seeds/estampas_catalogo') . '/set2';
+        $path = database_path('seeders/estampas_catalogo') . '/set2';
         $categories = array_map('basename', File::directories($path));
 
         $estampas = [];
         foreach ($categories as $category) {
-            $path = database_path('seeds/estampas_catalogo') . '/set2/' . $category . '/';
+            $path = database_path('seeders/estampas_catalogo') . '/set2/' . $category . '/';
             $files = File::files($path);
             foreach ($files as $file) {
                 $estampas[] = [
@@ -295,7 +297,7 @@ class EstampasSeeder extends Seeder
 
     private function buildSetProprias()
     {
-        $path = database_path('seeds/estampas_proprias');
+        $path = database_path('seeders/estampas_proprias');
         $estampas = [];
         $files = File::files($path);
         foreach ($files as $file) {

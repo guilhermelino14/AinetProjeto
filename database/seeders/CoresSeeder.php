@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +49,7 @@ class CoresSeeder extends Seeder
         $this->command->info("Cores e TShirts de base");
         $faker = \Faker\Factory::create('pt_PT');
 
-        $sourceFolder = database_path('seeds/tshirt_base');
+        $sourceFolder = database_path('seeders/tshirt_base');
         $targetFolder = storage_path('app/' . $this->tshirt_basePath);
         $this->limparFicheirosTShirtBase();
         foreach (CoresSeeder::$cores as $codigo => $nome) {
@@ -78,7 +80,7 @@ class CoresSeeder extends Seeder
 
     private function copia_tshirt_base_plain()
     {
-        $source = database_path('seeds/tshirt_base') . '/plain_white.png';
+        $source = database_path('seeders/tshirt_base') . '/plain_white.png';
         $public_img_path = public_path('img');
         if (!File::isDirectory($public_img_path)) {
             File::makeDirectory($public_img_path);
