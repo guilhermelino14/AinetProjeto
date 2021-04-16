@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +16,3 @@ use UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::resource('users', UserController::class)->middleware('isAuthenticated');
