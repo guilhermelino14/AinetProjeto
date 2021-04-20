@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $total_users = User::all()->count();
+        $total_users = User::where('id',22)->get();
         dd($total_users);
     }
 

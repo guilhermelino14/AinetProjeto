@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Categoria extends Model
 {
     use HasFactory;
+
+
+    public function estampa()
+    {
+        return $this->belongsTo(Estampa::class, 'categoria_id', 'id');
+    }
 }
