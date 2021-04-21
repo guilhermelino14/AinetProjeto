@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $total_users = User::where('id',22)->get();
+        $total_users = User::with('cliente')->find(22);
         dd($total_users);
     }
 
