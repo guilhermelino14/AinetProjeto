@@ -9,11 +9,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Cliente extends Model
 {
     use SoftDeletes;
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $fillable = [
-        'nif','endereco','tipo_pagamento','ref_pagamento'
+        'id','nif','endereco','tipo_pagamento','ref_pagamento'
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
 
     public function user()
     {

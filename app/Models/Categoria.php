@@ -9,6 +9,13 @@ class Categoria extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id','nome',
+    ];
+
+    protected $hidden = [
+        'deleted_at',
+    ];
 
     public function estampa()
     {

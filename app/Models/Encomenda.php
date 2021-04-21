@@ -9,6 +9,15 @@ class Encomenda extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id','estado', 'cliente_id', 'data', 'preco_total', 'notas','nif', 'endereco', 'tipo_pagamento', 'ref_pagamento', 'recibo_url',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function cliente()
     {
         return $this->hasMany(Cliente::class, 'id', 'cliente_id');

@@ -9,6 +9,10 @@ class Tshirt extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id','encomenda_id', 'estampa_id', 'cor_codigo', 'tamanho', 'quantidade','preco_un', 'subtotal',
+    ];
+
     public function encomenda()
     {
         return $this->hasMany(Encomenda::class, 'id', 'encomenda_id');
