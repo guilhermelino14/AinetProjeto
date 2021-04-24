@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         //
         $total_users = User::with('cliente')->find(22);
-        dd($total_users);
+        echo($total_users);
     }
 
     /**
