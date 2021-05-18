@@ -56,7 +56,3 @@ Route::get('/shopgrid', function () {
 Route::get('/shoppingcart', function () {
     return view('front_pages.shoping-cart');
 })->name('shoppingcart');
-
-Route::get('/admin/index', function () {
-    return view();
-})->name('shoppingcart');
