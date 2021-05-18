@@ -24,7 +24,7 @@ Route::get('/gallery', function () {
 
 Route::resource('users', UserController::class);
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return view('front_pages.index');
 })->name('homeT');
 Route::get('/blog', function () {
