@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -58,4 +59,27 @@ Route::get('/shoppingcart', function () {
     return view('front_pages.shoping-cart');
 })->name('shoppingcart');
 
+
+
 Route::get('/admin/clientes', [ClienteController::class, 'index']);
+
+
+// ADMIN TEST
+
+Route::get('/admin/index', function () {
+    return view('back_pages.index');
+})->name('admin_index');
+
+Route::get('/admin/users', [AdminUserController::class, 'index']);
+
+Route::get('/admin/login', function () {
+    return view('back_pages.login');
+})->name('admin_login');
+
+Route::get('/admin/register', function () {
+    return view('back_pages.register');
+})->name('admin_register');
+
+Route::get('/admin/fpassword', function () {
+    return view('back_pages.forgot-password');
+})->name('admin_fpassword');
