@@ -15,16 +15,19 @@ class Tshirt extends Model
 
     public function encomenda()
     {
-        return $this->hasMany(Encomenda::class, 'id', 'encomenda_id');
+        //tshirt belongsTo encomenda (1:N)
+        return $this->belongsTo(Encomenda::class, 'id', 'encomenda_id');
     }
 
-    public function estampa()
+    public function estampas()
     {
-        return $this->hasMany(Estampa::class, 'id', 'estampa_id');
+        //tshirt belongsTo estampa (1:N)
+        return $this->belongsTo(Estampa::class, 'id', 'estampa_id');
     }
 
     public function cor()
     {
-        return $this->hasMany(Cor::class, 'codigo', 'cor_codigo');
+        //tshirt belongsTo cor (1:N)
+        return $this->belongsTo(Cor::class, 'codigo', 'cor_codigo');
     }
 }
