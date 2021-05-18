@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    @include('front_layouts.navbar')
+    @include('front_layouts.navbar2')
 
     @yield('content')
 
