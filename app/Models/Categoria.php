@@ -18,8 +18,9 @@ class Categoria extends Model
         'deleted_at',
     ];
 
-    public function estampa()
+    public function estampas()
     {
-        return $this->belongsTo(Estampa::class, 'categoria_id', 'id');
+        //categoria hasMany estampa (N:1)
+        return $this->hasMany(Estampa::class, 'categoria_id', 'id');
     }
 }

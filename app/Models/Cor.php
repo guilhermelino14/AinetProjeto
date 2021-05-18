@@ -20,6 +20,7 @@ class Cor extends Model
 
     public function tshirt()
     {
-        return $this->belongsTo(Tshirt::class, 'cor_codigo', 'codigo');
+        //cor hasMany tshirt (N:1)
+        return $this->hasMany(Tshirt::class, 'cor_codigo', 'codigo');
     }
 }

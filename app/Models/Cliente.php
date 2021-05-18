@@ -25,16 +25,19 @@ class Cliente extends Model
 
     public function user()
     {
+        //client belongsTo user (1:1)
         return $this->belongsTo(User::class, 'id', 'id');
     }
 
-    public function encomenda()
+    public function encomendas()
     {
-        return $this->belongsTo(Encomenda::class, 'cliente_id', 'id');
+        //cliente hasMany encomendas (1:N)
+        return $this->hasMany(Encomenda::class, 'cliente_id', 'id');
     }
 
-    public function estampa()
+    public function estampas()
     {
-        return $this->belongsTo(Estampa::class, 'cliente_id', 'id');
+        //cliente hasMany estampas (1:N)
+        return $this->hasMany(Estampa::class, 'cliente_id', 'id');
     }
 }

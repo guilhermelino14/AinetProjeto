@@ -20,11 +20,13 @@ class Encomenda extends Model
 
     public function cliente()
     {
-        return $this->hasMany(Cliente::class, 'id', 'cliente_id');
+        //encomenda belongsTo cliente (N:1)
+        return $this->belongsTo(Cliente::class, 'id', 'cliente_id');
     }
 
     public function tshirt()
     {
-        return $this->belongsTo(Tshirt::class, 'encomenda_id', 'id');
+        //encomenda hasMany tshirt (N:1)
+        return $this->hasMany(Tshirt::class, 'encomenda_id', 'id');
     }
 }
