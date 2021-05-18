@@ -12,6 +12,7 @@
                 
             @endfor
             
+            <img src="{{ asset('storage/estampas/1_6079a48684474.png') }}" />
         </div>
     </div>
 
