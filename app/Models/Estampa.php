@@ -22,16 +22,19 @@ class Estampa extends Model
 
     public function cliente()
     {
-        return $this->hasMany(Cliente::class, 'id', 'cliente_id');
+        //estampa belongsTo cliente (1:N)
+        return $this->belongsTo(Cliente::class, 'id', 'id');
     }
 
     public function tshirt()
     {
-        return $this->belongsTo(Tshirt::class, 'estampa_id', 'id');
+        //estampa hasMany tshirt (N:1)
+        return $this->hasMany(Tshirt::class, 'estampa_id', 'id');
     }
 
-    public function categoria()
+    public function categorias()
     {
-        return $this->hasMany(Categoria::class, 'id', 'categoria_id');
+        //estampa belongsTo categoria (1:N)
+        return $this->belongsTo(Categoria::class, 'id', 'categoria_id');
     }
 }
