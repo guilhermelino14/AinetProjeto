@@ -15,7 +15,12 @@ class EstampasController extends Controller
     public function index()
     {
         $estampas = Estampa::paginate(15);
-        return view('back_pages.users', compact('estampas'));
+        return view('back_pages.estampas', compact('estampas'));
+    }
+    public function index_front()
+    {
+        $estampas = Estampa::paginate(15);
+        return view('front_pages.shop-grid', compact('estampas'));
     }
 
     /**
