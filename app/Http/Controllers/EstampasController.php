@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Estampa;
 use Illuminate\Http\Request;
 
-
-class UserController extends Controller
+class EstampasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(15);
-        return view('back_pages.users', compact('users'));
+        $estampas = Estampa::paginate(15);
+        return view('back_pages.users', compact('estampas'));
     }
 
     /**
@@ -83,9 +81,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id); //If user exists
-        $user->delete(); //Remove user
-
-        return Redirect()->back(); //Redirect page to /admin/users
+        //
     }
 }
