@@ -14,9 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        $total_users = User::with('cliente')->find(22);
-        echo($total_users);
+        $users = User::paginate(15);
+        return view('back_pages.users', compact('users'));
     }
 
     /**
@@ -84,6 +83,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id); //If user exists
+        $user->delete(); //Remove user
+
+        return Redirect()->back(); //Redirect page to /admin/users
     }
 }
