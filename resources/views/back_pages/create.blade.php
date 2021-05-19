@@ -33,13 +33,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputTipo">Tipo</label>
-                                    <!-- Inserir Dropdown -->
-                                    @error('tipo')
-                                        <div class="small text-danger">{{$message}}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <div>Bloqueado</div>
                                     <div class="form-check form-check-inline">
                                         <input type="radio" class="form-check-input" id="inputSim" name="bloqueado"  value="1" {{old('bloqueado',  $user->bloqueado) == '1' ? 'checked' : ''}} >
@@ -57,10 +50,10 @@
                                     @error('tipo')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
-                                </div> 
+                                </div>
                                 @if (isset($user->foto_url))
                                     <img src="{{ asset("storage/fotos/$user->foto_url") }}" />
-                                @endif                 
+                                @endif
                                 <div class="form-group">
                                 <div class="form-group text-right">
                                         <button type="submit" class="btn btn-success" name="ok">Save</button>
