@@ -109,7 +109,13 @@
                             </div>
                         </div>
                         <div class="sidebar__item">
-                            <h4>Popular Size</h4>
+                            <h4>Size</h4>
+                            <div class="sidebar__item__size">
+                                <label for="tiny">
+                                    X Large
+                                    <input type="radio" id="tiny">
+                                </label>
+                            </div>
                             <div class="sidebar__item__size">
                                 <label for="large">
                                     Large
@@ -126,12 +132,6 @@
                                 <label for="small">
                                     Small
                                     <input type="radio" id="small">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="tiny">
-                                    Tiny
-                                    <input type="radio" id="tiny">
                                 </label>
                             </div>
                         </div>
