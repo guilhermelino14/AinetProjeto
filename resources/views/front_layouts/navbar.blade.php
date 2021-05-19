@@ -169,12 +169,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="hero__categories">
+                <div class="hero__categories" >
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
                         <span>All departments</span>
                     </div>
-                    <ul style="display: none">
+                    <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
                         <li><a href="#">Fresh Meat</a></li>
                         <li><a href="#">Vegetables</a></li>
                         <li><a href="#">Fruit & Nut Gifts</a></li>
