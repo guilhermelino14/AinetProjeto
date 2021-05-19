@@ -39,13 +39,13 @@
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                     </td>
                                                     <td>
-                                                        <form action="#" method="POST">
+                                                        <form action="{{route('users.destroy', ['user' => $user->id])}}" method="POST">
                                                             @csrf
                                                             @method("DELETE")
                                                             <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
                                                         </form>
                                                     </td>
-                                            </tr> 
+                                            </tr>
                                             @endforeach
                                     </tbody>
                                 </table>

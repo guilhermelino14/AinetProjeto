@@ -60,17 +60,17 @@ Route::get('/shoppingcart', function () {
 })->name('shoppingcart');
 
 
-
+// Marco
 Route::get('/admin/clientes', [ClienteController::class, 'index']);
 
 
 // ADMIN TEST
 
+Route::get('/admin/users', [UserController::class, 'index']);
+
 Route::get('/admin/index', function () {
     return view('back_pages.index');
 })->name('admin_index');
-
-Route::get('/admin/users', [AdminUserController::class, 'index']);
 
 Route::get('/admin/login', function () {
     return view('back_pages.login');
