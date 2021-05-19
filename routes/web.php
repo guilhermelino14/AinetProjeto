@@ -28,18 +28,11 @@ Route::resource('admin/users', UserController::class);
 
 Route::get('/admin/index', function () {
     return view('back_pages.index');
-})->name('homeT');
+})->name('admin');
 
 Route::get('/', function () {
     return view('front_pages.index');
 })->name('homeT');
-Route::get('/blog', function () {
-    return view('front_pages.blog');
-})->name('blog');
-Route::get('/blog-details', function () {
-    return view('front_pages.blog-details');
-})->name('blog-details');
-
 Route::get('/checkout', function () {
     return view('front_pages.checkout');
 })->name('checkout');
