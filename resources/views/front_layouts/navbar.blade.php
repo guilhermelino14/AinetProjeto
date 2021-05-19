@@ -39,8 +39,10 @@
                     <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
                     <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
                     <li><a href="{{ url('checkout') }}">Check Out</a></li>
+                    <li><a href="{{ url('blog-details') }}">Blog Details</a></li>
                 </ul>
             </li>
+            <li><a href="{{ url('blog') }}">Blog</a></li>
             <li><a href="{{ url('contact') }}">Contact</a></li>
         </ul>
     </nav>
@@ -66,14 +68,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6" style="top: 10px;">
-                    <div class="header__top__left">
+                    <div class="header__top__left" >
                         <ul>
                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
                             <li>Free Shipping for all Order of $99</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6" >
                     <div class="header__top__right">
                         @guest
                             @if (Route::has('login'))
@@ -94,28 +96,12 @@
                             @endif
                         @else
 
-                            <div class="header__top__right__language" style="top: 10px" aria-haspopup="true"
-                                aria-expanded="false">
-                                <div>
-                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span
-                                            class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                        <img class="img-profile rounded-circle" width="20px"
-                                            src="{{ asset('admin/img/undraw_profile.svg') }}">
-                                    </a>
-                                </div>
+                            <div class="header__top__right__language" style="top: 10px" aria-haspopup="true" aria-expanded="false">
+                                <div>{{ Auth::user()->name }}</div>
 
-                                <ul style="top: 40px">
-                                    @if (Auth::user()->tipo === 'A')
-                                        
-                                    
-                                    <li><a class="dropdown-item" href="{{ route('admin') }}">
-                                        Admin
-                                        </a></li>
-                                    @endif
+                                <ul>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                  document.getElementById('logout-form').submit();">
+                                                              document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -153,8 +139,10 @@
                                 <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
                                 <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
                                 <li><a href="{{ url('checkout') }}">Check Out</a></li>
+                                <li><a href="{{ url('blog-details') }}">Blog Details</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{ url('blog') }}">Blog</a></li>
                         <li><a href="{{ url('contact') }}">Contact</a></li>
                     </ul>
                 </nav>
@@ -162,8 +150,8 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="{{ url('shoppingcart') }}"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
                 </div>
@@ -184,20 +172,30 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>Categorias</span>
                     </div>
-                    <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                    <ul style="display: none">
+                        <li><a href="#">Bebidas</a></li>
+                        <li><a href="#">Cool</a></li>
+                        <li><a href="#">Desenhos Abstratos</a></li>
+                        <li><a href="#">Desporto</a></li>
+                        <li><a href="#">Engraçadas</a></li>
+                        <li><a href="#">Filmes</a></li>
+                        <li><a href="#">Frases</a></li>
+                        <li><a href="#">Geeks</a></li>
+                        <li><a href="#">Infantil</a></li>
+                        <li><a href="#">Inspiração</a></li>
+                        <li><a href="#">Locais</a></li>
+                        <li><a href="#">Logotipos</a></li>
+                        <li><a href="#">Memes</a></li>
+                        <li><a href="#">Musica</a></li>
+                        <li><a href="#">Publicidade e Marcas</a></li>
+                        <li><a href="#">Sem Sentido</a></li>
+                        <li><a href="#">Simples</a></li>
+                        <li><a href="#">Surf</a></li>
+                        <li><a href="#">Verão</a></li>
+                        <li><a href="#">Vintage</a></li>
+                        <li><a href="#">Tattoo</a></li>
                     </ul>
                 </div>
             </div>
