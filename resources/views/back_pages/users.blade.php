@@ -9,6 +9,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Users</h6>
                         </div>
                         <div class="card-body">
+                            <a href="{{ route('users.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Utilizador</button></a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -39,13 +40,13 @@
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                     </td>
                                                     <td>
-                                                        <form action="#" method="POST">
+                                                        <form action="{{route('users.destroy', ['user' => $user->id])}}" method="POST">
                                                             @csrf
                                                             @method("DELETE")
                                                             <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
                                                         </form>
                                                     </td>
-                                            </tr> 
+                                            </tr>
                                             @endforeach
                                     </tbody>
                                 </table>

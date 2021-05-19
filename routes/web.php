@@ -24,18 +24,15 @@ Route::get('/gallery', function () {
     return view('gallery');
 })->name('gallery');
 
-Route::resource('users', UserController::class);
+Route::resource('admin/users', UserController::class);
+
+Route::get('/admin/index', function () {
+    return view('back_pages.index');
+})->name('admin');
 
 Route::get('/', function () {
     return view('front_pages.index');
 })->name('homeT');
-Route::get('/blog', function () {
-    return view('front_pages.blog');
-})->name('blog');
-Route::get('/blog-details', function () {
-    return view('front_pages.blog-details');
-})->name('blog-details');
-
 Route::get('/checkout', function () {
     return view('front_pages.checkout');
 })->name('checkout');
@@ -60,17 +57,14 @@ Route::get('/shoppingcart', function () {
 })->name('shoppingcart');
 
 
-
+// Marco
 Route::get('/admin/clientes', [ClienteController::class, 'index']);
 
 
 // ADMIN TEST
 
-Route::get('/admin/index', function () {
-    return view('back_pages.index');
-})->name('admin_index');
+//Route::get('/admin/users', [UserController::class, 'index']);
 
-Route::get('/admin/users', [AdminUserController::class, 'index']);
 
 Route::get('/admin/login', function () {
     return view('back_pages.login');

@@ -39,10 +39,8 @@
                     <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
                     <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
                     <li><a href="{{ url('checkout') }}">Check Out</a></li>
-                    <li><a href="{{ url('blog-details') }}">Blog Details</a></li>
                 </ul>
             </li>
-            <li><a href="{{ url('blog') }}">Blog</a></li>
             <li><a href="{{ url('contact') }}">Contact</a></li>
         </ul>
     </nav>
@@ -68,14 +66,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6" style="top: 10px;">
-                    <div class="header__top__left" >
+                    <div class="header__top__left">
                         <ul>
                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
                             <li>Free Shipping for all Order of $99</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6" >
+                <div class="col-lg-6 col-md-6">
                     <div class="header__top__right">
                         @guest
                             @if (Route::has('login'))
@@ -96,12 +94,28 @@
                             @endif
                         @else
 
-                            <div class="header__top__right__language" style="top: 10px" aria-haspopup="true" aria-expanded="false">
-                                <div>{{ Auth::user()->name }}</div>
+                            <div class="header__top__right__language" style="top: 10px" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div>
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span
+                                            class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                        <img class="img-profile rounded-circle" width="20px"
+                                            src="{{ asset('admin/img/undraw_profile.svg') }}">
+                                    </a>
+                                </div>
 
-                                <ul>
+                                <ul style="top: 40px">
+                                    @if (Auth::user()->tipo === 'A')
+                                        
+                                    
+                                    <li><a class="dropdown-item" href="{{ route('admin') }}">
+                                        Admin
+                                        </a></li>
+                                    @endif
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                              document.getElementById('logout-form').submit();">
+                                                                  document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -139,10 +153,8 @@
                                 <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
                                 <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
                                 <li><a href="{{ url('checkout') }}">Check Out</a></li>
-                                <li><a href="{{ url('blog-details') }}">Blog Details</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('blog') }}">Blog</a></li>
                         <li><a href="{{ url('contact') }}">Contact</a></li>
                     </ul>
                 </nav>
@@ -150,8 +162,8 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="{{ url('shoppingcart') }}"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+                        </li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
                 </div>
@@ -174,7 +186,7 @@
                         <i class="fa fa-bars"></i>
                         <span>All departments</span>
                     </div>
-                    <ul style="display: none">
+                    <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
                         <li><a href="#">Fresh Meat</a></li>
                         <li><a href="#">Vegetables</a></li>
                         <li><a href="#">Fruit & Nut Gifts</a></li>
