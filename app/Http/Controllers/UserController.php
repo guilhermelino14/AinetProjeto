@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
+    {
         $users = User::paginate(15);
         return view('back_pages.users', compact('users'));
     }
@@ -27,8 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = null;
-        return view('back_pages.create', compact('users'));
+        $user = Auth::user();
+        return view('back_pages.create', compact('user'));
     }
 
     /**
