@@ -36,7 +36,7 @@
                                                 <td>{{$user->tipo}}</td>
                                                 <td>{{$user->bloqueado}}</td>
                                                 <td>
-                                                    <a href="#"
+                                                    <a href="{{route('users.edit', ['user' => $user->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                     </td>
                                                     <td>

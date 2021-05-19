@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
+        $user = new User;
         return view('back_pages.create', compact('user'));
     }
 
@@ -82,7 +82,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('back_pages.create', compact('user'));
     }
 
     /**

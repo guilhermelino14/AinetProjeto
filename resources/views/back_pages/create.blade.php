@@ -13,21 +13,21 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="inputNome">Nome</label>
-                                    <input type="text" class="form-control" name="name" id="inputNome" {{-- value="{{old('name', $user->name)}}" --}} >
+                                    <input type="text" class="form-control" name="name" id="inputNome"  value="{{old('name', $user->name)}}" >
                                     @error('name')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="text" class="form-control" name="email" id="inputEmail" {{-- value="{{old('email', $user->email)}}" --}} >
+                                    <input type="text" class="form-control" name="email" id="inputEmail"  value="{{old('email', $user->email)}}" >
                                     @error('email')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword">Password</label>
-                                    <input type="text" class="form-control" name="password" id="inputPassword" {{-- value="{{old('password', $user->password)}}" --}} >
+                                    <input type="text" class="form-control" name="password" id="inputPassword"  >
                                     @error('email')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
@@ -42,9 +42,9 @@
                                 <div class="form-group">
                                     <div>Bloqueado</div>
                                     <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" id="inputSim" name="bloqueado" {{-- value="1" {{old('bloqueado',  $user->bloqueado) == '1' ? 'checked' : ''}} --}} >
+                                        <input type="radio" class="form-check-input" id="inputSim" name="bloqueado"  value="1" {{old('bloqueado',  $user->bloqueado) == '1' ? 'checked' : ''}} >
                                         <label class="form-check-label" for="inputSim"> Sim </label>
-                                        <input type="radio" class="form-check-input ml-4" id="inputNao" name="bloqueado" {{-- value="0" {{old('bloqueado',  $user->bloqueado) == '0' ? 'checked' : ''}} --}} >
+                                        <input type="radio" class="form-check-input ml-4" id="inputNao" name="bloqueado"  value="0" {{old('bloqueado',  $user->bloqueado) == '0' ? 'checked' : ''}} >
                                         <label class="form-check-label" for="inputNao"> Não </label>
                                     </div>
                                     @error('bloqueado')
@@ -53,25 +53,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputFoto">Foto</label>
-                                    <input type="file" class="form-control" name="foto_url" id="inputFoto" {{-- value="{{old('password', $user->cliente->foto_url)}}" --}} >
+                                    <input type="file" class="form-control" name="foto_url" id="inputFoto"  value="{{old('foto_url', $user->foto_url)}}" >
                                     @error('tipo')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputNif">NIF</label>
-                                    <input type="text" class="form-control" name="nif" id="inputNif" {{-- value="{{old('nif', $user->cliente->nif)}}" --}} >
-                                    @error('nif')
-                                        <div class="small text-danger">{{$message}}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEndereco">Endereço</label>
-                                    <input type="text" class="form-control" name="endereco" id="inputEndereco" {{-- value="{{old('endereco', $user->cliente->endereco)}}" --}} >
-                                    @error('endereco')
-                                        <div class="small text-danger">{{$message}}</div>
-                                    @enderror
-                                </div>
+                                </div> 
+                                @if (isset($user->foto_url))
+                                    <img src="{{ asset("storage/fotos/$user->foto_url") }}" />
+                                @endif                 
                                 <div class="form-group">
                                 <div class="form-group text-right">
                                         <button type="submit" class="btn btn-success" name="ok">Save</button>
