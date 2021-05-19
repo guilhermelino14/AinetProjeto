@@ -67,28 +67,56 @@
     <div class="header__top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__top__left">
+                <div class="col-lg-6 col-md-6" style="top: 10px;">
+                    <div class="header__top__left" >
                         <ul>
                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
                             <li>Free Shipping for all Order of $99</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6" style="top: 10px;">
                     <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                        </div>
+                        @guest
+                            @if (Route::has('login'))
+
+
+                                <div class="header__top__right__auth">
+
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                                </div>
+                            @endif
+                            @if (Route::has('register'))
+                                <div class="header__top__right__auth">
+
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+
+                                </div>
+                            @endif
+                        @else
+
+                            <div class="header__top__right__language" aria-haspopup="true" aria-expanded="false">
+                                <div>{{ Auth::user()->name }}</div>
+
+                                <ul>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                              document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endguest
+
+
+
+
                     </div>
                 </div>
             </div>
