@@ -184,7 +184,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>Categorias</span>
                     </div>
                     <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
                         <li><a href="#">Bebidas</a></li>
