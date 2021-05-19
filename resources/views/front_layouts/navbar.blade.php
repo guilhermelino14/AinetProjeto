@@ -75,20 +75,20 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6" style="top: 10px;">
+                <div class="col-lg-6 col-md-6" >
                     <div class="header__top__right">
                         @guest
                             @if (Route::has('login'))
 
 
-                                <div class="header__top__right__auth">
+                                <div class="header__top__right__auth" style="position: relative;top: 4px;">
 
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 
                                 </div>
                             @endif
                             @if (Route::has('register'))
-                                <div class="header__top__right__auth">
+                                <div class="header__top__right__auth" style="position: relative;top: 4px;">
 
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
 
@@ -96,7 +96,7 @@
                             @endif
                         @else
 
-                            <div class="header__top__right__language" aria-haspopup="true" aria-expanded="false">
+                            <div class="header__top__right__language" style="top: 10px" aria-haspopup="true" aria-expanded="false">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <ul>
