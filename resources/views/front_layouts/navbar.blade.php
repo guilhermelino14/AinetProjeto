@@ -139,7 +139,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="header__logo">
+                <div class="header__logo" style="padding-right: 13%;">
                     <a href="{{ url('/') }}"><img src="img/logoAI.png" alt=""></a>
                 </div>
             </div>
