@@ -27,18 +27,29 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>Department</h4>
+                            <h4>Categorias</h4>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
+                                <li><a href="#">Bebidas</a></li>
+                                <li><a href="#">Cool</a></li>
+                                <li><a href="#">Desenhos Abstratos</a></li>
+                                <li><a href="#">Desporto</a></li>
+                                <li><a href="#">Engraçadas</a></li>
+                                <li><a href="#">Filmes</a></li>
+                                <li><a href="#">Frases</a></li>
+                                <li><a href="#">Geeks</a></li>
+                                <li><a href="#">Infantil</a></li>
+                                <li><a href="#">Inspiração</a></li>
+                                <li><a href="#">Locais</a></li>
+                                <li><a href="#">Logotipos</a></li>
+                                <li><a href="#">Memes</a></li>
+                                <li><a href="#">Musica</a></li>
+                                <li><a href="#">Publicidade e Marcas</a></li>
+                                <li><a href="#">Sem Sentido</a></li>
+                                <li><a href="#">Simples</a></li>
+                                <li><a href="#">Surf</a></li>
+                                <li><a href="#">Verão</a></li>
+                                <li><a href="#">Vintage</a></li>
+                                <li><a href="#">Tattoo</a></li>
                             </ul>
                         </div>
                         <div class="sidebar__item">
