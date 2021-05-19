@@ -27,8 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        return view('back_pages.create');
+        $users = null;
+        return view('back_pages.create', compact('users'));
     }
 
     /**
