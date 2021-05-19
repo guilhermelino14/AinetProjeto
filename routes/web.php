@@ -25,6 +25,9 @@ Route::get('/gallery', function () {
 })->name('gallery');
 
 Route::resource('admin/users', UserController::class);
+Route::resource('admin/estampas', EstampasController::class);
+
+Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
 
 Route::get('/admin/index', function () {
     return view('back_pages.index');
@@ -48,9 +51,7 @@ Route::get('/shopdetails', function () {
     return view('front_pages.shop-details');
 })->name('shopdetails');
 
-Route::get('/shopgrid', function () {
-    return view('front_pages.shop-grid');
-})->name('shopgrid');
+
 
 Route::get('/shoppingcart', function () {
     return view('front_pages.shoping-cart');
