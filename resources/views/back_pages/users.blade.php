@@ -9,6 +9,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Users</h6>
                         </div>
                         <div class="card-body">
+                            <button type="button" class="btn btn-success">Criar Utilizador</button>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>

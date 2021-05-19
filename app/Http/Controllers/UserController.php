@@ -13,7 +13,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
         $users = User::paginate(15);
         return view('back_pages.users', compact('users'));
     }
@@ -26,7 +26,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        dd("putas create");
+        return view('back_pages.create');
     }
 
     /**
