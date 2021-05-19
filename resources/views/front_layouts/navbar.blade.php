@@ -94,7 +94,7 @@
                             @endif
                         @else
 
-                            <div class="header__top__right__language" style="top: 10px" aria-haspopup="true"
+                            <div class="header__top__right__language" style="top: 4px" aria-haspopup="true"
                                 aria-expanded="false">
                                 <div>
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
