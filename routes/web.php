@@ -29,7 +29,7 @@ Route::resource('admin/estampas', EstampasController::class);
 
 Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
 
-Route::get('/admin/index', function () {
+Route::get('/admin', function () {
     return view('back_pages.index');
 })->name('admin');
 

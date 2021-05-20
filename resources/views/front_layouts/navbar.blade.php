@@ -102,7 +102,7 @@
                                         <span
                                             class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                         <img class="img-profile rounded-circle" width="20px"
-                                            src="{{ asset('admin/img/undraw_profile.svg') }}">
+                                            src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
                                     </a>
                                 </div>
 
