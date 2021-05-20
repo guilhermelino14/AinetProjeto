@@ -35,6 +35,6 @@ class Estampa extends Model
     public function categorias()
     {
         //estampa belongsTo categoria (1:N)
-        return $this->belongsTo(Categoria::class, 'id', 'categoria_id');
+        return $this->belongsTo(Categoria::class, 'categoria_id', 'id');
     }
 }

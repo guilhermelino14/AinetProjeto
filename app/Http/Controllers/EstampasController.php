@@ -20,7 +20,8 @@ class EstampasController extends Controller
     public function index_front()
     {
         $estampas = Estampa::paginate(15);
-        return view('front_pages.shop-grid', compact('estampas'));
+        $estampasCount = Estampa::count();
+        return view('front_pages.shop-grid', compact('estampas','estampasCount'));
     }
 
     /**
@@ -53,6 +54,12 @@ class EstampasController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function show_front($id){
+        $estampas = Estampa::where('categoria_id', $id)->paginate(15); //If user exists
+        $estampasCount = Estampa::where('categoria_id', $id)->count();
+        return view('front_pages.shop-grid', compact('estampas','estampasCount'));
     }
 
     /**

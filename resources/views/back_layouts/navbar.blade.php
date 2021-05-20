@@ -17,15 +17,20 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li @if (Request::route()->getName() == "admin") class="nav-item active"@else class="nav-item"@endif>
                 <a class="nav-link" href="{{ url('/admin') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <li class="nav-item">
+            <li @if (Request::route()->getName() == "users.index") class="nav-item active"@else class="nav-item"@endif>
                 <a class="nav-link" href="{{ url('/admin/users') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-users"></i>
                     <span>users</span></a>
+            </li>
+            <li @if (Request::route()->getName() == "estampas.index") class="nav-item active"@else class="nav-item"@endif>
+                <a class="nav-link" href="{{ url('/admin/estampas') }}">
+                    <i class="fas fa-paint-roller"></i>
+                    <span>Estampas</span></a>
             </li>
 
             {{-- <!-- Divider -->

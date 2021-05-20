@@ -2,16 +2,12 @@
 
 @section('content')
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('img/breadcrumb.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>Organi Shop</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -28,30 +24,31 @@
                         <div class="sidebar__item">
                             <h4>Categorias</h4>
                             <ul>
-                                <li><a href="#">Bebidas</a></li>
-                                <li><a href="#">Cool</a></li>
-                                <li><a href="#">Desenhos Abstratos</a></li>
-                                <li><a href="#">Desporto</a></li>
-                                <li><a href="#">Engraçadas</a></li>
-                                <li><a href="#">Filmes</a></li>
-                                <li><a href="#">Frases</a></li>
-                                <li><a href="#">Geeks</a></li>
-                                <li><a href="#">Infantil</a></li>
-                                <li><a href="#">Inspiração</a></li>
-                                <li><a href="#">Locais</a></li>
-                                <li><a href="#">Logotipos</a></li>
-                                <li><a href="#">Memes</a></li>
-                                <li><a href="#">Musica</a></li>
-                                <li><a href="#">Publicidade e Marcas</a></li>
-                                <li><a href="#">Sem Sentido</a></li>
-                                <li><a href="#">Simples</a></li>
-                                <li><a href="#">Surf</a></li>
-                                <li><a href="#">Verão</a></li>
-                                <li><a href="#">Vintage</a></li>
-                                <li><a href="#">Tattoo</a></li>
+                                <li><a href="{{route('shopgrid')}}">Todas</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 12) }}">Bebidas</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 20) }}">Cool</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 11) }}">Desenhos Abstratos</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 15) }}">Desporto</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 1) }}">Engraçadas</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 6) }}">Filmes</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 21) }}">Frases</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 2) }}">Geeks</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 14) }}">Infantil</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 4) }}">Inspiração</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 8) }}">Locais</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 9) }}">Logotipos</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 3) }}">Memes</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 7) }}">Musica</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 10) }}">Publicidade e Marcas</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 13) }}">Sem Sentido</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 5) }}">Simples</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 17) }}">Surf</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 16) }}">Verão</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 19) }}">Vintage</a></li>
+                                <li><a href="{{ route('shopgrid_categorias', 18) }}">Tattoo</a></li>
                             </ul>
                         </div>
-                        <div class="sidebar__item">
+                        {{-- <div class="sidebar__item">
                             <h4>Price</h4>
                             <div class="price-range-wrap">
                                 <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -67,8 +64,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sidebar__item sidebar__item__color--option">
+                        </div> --}}
+                        {{-- <div class="sidebar__item sidebar__item__color--option">
                             <h4>Colors</h4>
                             <div class="sidebar__item__color sidebar__item__color--white">
                                 <label for="white">
@@ -133,15 +130,15 @@
                                     <input type="radio" id="small">
                                 </label>
                             </div>
-                        </div>
-                        <div class="sidebar__item">
+                        </div> --}}
+                        {{-- <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>Latest Products</h4>
                                 <div class="latest-product__slider owl-carousel">
                                     <div class="latest-prdouct__slider__item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-1.jpg" alt="">
+                                                <img src="{{ asset('img/latest-product/lp-1.jpg') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>Crab Pool Security</h6>
@@ -150,7 +147,7 @@
                                         </a>
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-2.jpg" alt="">
+                                                <img src="{{ asset('img/latest-product/lp-2.jpg') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>Crab Pool Security</h6>
@@ -159,7 +156,7 @@
                                         </a>
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-3.jpg" alt="">
+                                                <img src="{{ asset('img/latest-product/lp-3.jpg') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>Crab Pool Security</h6>
@@ -170,7 +167,7 @@
                                     <div class="latest-prdouct__slider__item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-1.jpg" alt="">
+                                                <img src="{{ asset('img/latest-product/lp-1.jpg') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>Crab Pool Security</h6>
@@ -179,7 +176,7 @@
                                         </a>
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-2.jpg" alt="">
+                                                <img src="{{ asset('img/latest-product/lp-2.jpg') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>Crab Pool Security</h6>
@@ -188,7 +185,7 @@
                                         </a>
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-3.jpg" alt="">
+                                                <img src="{{ asset('img/latest-product/lp-3.jpg') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>Crab Pool Security</h6>
@@ -198,13 +195,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
                     <div class="filter__item">
                         <div class="row">
-                            <div class="col-lg-4 col-md-5">
+                            {{-- <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
                                     <span>Sort By</span>
                                     <select>
@@ -212,40 +209,40 @@
                                         <option value="0">Default</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
+                            </div> --}}
+                            <div class="col-lg-12 col-md-12">
                                 <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                    <h6><span>{{ $estampasCount }}</span> Products found</h6>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-3">
+                            {{-- <div class="col-lg-4 col-md-3">
                                 <div class="filter__option">
                                     <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="row">
                         @foreach ($estampas as $estampa)
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">{{$estampa->nome}}</a></h6>
-                                    <h5>preço</h5>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg"
+                                        data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
+                                        <ul class="product__item__pic__hover">
+                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h6><a href="#">{{ $estampa->nome }}</a></h6>
+                                        <h5>preço</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
-                    <div class="product__pagination">
+                    <div class="col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
                         {{ $estampas->links() }}
                     </div>
                 </div>

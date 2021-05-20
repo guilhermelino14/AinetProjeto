@@ -7,7 +7,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logoAI.png" alt=""></a>
+        <a href="#"><img src="{{ asset('img/logoAI.png')}}" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -18,7 +18,7 @@
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
-            <img src="img/language.png" alt="">
+            <img src="{{ asset('img/language.png')}}" alt="">
             <div>English</div>
             <span class="arrow_carrot-down"></span>
             <ul>
@@ -140,22 +140,29 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo" style="padding-right: 13%;">
-                    <a href="{{ url('/') }}"><img src="img/logoAI.png" alt=""></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('img/logoAI.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('shopgrid') }}">Shop</a></li>
-                        <li><a href="#">Pages</a>
+                        <li @if (Request::route()->getName() == "homeT")class="active" @endif>
+                            <a href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li @if (Request::route()->getName() == "shopgrid")class="active" @endif>
+                            <a href="{{ url('shopgrid') }}">Shop</a>
+                        </li>
+                        <li @if (Request::route()->getName() == "shopdetails" || Request::route()->getName() == "shoppingcart" || Request::route()->getName() == "checkout")class="active" @endif>
+                            <a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
                                 <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
                                 <li><a href="{{ url('checkout') }}">Check Out</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('contact') }}">Contact</a></li>
+                        <li @if (Request::route()->getName() == "contact")class="active" @endif>
+                            <a href="{{ url('contact') }}">Contact</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -187,27 +194,27 @@
                         <span>Categorias</span>
                     </div>
                     <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
-                        <li><a href="#">Bebidas</a></li>
-                        <li><a href="#">Cool</a></li>
-                        <li><a href="#">Desenhos Abstratos</a></li>
-                        <li><a href="#">Desporto</a></li>
-                        <li><a href="#">Engraçadas</a></li>
-                        <li><a href="#">Filmes</a></li>
-                        <li><a href="#">Frases</a></li>
-                        <li><a href="#">Geeks</a></li>
-                        <li><a href="#">Infantil</a></li>
-                        <li><a href="#">Inspiração</a></li>
-                        <li><a href="#">Locais</a></li>
-                        <li><a href="#">Logotipos</a></li>
-                        <li><a href="#">Memes</a></li>
-                        <li><a href="#">Musica</a></li>
-                        <li><a href="#">Publicidade e Marcas</a></li>
-                        <li><a href="#">Sem Sentido</a></li>
-                        <li><a href="#">Simples</a></li>
-                        <li><a href="#">Surf</a></li>
-                        <li><a href="#">Verão</a></li>
-                        <li><a href="#">Vintage</a></li>
-                        <li><a href="#">Tattoo</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 12)}}">Bebidas</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 20)}}">Cool</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 11)}}">Desenhos Abstratos</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 15)}}">Desporto</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 1)}}">Engraçadas</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 6)}}">Filmes</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 21)}}">Frases</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 2)}}">Geeks</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 14)}}">Infantil</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 4)}}">Inspiração</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 8)}}">Locais</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 9)}}">Logotipos</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 3)}}">Memes</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 7)}}">Musica</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 10)}}">Publicidade e Marcas</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 13)}}">Sem Sentido</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 5)}}">Simples</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 17)}}">Surf</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 16)}}">Verão</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 19)}}">Vintage</a></li>
+                        <li><a href="{{route('shopgrid_categorias', 18)}}">Tattoo</a></li>
                     </ul>
                 </div>
             </div>
@@ -235,3 +242,7 @@
     </div>
 </section>
 <!-- Hero Section End -->
+<script>
+console.log($request->path())
+
+</script>

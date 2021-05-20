@@ -56,7 +56,7 @@
                                         $110.00
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -78,7 +78,7 @@
                                         $39.99
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -100,7 +100,7 @@
                                         $69.99
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -109,13 +109,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__btns">
-                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a>
-                    </div>
-                </div>
+                
                 <div class="col-lg-6">
                     <div class="shoping__continue">
                         <div class="shoping__discount">
