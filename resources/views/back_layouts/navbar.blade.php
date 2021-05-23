@@ -25,7 +25,7 @@
             <li @if (Request::route()->getName() == "users.index") class="nav-item active"@else class="nav-item"@endif>
                 <a class="nav-link" href="{{ url('/admin/users') }}">
                     <i class="fas fa-users"></i>
-                    <span>users</span></a>
+                    <span>Utilizadores</span></a>
             </li>
             
             <li @if (Request::route()->getName() == "clientes.index") class="nav-item active"@else class="nav-item"@endif>

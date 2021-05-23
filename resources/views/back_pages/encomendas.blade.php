@@ -35,6 +35,10 @@
                                                 <td>{{$encomenda->data}}</td>
                                                 <td>{{$encomenda->ref_pagamento}}</td>
                                                 <td>{{$encomenda->preco_total}}</td>
+                                                <td style="vertical-align: middle;">
+                                                    <a href="{{route('encomendas.edit', ['encomenda' => $encomenda->id])}}"
+                                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">Ver</a>
+                                                </td>
                                                 <td >
                                                     <a href="{{route('encomendas.edit', ['encomenda' => $encomenda->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>

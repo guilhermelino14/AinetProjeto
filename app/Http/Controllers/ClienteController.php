@@ -48,8 +48,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
-        dd();
+        $cliente = Cliente::findOrFail($id);
+        return view('back_pages.cliente_show', compact('cliente'));
     }
 
     /**

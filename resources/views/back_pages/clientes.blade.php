@@ -36,11 +36,15 @@
                                                 <td>{{$cliente->user->name}}</td>
                                                 <td>{{$cliente->nif}}</td>
                                                 <td>{{$cliente->endereco}}</td>
-                                                <td >
+                                                <td style="vertical-align: middle;">
+                                                    <a href="{{route('clientes.show', ['cliente' => $cliente->id])}}"
+                                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">Ver</a>
+                                                </td>
+                                                <td style="vertical-align: middle;">
                                                     <a href="{{route('clientes.edit', ['cliente' => $cliente->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                 </td>
-                                                <td >
+                                                <td style="vertical-align: middle;">
                                                         <form action="{{route('clientes.destroy', ['cliente' => $cliente->id])}}" method="POST">
                                                             @csrf
                                                             @method("DELETE")
