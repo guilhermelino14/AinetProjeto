@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/157_6079a49f6a335.png") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 12) }}">Bebidas</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
