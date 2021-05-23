@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Encomenda;
 use Illuminate\Http\Request;
-use App\Models\Cliente;
-use App\Models\User;
 
-class ClienteController extends Controller
+class EncomendaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate(15);
-        return view('back_pages.clientes', compact('clientes'));
+        $encomendas = Encomenda::paginate(15);
+        return view('back_pages.encomendas', compact('encomendas'));
     }
 
     /**
@@ -49,7 +48,6 @@ class ClienteController extends Controller
     public function show($id)
     {
         //
-        dd();
     }
 
     /**

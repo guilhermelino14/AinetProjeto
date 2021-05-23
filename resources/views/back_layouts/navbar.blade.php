@@ -27,6 +27,17 @@
                     <i class="fas fa-users"></i>
                     <span>users</span></a>
             </li>
+            
+            <li @if (Request::route()->getName() == "clientes.index") class="nav-item active"@else class="nav-item"@endif>
+                <a class="nav-link" href="{{ url('/admin/clientes') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Clientes</span></a>
+            </li>
+            <li @if (Request::route()->getName() == "encomendas.index") class="nav-item active"@else class="nav-item"@endif>
+                <a class="nav-link" href="{{ url('/admin/encomendas') }}">
+                    <i class="fas fa-money-check"></i>
+                    <span>Encomendas</span></a>
+            </li>
             <li @if (Request::route()->getName() == "estampas.index") class="nav-item active"@else class="nav-item"@endif>
                 <a class="nav-link" href="{{ url('/admin/estampas') }}">
                     <i class="fas fa-paint-roller"></i>

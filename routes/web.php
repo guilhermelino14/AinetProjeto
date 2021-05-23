@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EncomendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EstampasController;
+use App\Models\Encomenda;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,8 @@ Route::get('/gallery', function () {
 
 Route::resource('admin/users', UserController::class);
 Route::resource('admin/estampas', EstampasController::class);
+Route::resource('admin/encomendas', EncomendaController::class);
+Route::resource('admin/clientes', ClienteController::class);
 
 Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
 Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');
@@ -58,10 +62,6 @@ Route::get('/shopdetails', function () {
 Route::get('/shoppingcart', function () {
     return view('front_pages.shoping-cart');
 })->name('shoppingcart');
-
-
-// Marco
-Route::get('/admin/clientes', [ClienteController::class, 'index']);
 
 
 // ADMIN TEST
