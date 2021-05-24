@@ -5,6 +5,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EncomendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EstampasController;
+use App\Http\Controllers\MainController;
 use App\Models\Encomenda;
 use Illuminate\Support\Facades\Route;
 
@@ -39,44 +40,11 @@ Route::get('/admin', function () {
     return view('back_pages.index');
 })->name('admin');
 
-Route::get('/', function () {
-    return view('front_pages.index');
-})->name('homeT');
-Route::get('/checkout', function () {
-    return view('front_pages.checkout');
-})->name('checkout');
-Route::get('/contact', function () {
-    return view('front_pages.contact');
-})->name('contact');
 
-Route::get('/main', function () {
-    return view('front_pages.main');
-})->name('main');
+Route::get('/', [MainController::class, 'index'])->name('homeT');
+Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
+Route::get('/contact', [MainController::class, 'contact'])->name('contact');
+Route::get('/shopdetails', [MainController::class, 'shopdetails'])->name('shopdetails');
+Route::get('/shoppingcart', [MainController::class, 'shoppingcart'])->name('shoppingcart');
+Route::get('/search', [MainController::class, 'search'])->name('search');
 
-Route::get('/shopdetails', function () {
-    return view('front_pages.shop-details');
-})->name('shopdetails');
-
-
-
-Route::get('/shoppingcart', function () {
-    return view('front_pages.shoping-cart');
-})->name('shoppingcart');
-
-
-// ADMIN TEST
-
-//Route::get('/admin/users', [UserController::class, 'index']);
-
-
-Route::get('/admin/login', function () {
-    return view('back_pages.login');
-})->name('admin_login');
-
-Route::get('/admin/register', function () {
-    return view('back_pages.register');
-})->name('admin_register');
-
-Route::get('/admin/fpassword', function () {
-    return view('back_pages.forgot-password');
-})->name('admin_fpassword');

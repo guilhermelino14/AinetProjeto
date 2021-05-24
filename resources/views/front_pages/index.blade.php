@@ -8,28 +8,38 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/157_6079a49f6a335.png") }}">
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$bebidasLogo") }}">
                             <h5><a href="{{ route('shopgrid_categorias', 12) }}">Bebidas</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$coolLogo") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 20) }}">Cool</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$abstratosLogo") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 11) }}">Abstratos</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$desportosLogo") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 15) }}">Desporto</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$engracadasLogo") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 1) }}">Engraçados</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$filmesLogo") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 6) }}">Filmes</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="{{ asset("storage/estampas/$frasesLogo") }}">
+                            <h5><a href="{{ route('shopgrid_categorias', 21) }}">Frases</a></h5>
                         </div>
                     </div>
                 </div>
@@ -406,7 +416,7 @@
     </section>
     <!-- Latest Product Section End -->
 
-    <!-- Blog Section Begin -->
+    {{-- <!-- Blog Section Begin -->
     <section class="from-blog spad">
         <div class="container">
             <div class="row">
@@ -465,6 +475,6 @@
             </div>
         </div>
     </section>
-    <!-- Blog Section End -->
+    <!-- Blog Section End --> --}}
 
 @endsection
