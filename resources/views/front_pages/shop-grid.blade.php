@@ -235,7 +235,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="#">{{ $estampa->nome }}</a></h6>
+                                        <h6><a href="{{route('shopdetails', $estampa->id)}}">{{ $estampa->nome }}</a></h6>
                                         <h5>preço</h5>
                                     </div>
                                 </div>
