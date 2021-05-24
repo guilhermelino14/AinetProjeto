@@ -34,13 +34,6 @@
         <ul>
             <li class="active"><a href="{{ url('/') }}">Home</a></li>
             <li><a href="{{ url('shopgrid') }}">Shop</a></li>
-            <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
-                    <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
-                    <li><a href="{{ url('checkout') }}">Check Out</a></li>
-                </ul>
-            </li>
             <li><a href="{{ url('contact') }}">Contact</a></li>
         </ul>
     </nav>
@@ -101,8 +94,14 @@
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span
                                             class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                        <img class="img-profile rounded-circle" width="20px"
-                                            src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
+                                            @if (Auth::user()->foto_url != null)
+                                                <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('storage/fotos/'.Auth::user()->foto_url) }}">
+                                            @else
+                                                <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
+                                            @endif
+                                        
                                     </a>
                                 </div>
 
@@ -151,14 +150,6 @@
                         </li>
                         <li @if (Request::route()->getName() == "shopgrid")class="active" @endif>
                             <a href="{{ url('shopgrid') }}">Shop</a>
-                        </li>
-                        <li @if (Request::route()->getName() == "shopdetails" || Request::route()->getName() == "shoppingcart" || Request::route()->getName() == "checkout")class="active" @endif>
-                            <a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="{{ url('shopdetails') }}">Shop Details</a></li>
-                                <li><a href="{{ url('shoppingcart') }}">Shoping Cart</a></li>
-                                <li><a href="{{ url('checkout') }}">Check Out</a></li>
-                            </ul>
                         </li>
                         <li @if (Request::route()->getName() == "contact")class="active" @endif>
                             <a href="{{ url('contact') }}">Contact</a>

@@ -320,8 +320,13 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('admin_pub/img/undraw_profile.svg')}}">
+                                @if (Auth::user()->foto_url != null)
+                                                <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('storage/fotos/'.Auth::user()->foto_url) }}">
+                                            @else
+                                                <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
+                                            @endif
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

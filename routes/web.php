@@ -44,7 +44,7 @@ Route::get('/admin', function () {
 Route::get('/', [MainController::class, 'index'])->name('homeT');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
-Route::get('/shopdetails', [MainController::class, 'shopdetails'])->name('shopdetails');
+Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('shopdetails');
 Route::get('/shoppingcart', [MainController::class, 'shoppingcart'])->name('shoppingcart');
 Route::get('/search', [MainController::class, 'search'])->name('search');
 

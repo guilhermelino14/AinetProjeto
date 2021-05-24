@@ -17,7 +17,8 @@ class MainController extends Controller
         $engracadasLogo = Estampa::where('id', 36)->pluck('imagem_url')->first();
         $filmesLogo = Estampa::where('id', 11)->pluck('imagem_url')->first();
         $frasesLogo = Estampa::where('id', 254)->pluck('imagem_url')->first();
-        return view('front_pages.index', compact('bebidasLogo', 'coolLogo', 'abstratosLogo', 'desportosLogo', 'engracadasLogo', 'filmesLogo', 'frasesLogo'));
+        $estampas = Estampa::inRandomOrder()->limit(8)->get();
+        return view('front_pages.index', compact('estampas', 'bebidasLogo', 'coolLogo', 'abstratosLogo', 'desportosLogo', 'engracadasLogo', 'filmesLogo', 'frasesLogo'));
     }
 
     public function checkout()
@@ -30,9 +31,12 @@ class MainController extends Controller
         return view('front_pages.contact');
     }
 
-    public function shopdetails()
+    public function shopdetails($id)
     {
-        return view('front_pages.shop-details');
+        $estampa = Estampa::findOrFail($id);
+        $estampasRelated = Estampa::inRandomOrder()->where('categoria_id', $estampa->categoria_id)->limit(4)->get();
+        
+        return view('front_pages.shop-details', compact('estampa', 'estampasRelated'));
     }
 
     public function shoppingcart()

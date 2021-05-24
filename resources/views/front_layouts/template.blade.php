@@ -15,7 +15,7 @@
     <!-- Google Font -->
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" type="text/css">
