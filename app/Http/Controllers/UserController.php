@@ -49,8 +49,6 @@ class UserController extends Controller
         $newUser->tipo = $validated_data['tipo'] ?? 'C';
         $newUser->bloqueado = 0;
         $newUser->foto_url = $validated_data['foto_url'];
-        //"email_verified_at"
-        //"remember_token"
         $newUser->save();
         $cliente = new Cliente;
         $cliente->user_id = $newUser->id;
@@ -59,9 +57,6 @@ class UserController extends Controller
         $cliente->tipo_pagamento = $validated_data['tipo_pagamento'];
         $cliente->ref_pagamento = $validated_data['ref_pagamento'];
         $cliente->save();
-        /*return redirect()->route('admin.alunos')
-            ->with('alert-msg', 'Aluno "' . $validated_data['name'] . '" foi criado com sucesso!')
-            ->with('alert-type', 'success');*/
     }
 
     /**
@@ -99,7 +94,7 @@ class UserController extends Controller
         $validated_data = $request->validated();
         $user->name = $validated_data['name'];
         $user->email = $validated_data['email'];
-        $user->genero = Hash::make($validated_data['password']);
+        $user->password = Hash::make($validated_data['password']);
         $user->tipo = $validated_data['tipo'] ?? 'C';
         $user->bloqueado = $validated_data['bloqueado'];
         $user->foto_url = $validated_data['foto_url'];
@@ -109,9 +104,6 @@ class UserController extends Controller
         $user->tipo_pagamento = $validated_data['tipo_pagamento'];
         $user->ref_pagamento = $validated_data['ref_pagamento'];
         $user->save();
-        /*return redirect()->route('admin.alunos')
-            ->with('alert-msg', 'Aluno "' . $aluno->user->name . '" foi alterado com sucesso!')
-            ->with('alert-type', 'success');*/
     }
 
     /**

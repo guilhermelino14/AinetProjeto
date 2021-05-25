@@ -28,7 +28,18 @@
                                 <div class="form-group">
                                     <label for="inputPassword">Password</label>
                                     <input type="text" class="form-control" name="password" id="inputPassword"  >
-                                    @error('email')
+                                    @error('password')
+                                        <div class="small text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTipo">Tipo de utilizador:</label>
+                                    <select name="tipo" id="tipo" >
+                                        <option value="A" {{old('tipo', $user->tipo)=="A" ? 'selected' : ''}}>Administrador</option>
+                                        <option value="C" {{old('tipo', $user->tipo)=="C" ? 'selected' : ''}}>Cliente</option>
+                                        <option value="F" {{old('tipo', $user->tipo)=="F" ? 'selected' : ''}}>Funcionário</option>
+                                    </select>
+                                    @error('tipo')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
