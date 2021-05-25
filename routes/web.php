@@ -22,24 +22,19 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/gallery', function () {
-    return view('gallery');
-})->name('gallery');
+Route::get('/admin', function () {
+    return view('back_pages.index');
+})->name('admin');
 
 Route::resource('admin/users', UserController::class);
 Route::resource('admin/estampas', EstampasController::class);
 Route::resource('admin/encomendas', EncomendaController::class);
 Route::resource('admin/clientes', ClienteController::class);
 
+
 Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
 Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');
-
-Route::get('/admin', function () {
-    return view('back_pages.index');
-})->name('admin');
-
 
 Route::get('/', [MainController::class, 'index'])->name('homeT');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
@@ -48,3 +43,6 @@ Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('s
 Route::get('/shoppingcart', [MainController::class, 'shoppingcart'])->name('shoppingcart');
 Route::get('/search', [MainController::class, 'search'])->name('search');
 
+
+Route::get('/profile', [UserController::class, 'edit_front'])->name('profile');
+Route::put('/profile/{user}', [UserController::class, 'update_front'])->name('profile_update');
