@@ -8,7 +8,8 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
-
+use Facade\FlareClient\Stacktrace\File;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -122,6 +123,12 @@ class UserController extends Controller
         $user->email = $validated_data['email'];
         $cliente->endereco = $validated_data['endereco'];
         $cliente->nif = $validated_data['nif'];
+        if(isset($validated_data['img'])){
+            Storage::delete('public/fotos/'.$user->foto_url);
+            $path = $request->file('img')->store('public/fotos');
+            $name = explode("/", $path);
+            $user->foto_url = $name[2];
+        }
         if($validated_data['password'] != null){
             $user->password = Hash::make($validated_data['password']);
         }

@@ -33,6 +33,7 @@ class UserPostRequest extends FormRequest
                 'email',
             ],
             'password' =>       'nullable|min:8|confirmed',
+            'img' =>       'nullable',
         ];
     }
     public function messages()
