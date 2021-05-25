@@ -90,8 +90,8 @@
                             <div class="header__top__right__language" style="top: 4px" aria-haspopup="true"
                                 aria-expanded="false">
                                 <div>
-                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="#"  role="button"
+                                         aria-haspopup="true" aria-expanded="false">
                                         <span
                                             class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                             @if (Auth::user()->foto_url != null)
@@ -106,6 +106,9 @@
                                 </div>
 
                                 <ul style="top: 40px">
+                                    <li><a class="dropdown-item" href="{{ route('profile') }}">
+                                        Profile
+                                        </a></li>
                                     @if (Auth::user()->tipo === 'A')
                                         
                                     

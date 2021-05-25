@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserPostRequest;
 use App\Models\User;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -86,6 +87,13 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('back_pages.create', compact('user'));
     }
+    
+    public function edit_front()
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        return view('front_pages.profile_user', compact('user'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -112,6 +120,22 @@ class UserController extends Controller
         /*return redirect()->route('admin.alunos')
             ->with('alert-msg', 'Aluno "' . $aluno->user->name . '" foi alterado com sucesso!')
             ->with('alert-type', 'success');*/
+    }
+
+    public function update_front(UserPostRequest $request, User $user)
+    {
+        $cliente = $user->cliente;
+        $validated_data = $request->validated();
+        $user->name = $validated_data['name'];
+        $user->email = $validated_data['email'];
+        $cliente->endereco = $validated_data['endereco'];
+        $cliente->nif = $validated_data['nif'];
+        if($validated_data['password'] != null){
+            $user->password = Hash::make($validated_data['password']);
+        }
+        $user->save();
+        $cliente->save();
+        return Redirect()->back();
     }
 
     /**
