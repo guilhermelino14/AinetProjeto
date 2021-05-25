@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estampa;
+use App\Models\Preco;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -18,7 +19,8 @@ class MainController extends Controller
         $filmesLogo = Estampa::where('id', 11)->pluck('imagem_url')->first();
         $frasesLogo = Estampa::where('id', 254)->pluck('imagem_url')->first();
         $estampas = Estampa::inRandomOrder()->limit(8)->get();
-        return view('front_pages.index', compact('estampas', 'bebidasLogo', 'coolLogo', 'abstratosLogo', 'desportosLogo', 'engracadasLogo', 'filmesLogo', 'frasesLogo'));
+        $preco = Preco::find(1);
+        return view('front_pages.index', compact('estampas', 'bebidasLogo', 'coolLogo', 'abstratosLogo', 'desportosLogo', 'engracadasLogo', 'filmesLogo', 'frasesLogo', 'preco'));
     }
 
     public function checkout()
@@ -34,9 +36,10 @@ class MainController extends Controller
     public function shopdetails($id)
     {
         $estampa = Estampa::findOrFail($id);
+        $preco = Preco::find(1);
         $estampasRelated = Estampa::inRandomOrder()->where('categoria_id', $estampa->categoria_id)->limit(4)->get();
         
-        return view('front_pages.shop-details', compact('estampa', 'estampasRelated'));
+        return view('front_pages.shop-details', compact('estampa', 'estampasRelated', 'preco'));
     }
 
     public function shoppingcart()
@@ -55,6 +58,7 @@ class MainController extends Controller
         ->where('nome', 'like', "%{$key}%")
         ->orWhere('descricao', 'like', "%{$key}%")
         ->count();
-        return view('front_pages.shop-grid', compact('estampas','estampasCount'));
+        $preco = Preco::find(1);
+        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco'));
     }
 }

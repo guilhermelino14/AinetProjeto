@@ -1,4 +1,3 @@
-
 @extends('front_layouts.template')
 
 @section('content')
@@ -45,7 +44,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>{{$estampa->nome}}</h3>
+                        <h3>{{ $estampa->nome }}</h3>
                         {{-- <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -54,9 +53,13 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div> --}}
-                        <div class="product__details__price">Preço</div>
-                        <p>{{$estampa->descricao}}</p>
-                            
+                        @if ($estampa->cliente_id == null)
+                            <div class="product__details__price">{{ $preco->preco_un_catalogo }}</div>
+                        @else
+                            <div class="product__details__price">{{ $preco->preco_un_proprio }}</div>
+                        @endif
+                        <p>{{ $estampa->descricao }}</p>
+
                         <ul>
                             <div class="product__details__quantity">
                                 <div class="quantity">
@@ -166,26 +169,31 @@
             </div>
             <div class="row">
                 @foreach ($estampasRelated as $estampa)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="{{route('shopdetails', $estampa->id)}}">{{$estampa->nome}}</a></h6>
-                            <h5>preço</h5>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg"
+                                data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
+                                <ul class="product__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <h6><a href="{{ route('shopdetails', $estampa->id) }}">{{ $estampa->nome }}</a></h6>
+                                @if ($estampa->cliente_id == null)
+                                        <h5>{{$preco->preco_un_catalogo}}</h5>
+                                        @else
+                                        <h5>{{$preco->preco_un_proprio}}</h5>
+                                        @endif
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
-                
+
             </div>
         </div>
     </section>
     <!-- Related Product Section End -->
 
-    @endsection
+@endsection

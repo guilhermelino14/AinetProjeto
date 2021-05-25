@@ -71,7 +71,11 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="{{route('shopdetails', $estampa->id)}}">{{$estampa->nome}}</a></h6>
-                            <h5>Preço</h5>
+                            @if ($estampa->cliente_id == null)
+                                        <h5>{{$preco->preco_un_catalogo}}</h5>
+                                        @else
+                                        <h5>{{$preco->preco_un_proprio}}</h5>
+                                        @endif
                         </div>
                     </div>
                 </div>

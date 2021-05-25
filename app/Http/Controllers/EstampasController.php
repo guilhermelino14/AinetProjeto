@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estampa;
+use App\Models\Preco;
 use Illuminate\Http\Request;
 
 class EstampasController extends Controller
@@ -21,7 +22,8 @@ class EstampasController extends Controller
     {
         $estampas = Estampa::paginate(15);
         $estampasCount = Estampa::count();
-        return view('front_pages.shop-grid', compact('estampas','estampasCount'));
+        $preco = Preco::find(1);
+        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco'));
     }
 
     /**
@@ -59,7 +61,8 @@ class EstampasController extends Controller
     public function show_front($id){
         $estampas = Estampa::where('categoria_id', $id)->paginate(15); //If user exists
         $estampasCount = Estampa::where('categoria_id', $id)->count();
-        return view('front_pages.shop-grid', compact('estampas','estampasCount'));
+        $preco = Preco::find(1);
+        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco'));
     }
 
     /**
