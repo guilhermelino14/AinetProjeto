@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\User;
+use Facade\FlareClient\Http\Client;
 
 class ClienteController extends Controller
 {
@@ -83,6 +84,9 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Cliente::findOrFail($id); //If client exists
+        $client->delete(); //Remove client
+
+        return Redirect()->back();
     }
 }

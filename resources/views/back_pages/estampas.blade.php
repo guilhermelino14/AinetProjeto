@@ -56,7 +56,7 @@
                             <div class="col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
                                 {{ $estampas->links() }}
                             </div>
-                            
+
                         </div>
                     </div>
 

@@ -1,7 +1,7 @@
 @extends('back_layouts.template')
 @section('content')
                 <!-- Begin Page Content -->
-                
+
                 <div class="container-fluid">
 
                     <!-- DataTales Example -->
@@ -10,7 +10,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Estampas</h6>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('clientes.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Cliente</button></a>
+                            {{-- <a href="{{ route('clientes.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Cliente</button></a>  --}}
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -40,10 +40,10 @@
                                                     <a href="{{route('clientes.show', ['cliente' => $cliente->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Ver</a>
                                                 </td>
-                                                <td style="vertical-align: middle;">
+                                                {{-- <td style="vertical-align: middle;">
                                                     <a href="{{route('clientes.edit', ['cliente' => $cliente->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
-                                                </td>
+                                                </td> --}}
                                                 <td style="vertical-align: middle;">
                                                         <form action="{{route('clientes.destroy', ['cliente' => $cliente->id])}}" method="POST">
                                                             @csrf
@@ -59,7 +59,7 @@
                             <div class="col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
                                 {{ $clientes->links() }}
                             </div>
-                            
+
                         </div>
                     </div>
 
