@@ -1040,25 +1040,16 @@ ol {
 	font-size: 46px;
 	color: #ffffff;
 	font-weight: 700;
+	-webkit-text-stroke: 2px black;
 }
 
 .breadcrumb__option a {
 	display: inline-block;
-	font-size: 16px;
+	font-size: 20px;
+	background-color: #4e73df;
 	color: #ffffff;
 	font-weight: 700;
-	margin-right: 20px;
 	position: relative;
-}
-
-.breadcrumb__option a:after {
-	position: absolute;
-	right: -12px;
-	top: 13px;
-	height: 1px;
-	width: 10px;
-	background: #ffffff;
-	content: "";
 }
 
 .breadcrumb__option span {
