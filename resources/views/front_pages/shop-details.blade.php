@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="primary-btn">ADD TO CARD</a>
+                            <a href="{{ route('addToCart', ['id' => $estampa->id]) }}" class="primary-btn">ADD TO CARD</a>
                         </ul>
                     </div>
                 </div>
@@ -174,9 +174,7 @@
                             <div class="product__item__pic set-bg"
                                 data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="{{ route('addToCart', ['id' => $estampa->id]) }}"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">

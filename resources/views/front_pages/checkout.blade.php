@@ -23,12 +23,6 @@
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
-                    </h6>
-                </div>
-            </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
                 <form action="#">
@@ -114,12 +108,13 @@
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
                                 <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
+                                    @if (Session::has('cart'))
+                                    @foreach ($items as $item)
+                                        <li>{{$item['item']['nome']}} <span>{{ $item['price'] / $item['qty']}}€</span></li>
+                                    @endforeach
+                                    @endif
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
+                                <div class="checkout__order__total">Total <span>{{Session::has('cart') ? Session::get('cart')->totalPrice() : '0'}}€</span></div>
                                 <div class="checkout__input__checkbox">
                                     <label for="acc-or">
                                         Create an account?

@@ -1,7 +1,7 @@
-
 @extends('front_layouts.template')
 
 @section('content')
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
@@ -37,81 +37,43 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (Session::has('cart'))
+                                    @foreach ($items as $item)
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="{{ asset("storage/estampas/".$item['item']['imagem_url']) }}" alt="" width="100px">
+                                        <h5>{{ $item['item']['nome']}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        {{ $item['price'] / $item['qty']}}€
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <a href="{{route('editItemFromCart', ['id' => $item['item']['id'],'operator' => '-'])}}"><span class="dec qtybtn">-</span></a>
+                                                <input type="text" value="{{ $item['qty'] }}" disabled>
+                                                <a href="{{route('editItemFromCart', ['id' => $item['item']['id'],'operator' => '+'])}}"><span class="inc qtybtn">+</span></a>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        {{ $item['price'] }}€
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                        <a href="{{route('removeFromCart', ['id' => $item['item']['id']])}}"><span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                    </td>
-                                </tr>
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="row">
-                
+
                 <div class="col-lg-6">
-                    <div class="shoping__continue">
+                    {{-- <div class="shoping__continue">
                         <div class="shoping__discount">
                             <h5>Discount Codes</h5>
                             <form action="#">
@@ -119,14 +81,13 @@
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Total <span>@if (Session::has('cart')){{$totalPrice}} @else 0 @endif€</span></li>
                         </ul>
                         <a href="{{ route('checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -136,4 +97,4 @@
     </section>
     <!-- Shoping Cart Section End -->
 
-    @endsection
+@endsection

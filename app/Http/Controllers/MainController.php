@@ -23,11 +23,6 @@ class MainController extends Controller
         return view('front_pages.index', compact('estampas', 'bebidasLogo', 'coolLogo', 'abstratosLogo', 'desportosLogo', 'engracadasLogo', 'filmesLogo', 'frasesLogo', 'preco'));
     }
 
-    public function checkout()
-    {
-        return view('front_pages.checkout');
-    }
-
     public function contact()
     {
         return view('front_pages.contact');
@@ -40,11 +35,6 @@ class MainController extends Controller
         $estampasRelated = Estampa::inRandomOrder()->where('categoria_id', $estampa->categoria_id)->limit(4)->get();
         
         return view('front_pages.shop-details', compact('estampa', 'estampasRelated', 'preco'));
-    }
-
-    public function shoppingcart()
-    {
-        return view('front_pages.shoping-cart');
     }
 
     public function search(Request $request)

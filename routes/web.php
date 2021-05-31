@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EncomendaController;
 use App\Http\Controllers\UserController;
@@ -37,12 +38,18 @@ Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_
 Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');
 
 Route::get('/', [MainController::class, 'index'])->name('homeT');
-Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
+
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('shopdetails');
-Route::get('/shoppingcart', [MainController::class, 'shoppingcart'])->name('shoppingcart');
+Route::get('/shoppingcart', [CartController::class, 'index'])->name('shoppingcart');
 Route::get('/search', [MainController::class, 'search'])->name('search');
 
 
 Route::get('/profile', [UserController::class, 'edit_front'])->name('profile');
 Route::put('/profile/{user}', [UserController::class, 'update_front'])->name('profile_update');
+
+
+Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/remove-From-Cart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editItemFromCart'])->name('editItemFromCart');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
