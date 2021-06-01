@@ -14,15 +14,8 @@
                                     <input type="text" value="{{$cliente->user->name}}" class="form-control" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
+                                    <label>Endereço Eletrónico</label>
                                     <input type="text" value="{{$cliente->user->email}}" class="form-control" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tipo</label>
-                                    @if ($cliente->user->tipo == 'A')
-                                        <input type="text" value="Administrador" class="form-control" disabled>
-                                        @else
-                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label>Bloqueado</label>
@@ -33,7 +26,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>Foto</label>
+                                    <label>Fotografia</label>
                                 </div>
                                 @if ($cliente->user->foto_url != null)
                                     <img width="100px" height="100px" src="{{ asset("storage/fotos/".$cliente->user->foto_url) }}"/>
@@ -42,12 +35,16 @@
                                 @endif
                                 <div><br></div>
                                 <div class="form-group">
-                                    <label>NIF</label>
+                                    <label>Número de Idenficação Fiscal</label>
                                     <input type="text" value="{{$cliente->nif}}" class="form-control" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label>Endereço</label>
                                     <input type="text" value="{{$cliente->endereco}}" class="form-control" disabled >
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo de pagamento definido</label>
+                                    <input type="text" value="{{$cliente->tipo_pagamento}}" class="form-control" disabled >
                                 </div>
                                 <div class="form-group">
                                 <div class="form-group text-right">

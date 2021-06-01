@@ -6,7 +6,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Nova Encomenda</h6>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{route('users.store')}}" class="form-group">
@@ -71,9 +71,7 @@
                                         <a href="{{route('users.index')}}" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </form>
-                        </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 

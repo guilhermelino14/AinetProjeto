@@ -21,7 +21,7 @@ class Encomenda extends Model
     public function cliente()
     {
         //encomenda belongsTo cliente (N:1)
-        return $this->belongsTo(Cliente::class, 'id', 'cliente_id');
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
     }
 
     public function tshirt()

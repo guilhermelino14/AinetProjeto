@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Encomenda;
+use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 
 class EncomendaController extends Controller
@@ -25,7 +26,8 @@ class EncomendaController extends Controller
      */
     public function create()
     {
-        //
+        $encomenda = new Encomenda();
+        return view('back_pages.encomenda_create', compact('encomenda'));
     }
 
     /**
@@ -36,7 +38,16 @@ class EncomendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated_data = $request->validated();
+        $newEncomenda = new Encomenda();
+        $newEncomenda->estado = "pendente";
+        $newEncomenda->cliente->client_id = $validated_data['client_id'];
+        $newEncomenda->preco_total = $validated_data['preco_total'];
+        $newEncomenda->notas = $validated_data['notas'];
+        $newEncomenda->nif = $newEncomenda->cliente->nif;
+        $newEncomenda->endereco = $newEncomenda->cliente->endereco;
+        $newEncomenda->tipo_pagamento = $newEncomenda->cliente->tipo_pagamento;
+        $newEncomenda->save();
     }
 
     /**
@@ -47,7 +58,8 @@ class EncomendaController extends Controller
      */
     public function show($id)
     {
-        //
+        $encomenda = Encomenda::findOrFail($id);
+        return view('back_pages.encomenda_show', compact('encomenda'));
     }
 
     /**
@@ -58,7 +70,8 @@ class EncomendaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $encomenda = Encomenda::findOrFail($id);
+        return view('back_pages.encomenda_create', compact('encomenda'));
     }
 
     /**
@@ -81,6 +94,9 @@ class EncomendaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $encomenda = Encomenda::findOrFail($id); //If Encomenda exists
+        $encomenda->delete(); //Remove Encomenda
+
+        return Redirect()->back();
     }
 }
