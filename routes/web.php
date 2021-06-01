@@ -7,7 +7,11 @@ use App\Http\Controllers\EncomendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EstampasController;
 use App\Http\Controllers\MainController;
+use App\Http\Middleware\VerifyIsAdmin;
+use App\Models\Cliente;
 use App\Models\Encomenda;
+use App\Models\Estampa;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 
@@ -24,9 +28,13 @@ use Carbon\Carbon;
 
 Auth::routes();
 
-
+Route::middleware([VerifyIsAdmin::class])->group(function () {
 Route::get('/admin', function () {
-    return view('back_pages.index');
+    $users = User::count();
+    $clientes = Cliente::count();
+    $encomendas = Encomenda::count();
+    $estampas = Estampa::count();
+    return view('back_pages.index',compact('users', 'clientes','encomendas', 'estampas'));
 })->name('admin');
 
 Route::resource('admin/users', UserController::class);
@@ -34,6 +42,7 @@ Route::resource('admin/estampas', EstampasController::class);
 Route::resource('admin/encomendas', EncomendaController::class);
 Route::resource('admin/clientes', ClienteController::class);
 
+});
 
 Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
 Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');

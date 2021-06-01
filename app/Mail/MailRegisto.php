@@ -32,7 +32,7 @@ class MailRegisto extends Mailable
     {
         return $this
         ->from('MagicShirt@mailtrap.io')
-        ->subject('Mail from MagicShirst')
+        ->subject('Bem-Bindo ao MagicShirst')
         ->view('email.registo');
     }
 }
