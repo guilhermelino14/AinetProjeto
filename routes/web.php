@@ -9,6 +9,7 @@ use App\Http\Controllers\EstampasController;
 use App\Http\Controllers\MainController;
 use App\Models\Encomenda;
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,11 @@ Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 Route::get('/remove-From-Cart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editItemFromCart'])->name('editItemFromCart');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
+Route::get('verify-mail', function () {
+   
+    $user = Auth::user();
+    $user->email_verified_at= Carbon::now()->toDateTimeString();
+    $user->save();
+    return redirect()->back();
+})->name('verify_email');
