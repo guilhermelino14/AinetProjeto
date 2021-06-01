@@ -9,7 +9,8 @@
                             <h6 class="m-0 font-weight-bold text-primary">Editar Encomenda</h6>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{route('encomendas.store')}}" class="form-group">
+                            <form method="POST" action="{{route('encomendas.update', $encomenda)}}" class="form-group">
+                                @method('PUT')
                                 @csrf
                                 <div class="form-group">
                                     <label>Numero de encomenda</label>
@@ -95,6 +96,9 @@
                                     <button type="submit" class="btn btn-success" name="ok">Save</button>
                                     <a href="{{route('encomendas.index')}}" class="btn btn-primary">Voltar</a>
                                 </div>
+                                @foreach ($errors->all() as $error)
+                                    <li> {{ $error }} </li>
+                                @endforeach
                             </form>
                     </div>
                 </div>
