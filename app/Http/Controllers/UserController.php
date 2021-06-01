@@ -125,9 +125,11 @@ class UserController extends Controller
         $cliente->nif = $validated_data['nif'];
         if(isset($validated_data['img'])){
             Storage::delete('public/fotos/'.$user->foto_url);
-            $path = $request->file('img')->store('public/fotos');
-            $name = explode("/", $path);
-            $user->foto_url = $name[2];
+            $file = $request->file('img');
+            $file_name = $user->id.'_'.time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/fotos',$file_name);
+            $user->foto_url = $file_name;
+
         }
         if($validated_data['password'] != null){
             $user->password = Hash::make($validated_data['password']);

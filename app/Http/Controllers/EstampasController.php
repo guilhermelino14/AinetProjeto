@@ -121,4 +121,10 @@ class EstampasController extends Controller
 
         return Redirect()->back();
     }
+
+    public function minhasEstampas(){
+        $user = Auth::user();
+        $estampas = Estampa::where("cliente_id", $user->id)->paginate(15);
+        return view('front_pages.minhasEstampas', compact('estampas'));
+    }
 }
