@@ -109,7 +109,7 @@
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">
                                             Profile
                                         </a></li>
-                                    <li><a class="dropdown-item" href="">
+                                    <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
                                             Minhas Estampas
                                         </a></li>
                                     @if (Auth::user()->tipo === 'A')

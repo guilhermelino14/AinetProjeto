@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EncomendaPostRequest;
+use App\Models\Cliente;
 use App\Models\Encomenda;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EncomendaController extends Controller
 {
@@ -36,18 +39,27 @@ class EncomendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EncomendaPostRequest $request)
     {
         $validated_data = $request->validated();
+        $cliente = Cliente::find($validated_data['numero']);
+        if($cliente == null){
+            return redirect()->back();
+        }
         $newEncomenda = new Encomenda;
         $newEncomenda->estado = "pendente";
-        $newEncomenda->cliente->client_id = $validated_data['client_id'];
-        $newEncomenda->preco_total = $validated_data['preco_total'];
-        $newEncomenda->notas = $validated_data['notas'];
-        $newEncomenda->nif = $newEncomenda->cliente->nif;
-        $newEncomenda->endereco = $newEncomenda->cliente->endereco;
-        $newEncomenda->tipo_pagamento = $newEncomenda->cliente->tipo_pagamento;
+        $newEncomenda->cliente_id = $validated_data['numero'];
+        $newEncomenda->preco_total = $validated_data['preco'];
+        if($validated_data['notas'] != null){
+            $newEncomenda->notas = $validated_data['notas'];
+        }
+        $newEncomenda->data = Carbon::now()->toDateTimeString();
+        $newEncomenda->nif = $cliente->nif;
+        $newEncomenda->endereco = $cliente->endereco;
+        $newEncomenda->tipo_pagamento = $cliente->tipo_pagamento;
+        $newEncomenda->ref_pagamento = $cliente->ref_pagamento;
         $newEncomenda->save();
+        return redirect()->back();
     }
 
     /**

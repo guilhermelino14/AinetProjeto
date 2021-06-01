@@ -39,6 +39,7 @@ Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 's
 
 Route::get('/criarEstampa', [EstampasController::class, 'create'])->name('createEstampa');
 Route::post('/criarEstampa', [EstampasController::class, 'store'])->name('storeEstampa');
+Route::get('/minhasEstampas', [EstampasController::class, 'minhasEstampas'])->name('minhasEstampas');
 
 Route::get('/', [MainController::class, 'index'])->name('homeT');
 
