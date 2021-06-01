@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Contact Us</h2>
+                        <h2>Contactos</h2>
                     </div>
                 </div>
             </div>
@@ -23,29 +23,29 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span><i class="fa fa-phone" aria-hidden="true"></i></span>
-                        <h4>Phone</h4>
+                        <h4>Telefone</h4>
                         <p>244 820 300</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                        <h4>Address</h4>
+                        <h4>Morada</h4>
                         <p>Morro do Lena, Apt 4163, Lra</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                        <h4>Open time</h4>
-                        <p>09:00 am to 18:00 pm</p>
+                        <h4>Horário</h4>
+                        <p>09:00 às 18:00 </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
                         <h4>Email</h4>
-                        <p>hello@colorlib.com</p>
+                        <p>help@magicshirt.com</p>
                     </div>
                 </div>
             </div>
@@ -63,8 +63,8 @@
             <div class="inside-widget">
                 <h4>Magic Shirt</h4>
                 <ul>
-                    <li>Phone: 244 820 300</li>
-                    <li>Add: Morro do Lena, Apt 4163, Lra</li>
+                    <li>Telefone: 244 820 300</li>
+                    <li>Morada: Morro do Lena, Apt 4163, Lra</li>
                 </ul>
             </div>
         </div>
@@ -77,21 +77,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact__form__title">
-                        <h2>Leave Message</h2>
+                        <h2>Fale Connosco</h2>
                     </div>
                 </div>
             </div>
             <form action="#">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Your name">
+                        <input type="text" placeholder="Nome">
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Your Email">
+                        <input type="text" placeholder="Email">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea placeholder="Your message"></textarea>
-                        <button type="submit" class="site-btn">SEND MESSAGE</button>
+                        <textarea placeholder="Mensagem"></textarea>
+                        <button type="submit" class="site-btn">ENVIAR</button>
                     </div>
                 </div>
             </form>

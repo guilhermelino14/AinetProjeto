@@ -280,7 +280,7 @@
                         <form action="{{ route('search') }}" method="GET" role="search">
 
                             <input type="text" id="estampa" name="estampa" placeholder="Procurar estampas?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <button type="submit" class="site-btn">PROCURAR</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
