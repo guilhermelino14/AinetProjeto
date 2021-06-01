@@ -18,7 +18,6 @@
                                 <div class="form-group">
                                     <label>Estado da encomenda</label>
                                     <select name="estado" id="estado" >
-                                        <option value="pendente" {{old('estado', $encomenda->estado)=="pendente" ? 'selected' : ''}}>Pendente</option>
                                         <option value="paga" {{old('estado', $encomenda->estado)=="paga" ? 'selected' : ''}}>Paga</option>
                                         <option value="fechada" {{old('estado', $encomenda->estado)=="fechada" ? 'selected' : ''}}>Fechada</option>
                                         <option value="anulada" {{old('estado', $encomenda->estado)=="anulada" ? 'selected' : ''}}>Anulada</option>
@@ -66,7 +65,11 @@
                                 @enderror
                                 <div class="form-group">
                                     <label>Tipo de pagamento</label>
-                                    <input type="text" name="tipo" value="{{$encomenda->tipo_pagamento}}" class="form-control" >
+                                    <select name="tipo" id="tipo" >
+                                        <option value="VISA" {{old('estado', $encomenda->estado)=="VISA" ? 'selected' : ''}}>Visa</option>
+                                        <option value="MC" {{old('estado', $encomenda->estado)=="MC" ? 'selected' : ''}}>Cartão de crédito</option>
+                                        <option value="PAYPAL" {{old('estado', $encomenda->estado)=="PAYPAL" ? 'selected' : ''}}>PayPal</option>
+                                    </select>
                                 </div>
                                 @error('tipo')
                                         <div class="small text-danger">{{$message}}</div>

@@ -103,9 +103,20 @@ class EstampasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Estampa $estampa)
     {
-        //
+        $validated_data = $request->validated();
+        $user = Auth::user();
+        $estampa->categoria_id = (int)$validated_data['categoria'];
+        $estampa->nome = $validated_data['nome'];
+        $estampa->descricao = $validated_data['descricao'];
+        $file = $request->file('imagem_url');
+        $file_name = $user->id.'_'.time() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('estampas_privadas',$file_name);
+        $estampa->imagem_url = $file_name;
+        $estampa->informacao_extra = $validated_data['informacao_extra'];
+        $estampa->save();
+        return Redirect()->back();
     }
 
     /**

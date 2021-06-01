@@ -9,7 +9,6 @@
                             <h6 class="m-0 font-weight-bold text-primary">Lista de Estampas</h6>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('estampas.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Estampa</button></a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>

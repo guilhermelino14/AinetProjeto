@@ -32,13 +32,6 @@
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputRecibo">Recibo</label>
-                                    <input type="file" class="form-control" name="recibo_url" id="inputRecibo"  value="{{old('recibo_url', $encomenda->recibo_url)}}" >
-                                    @error('recibo_url')
-                                        <div class="small text-danger">{{$message}}</div>
-                                    @enderror
-                                </div>
                                 @if (isset($user->foto_url))
                                     <img src="{{ asset("storage/pdf_recibos/$encomenda->recibo_url") }}" />
                                 @endif
