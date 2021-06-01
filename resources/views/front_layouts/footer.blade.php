@@ -10,7 +10,7 @@
                   <ul>
                       <li>Address: Morro do Lena, Apt 4163 LRA, Edificio D</li>
                       <li>Phone: 244 820 300</li>
-                      <li>Email: hello@colorlib.com</li>
+                      <li>Email: help@magicshirt.com</li>
                   </ul>
               </div>
           </div>

@@ -360,7 +360,7 @@ ol {
 
 .header__top__right__language ul {
 	background: #888888;
-	width: 100px;
+	width: 130px;
 	text-align: left;
 	padding: 5px 0;
 	position: absolute;
@@ -3062,6 +3062,7 @@ ol {
 		margin-bottom: 25px;
 	}
 	.humberger__menu__widget {
+		float: right;
 		margin-bottom: 20px;
 	}
 	.humberger__menu__widget .header__top__right__language {
