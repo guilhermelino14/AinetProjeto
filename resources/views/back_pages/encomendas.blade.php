@@ -14,7 +14,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Numero de Cliente</th>
+                                            <th>Numero de Encomenda</th>
                                             <th>Data</th>
                                             <th>Ref</th>
                                             <th>Preço</th>
@@ -22,7 +22,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Numero de Cliente</th>
+                                            <th>Numero de Encomenda</th>
                                             <th>Data</th>
                                             <th>Ref</th>
                                             <th>Preço</th>
@@ -31,7 +31,7 @@
                                     <tbody>
                                             @foreach ($encomendas as $encomenda)
                                             <tr>
-                                                <td>{{$encomenda->cliente_id}}</td>
+                                                <td>{{$encomenda->id}}</td>
                                                 <td>{{$encomenda->data}}</td>
                                                 <td>{{$encomenda->ref_pagamento}}</td>
                                                 <td>{{$encomenda->preco_total}}</td>
