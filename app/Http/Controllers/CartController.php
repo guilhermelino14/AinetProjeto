@@ -28,10 +28,13 @@ class CartController extends Controller
     }
 
     public function addToCart(Request $request, $id){
+        if($request->qty == null){
+            $request->qty = 1;
+        }
         $estampa = Estampa::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($estampa, $estampa->id);
+        $cart->add($estampa, $estampa->id, $request->qty);
 
         $request->session()->put('cart',$cart);
         return redirect()->back();

@@ -13,7 +13,7 @@ class Cart
         }
     }
 
-    public function add($item, $id){
+    public function add($item, $id , $qty){
         $preco = Preco::find(1);
         if($item->cliente_id == null){
             $price = $preco->preco_un_catalogo;
@@ -28,7 +28,7 @@ class Cart
                 $storedItem = $this->items[$id];
             }
         }
-        $storedItem['qty']++;
+        $storedItem['qty']+= $qty;
         $storedItem['price'] = $price * $storedItem['qty'];
         $this->items[$id] = $storedItem;
     }

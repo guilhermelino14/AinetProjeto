@@ -54,21 +54,24 @@
                             <span>(18 reviews)</span>
                         </div> --}}
                         @if ($estampa->cliente_id == null)
-                            <div class="product__details__price">{{ $preco->preco_un_catalogo }}</div>
+                            <div class="product__details__price">{{ $preco->preco_un_catalogo }} €</div>
                         @else
-                            <div class="product__details__price">{{ $preco->preco_un_proprio }}</div>
+                            <div class="product__details__price">{{ $preco->preco_un_proprio }} €</div>
                         @endif
                         <p>{{ $estampa->descricao }}</p>
 
                         <ul>
+                            <form method="GET" action="{{ route('addToCart', ['id' => $estampa->id]) }}">
                             <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <span class="dec qtybtn">-</span>
+                                        <input type="text" value="1" id="qty" name="qty">
+                                        <span class="inc qtybtn">+</span>
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('addToCart', ['id' => $estampa->id]) }}" class="primary-btn">ADD TO CARD</a>
+                            <button type="submit" class="primary-btn">ADD TO CARD</button>
                         </ul>
                     </div>
                 </div>
