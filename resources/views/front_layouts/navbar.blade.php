@@ -7,7 +7,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="{{ asset('img/logoAI.png')}}" alt=""></a>
+        <a href="#"><img src="{{ asset('img/logoAI.png') }}" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -18,7 +18,7 @@
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
-            <img src="{{ asset('img/language.png')}}" alt="">
+            <img src="{{ asset('img/language.png') }}" alt="">
             <div>English</div>
             <span class="arrow_carrot-down"></span>
             <ul>
@@ -90,34 +90,37 @@
                             <div class="header__top__right__language" style="top: 4px" aria-haspopup="true"
                                 aria-expanded="false">
                                 <div>
-                                    <a class="nav-link dropdown-toggle" href="#"  role="button"
-                                         aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true"
+                                        aria-expanded="false">
                                         <span
                                             class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                            @if (Auth::user()->foto_url != null)
-                                                <img class="img-profile rounded-circle" width="20px"
-                                                src="{{ asset('storage/fotos/'.Auth::user()->foto_url) }}">
-                                            @else
-                                                <img class="img-profile rounded-circle" width="20px"
+                                        @if (Auth::user()->foto_url != null)
+                                            <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('storage/fotos/' . Auth::user()->foto_url) }}">
+                                        @else
+                                            <img class="img-profile rounded-circle" width="20px"
                                                 src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
-                                            @endif
-                                        
+                                        @endif
+
                                     </a>
                                 </div>
 
                                 <ul style="top: 40px">
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                        Profile
+                                            Profile
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="">
+                                            Minhas Estampas
                                         </a></li>
                                     @if (Auth::user()->tipo === 'A')
-                                        
-                                    
-                                    <li><a class="dropdown-item" href="{{ route('admin') }}">
-                                        Admin
-                                        </a></li>
+
+
+                                        <li><a class="dropdown-item" href="{{ route('admin') }}">
+                                                Admin
+                                            </a></li>
                                     @endif
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                  document.getElementById('logout-form').submit();">
+                                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -142,20 +145,23 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo" style="padding-right: 13%;">
-                    <a href="{{ url('/') }}"><img src="{{ asset('img/logoAI.png')}}" alt=""></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('img/logoAI.png') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li @if (Request::route()->getName() == "homeT")class="active" @endif>
-                            <a href="{{ url('/') }}">Home</a>
+                        <li @if (Request::route()->getName() == 'homeT') class="active" @endif>
+                            <a href="{{ url('/') }}">Inicio</a>
                         </li>
-                        <li @if (Request::route()->getName() == "shopgrid")class="active" @endif>
-                            <a href="{{ url('shopgrid') }}">Shop</a>
+                        <li @if (Request::route()->getName() == 'shopgrid') class="active" @endif>
+                            <a href="{{ url('shopgrid') }}">Estampas</a>
                         </li>
-                        <li @if (Request::route()->getName() == "contact")class="active" @endif>
-                            <a href="{{ url('contact') }}">Contact</a>
+                        <li @if (Request::route()->getName() == 'criarEstampa') class="active" @endif>
+                            <a href="{{ url('criarEstampa') }}">Criar</a>
+                        </li>
+                        <li @if (Request::route()->getName() == 'contact') class="active" @endif>
+                            <a href="{{ url('contact') }}">Contactos</a>
                         </li>
                     </ul>
                 </nav>
@@ -163,10 +169,12 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="{{ url('shoppingcart') }}"><i class="fa fa-shopping-bag"></i> <span>{{Session::has('cart') ? Session::get('cart')->totalQty() : '0'}}</span></a>
+                        <li><a href="{{ url('shoppingcart') }}"><i class="fa fa-shopping-bag"></i>
+                                <span>{{ Session::has('cart') ? Session::get('cart')->totalQty() : '0' }}</span></a>
                         </li>
                     </ul>
-                    <div class="header__cart__price">item: <span>{{Session::has('cart') ? Session::get('cart')->totalPrice() : '0'}}€</span></div>
+                    <div class="header__cart__price">item:
+                        <span>{{ Session::has('cart') ? Session::get('cart')->totalPrice() : '0' }}€</span></div>
                 </div>
             </div>
         </div>
@@ -188,27 +196,27 @@
                         <span>Categorias</span>
                     </div>
                     <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
-                        <li><a href="{{route('shopgrid_categorias', 12)}}">Bebidas</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 20)}}">Cool</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 11)}}">Desenhos Abstratos</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 15)}}">Desporto</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 1)}}">Engraçadas</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 6)}}">Filmes</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 21)}}">Frases</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 2)}}">Geeks</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 14)}}">Infantil</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 4)}}">Inspiração</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 8)}}">Locais</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 9)}}">Logotipos</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 3)}}">Memes</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 7)}}">Musica</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 10)}}">Publicidade e Marcas</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 13)}}">Sem Sentido</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 5)}}">Simples</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 17)}}">Surf</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 16)}}">Verão</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 19)}}">Vintage</a></li>
-                        <li><a href="{{route('shopgrid_categorias', 18)}}">Tattoo</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 12) }}">Bebidas</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 20) }}">Cool</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 11) }}">Desenhos Abstratos</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 15) }}">Desporto</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 1) }}">Engraçadas</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 6) }}">Filmes</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 21) }}">Frases</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 2) }}">Geeks</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 14) }}">Infantil</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 4) }}">Inspiração</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 8) }}">Locais</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 9) }}">Logotipos</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 3) }}">Memes</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 7) }}">Musica</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 10) }}">Publicidade e Marcas</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 13) }}">Sem Sentido</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 5) }}">Simples</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 17) }}">Surf</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 16) }}">Verão</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 19) }}">Vintage</a></li>
+                        <li><a href="{{ route('shopgrid_categorias', 18) }}">Tattoo</a></li>
                     </ul>
                 </div>
             </div>
@@ -216,7 +224,7 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form action="{{ route('search') }}" method="GET" role="search">
-                            
+
                             <input type="text" id="estampa" name="estampa" placeholder="Procurar estampas?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
@@ -226,7 +234,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>244 820 300</h5>                                
+                            <h5>244 820 300</h5>
                             <span>Suporte 24/7 </span>
                         </div>
                     </div>
@@ -237,6 +245,6 @@
 </section>
 <!-- Hero Section End -->
 <script>
-console.log($request->path())
+    console.log($request - > path())
 
 </script>
