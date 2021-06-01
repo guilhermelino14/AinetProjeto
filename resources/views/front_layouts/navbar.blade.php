@@ -9,32 +9,88 @@
     <div class="humberger__menu__logo">
         <a href="#"><img src="{{ asset('img/logoAI.png') }}" alt=""></a>
     </div>
+    <div class="humberger__menu__widget">
+        <div class="header__top__right__auth">
+        @guest
+                            @if (Route::has('login'))
+
+
+                                <div class="header__top__right__auth" style="position: relative;top: 4px;">
+
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                                </div>
+                            @endif
+                            @if (Route::has('register'))
+                                <div class="header__top__right__auth" style="position: relative;top: 4px;">
+
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+
+                                </div>
+                            @endif
+                        @else
+
+                            <div class="header__top__right__language" style="top: 4px" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div>
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <span
+                                            class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                        @if (Auth::user()->foto_url != null)
+                                            <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('storage/fotos/' . Auth::user()->foto_url) }}">
+                                        @else
+                                            <img class="img-profile rounded-circle" width="20px"
+                                                src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
+                                        @endif
+
+                                    </a>
+                                </div>
+
+                                <ul style="top: 40px">
+                                    <li><a class="dropdown-item" href="{{ route('profile') }}">
+                                            Profile
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
+                                            Minhas Estampas
+                                        </a></li>
+                                    @if (Auth::user()->tipo === 'A')
+
+
+                                        <li><a class="dropdown-item" href="{{ route('admin') }}">
+                                                Admin
+                                            </a></li>
+                                    @endif
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                      document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endguest
+        </div>
+    </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{ Session::has('cart') ? Session::get('cart')->totalQty() : '0' }}</span></a></li>
         </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
-    </div>
-    <div class="humberger__menu__widget">
-        <div class="header__top__right__language">
-            <img src="{{ asset('img/language.png') }}" alt="">
-            <div>English</div>
-            <span class="arrow_carrot-down"></span>
-            <ul>
-                <li><a href="#">Spanis</a></li>
-                <li><a href="#">English</a></li>
-            </ul>
-        </div>
-        <div class="header__top__right__auth">
-            <a href="#"><i class="fa fa-user"></i> Login</a>
+        <div class="header__cart__price">item: 
+            <span>{{ Session::has('cart') ? Session::get('cart')->totalPrice() : '0' }}€</span>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="{{ url('/') }}">Home</a></li>
-            <li><a href="{{ url('shopgrid') }}">Shop</a></li>
-            <li><a href="{{ url('contact') }}">Contact</a></li>
+            <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
+            <li><a href="{{ url('shopgrid') }}">Estampas</a></li>
+            <li><a href="{{ url('criarEstampa') }}">Criar Estampa</a></li>
+            <li><a href="{{ url('contact') }}">Contactos</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -46,8 +102,7 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-            <li>Free Shipping for all Order of $99</li>
+            <li><i class="fa fa-envelope"></i> help@magicshirt.com</li>
         </ul>
     </div>
 </div>
@@ -61,8 +116,7 @@
                 <div class="col-lg-6 col-md-6" style="top: 10px;">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope"></i> help@magicshirt.com</li>
                         </ul>
                     </div>
                 </div>
