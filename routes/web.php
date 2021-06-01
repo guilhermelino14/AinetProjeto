@@ -37,6 +37,9 @@ Route::resource('admin/clientes', ClienteController::class);
 Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
 Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');
 
+Route::get('/criarEstampa', [EstampasController::class, 'create'])->name('createEstampa');
+Route::post('/criarEstampa', [EstampasController::class, 'store'])->name('storeEstampa');
+
 Route::get('/', [MainController::class, 'index'])->name('homeT');
 
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');

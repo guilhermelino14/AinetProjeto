@@ -18,7 +18,7 @@ class MainController extends Controller
         $engracadasLogo = Estampa::where('id', 36)->pluck('imagem_url')->first();
         $filmesLogo = Estampa::where('id', 11)->pluck('imagem_url')->first();
         $frasesLogo = Estampa::where('id', 254)->pluck('imagem_url')->first();
-        $estampas = Estampa::inRandomOrder()->limit(8)->get();
+        $estampas = Estampa::whereNull('cliente_id')->inRandomOrder()->limit(8)->get();
         $preco = Preco::find(1);
         return view('front_pages.index', compact('estampas', 'bebidasLogo', 'coolLogo', 'abstratosLogo', 'desportosLogo', 'engracadasLogo', 'filmesLogo', 'frasesLogo', 'preco'));
     }
@@ -32,7 +32,7 @@ class MainController extends Controller
     {
         $estampa = Estampa::findOrFail($id);
         $preco = Preco::find(1);
-        $estampasRelated = Estampa::inRandomOrder()->where('categoria_id', $estampa->categoria_id)->limit(4)->get();
+        $estampasRelated = Estampa::whereNull('cliente_id')->inRandomOrder()->where('categoria_id', $estampa->categoria_id)->limit(4)->get();
         
         return view('front_pages.shop-details', compact('estampa', 'estampasRelated', 'preco'));
     }
@@ -41,10 +41,12 @@ class MainController extends Controller
     {
         $key = trim($request->get('estampa'));
         $estampas = Estampa::query()
+            ->whereNull('cliente_id')
             ->where('nome', 'like', "%{$key}%")
             ->orWhere('descricao', 'like', "%{$key}%")
             ->paginate(15);
         $estampasCount = Estampa::query()
+        ->whereNull('cliente_id')
         ->where('nome', 'like', "%{$key}%")
         ->orWhere('descricao', 'like', "%{$key}%")
         ->count();
