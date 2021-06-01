@@ -120,9 +120,13 @@ class UserController extends Controller
         $cliente = $user->cliente;
         $validated_data = $request->validated();
         $user->name = $validated_data['name'];
-        $user->email = $validated_data['email'];
-        $cliente->endereco = $validated_data['endereco'];
-        $cliente->nif = $validated_data['nif'];
+        if($validated_data['endereco'] != null){
+            $cliente->endereco = $validated_data['endereco'];
+        }
+        if($validated_data['nif'] != null){
+            $cliente->nif = $validated_data['nif'];
+        }
+        
         if(isset($validated_data['img'])){
             Storage::delete('public/fotos/'.$user->foto_url);
             $file = $request->file('img');
@@ -135,7 +139,9 @@ class UserController extends Controller
             $user->password = Hash::make($validated_data['password']);
         }
         $user->save();
-        $cliente->save();
+        if($cliente != null){
+            $cliente->save();
+        }
         return Redirect()->back();
     }
 

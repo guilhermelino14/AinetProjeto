@@ -26,8 +26,8 @@ class UserPostRequest extends FormRequest
     {
         return [
             'name' =>         'required',
-            'endereco' =>        'required',
-            'nif' =>       'required|digits:9',
+            'endereco' =>        'sometimes',
+            'nif' =>       'sometimes',
             'email' => [
                 'required',
                 'email',
@@ -40,8 +40,6 @@ class UserPostRequest extends FormRequest
     {
         return [
             'name.required' => 'Campo "Nome" tem que ser preenchido',
-            'endereco.required' => 'Campo "Endereco" tem que ser preenchido',
-            'nif.required' => 'Campo "NIF" tem que ser preenchido',
             'email.required' => 'Campo "Email" tem que ser preenchido',
         ];
     }

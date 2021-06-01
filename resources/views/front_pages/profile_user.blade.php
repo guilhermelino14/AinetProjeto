@@ -40,9 +40,12 @@
                                     <div class="form-group">
                                         <label for="eMail">Email</label>
                                         <input type="email" class="form-control" value="{{ $user->email }}" name="email" id="email"
-                                            placeholder="Enter email">
+                                            placeholder="Enter email" readonly>
                                     </div>
                                 </div>
+                                @if (Auth::User()->cliente != null)
+                                    
+                                
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group">
                                             <label for="website">Morada</label>
@@ -57,6 +60,10 @@
                                                 placeholder="Enter NIF">
                                         </div>
                                     </div>
+                                    @else
+                                    <input type="text" value="" name="nif" id="nif" hidden>
+                                    <input type="text" value="" name="endereco" id="endereco" hidden>
+                                @endif
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label for="phone">Alterar Imagem</label>

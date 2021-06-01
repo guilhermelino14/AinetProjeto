@@ -89,7 +89,18 @@
                         <ul>
                             <li>Total <span>@if (Session::has('cart')){{$totalPrice}} @else 0 @endif€</span></li>
                         </ul>
-                        <a href="{{ route('checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{ route('checkout') }}" class="primary-btn"
+                        @if (Session::has('cart'))
+                            @if ($totalPrice <= 0)
+                                style="pointer-events: none;
+                                cursor: default;"
+                            @endif
+                        @else
+                            style="pointer-events: none;
+                            cursor: default;"
+                        @endif
+                        
+                        >PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
