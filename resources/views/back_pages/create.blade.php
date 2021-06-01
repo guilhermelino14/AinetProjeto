@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <label for="inputFoto">Foto</label>
                                     <input type="file" class="form-control" name="foto_url" id="inputFoto"  value="{{old('foto_url', $user->foto_url)}}" >
-                                    @error('tipo')
+                                    @error('foto_url')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>

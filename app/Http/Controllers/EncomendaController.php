@@ -27,7 +27,7 @@ class EncomendaController extends Controller
     public function create()
     {
         $encomenda = new Encomenda();
-        return view('back_pages.encomenda_create', compact('encomenda'));
+        return view('back_pages.encomendas_create', compact('encomenda'));
     }
 
     /**
@@ -39,7 +39,7 @@ class EncomendaController extends Controller
     public function store(Request $request)
     {
         $validated_data = $request->validated();
-        $newEncomenda = new Encomenda();
+        $newEncomenda = new Encomenda;
         $newEncomenda->estado = "pendente";
         $newEncomenda->cliente->client_id = $validated_data['client_id'];
         $newEncomenda->preco_total = $validated_data['preco_total'];
@@ -59,7 +59,7 @@ class EncomendaController extends Controller
     public function show($id)
     {
         $encomenda = Encomenda::findOrFail($id);
-        return view('back_pages.encomenda_show', compact('encomenda'));
+        return view('back_pages.encomendas_show', compact('encomenda'));
     }
 
     /**
@@ -71,7 +71,7 @@ class EncomendaController extends Controller
     public function edit($id)
     {
         $encomenda = Encomenda::findOrFail($id);
-        return view('back_pages.encomenda_create', compact('encomenda'));
+        return view('back_pages.encomendas_edit', compact('encomenda'));
     }
 
     /**
@@ -81,9 +81,17 @@ class EncomendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Encomenda $encomenda)
     {
-        //
+        $validated_data = $request->validated();
+        $encomenda->estado = "pendente";
+        $encomenda->cliente->client_id = $validated_data['client_id'];
+        $encomenda->preco_total = $validated_data['preco_total'];
+        $encomenda->notas = $validated_data['notas'];
+        $encomenda->nif = $encomenda->cliente->nif;
+        $encomenda->endereco = $encomenda->cliente->endereco;
+        $encomenda->tipo_pagamento = $encomenda->cliente->tipo_pagamento;
+        $encomenda->save();
     }
 
     /**

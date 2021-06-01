@@ -73,7 +73,8 @@ class EstampasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estampa = Estampa::findOrFail($id);
+        return view('back_pages.estampas_edit', compact('estampa'));
     }
 
     /**
@@ -96,6 +97,9 @@ class EstampasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estampa = Estampa::findOrFail($id); //If Estampa exists
+        $estampa->delete(); //Remove Estampa
+
+        return Redirect()->back();
     }
 }
