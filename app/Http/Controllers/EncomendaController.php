@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EncomendaPostRequest;
+use App\Http\Requests\EncomendaCriarPostRequest;
 use App\Models\Cliente;
 use App\Models\Encomenda;
 use Facade\FlareClient\Http\Client;
@@ -39,7 +39,7 @@ class EncomendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EncomendaPostRequest $request)
+    public function store(EncomendaCriarPostRequest $request)
     {
         $validated_data = $request->validated();
         $cliente = Cliente::find($validated_data['numero']);
@@ -95,15 +95,26 @@ class EncomendaController extends Controller
      */
     public function update(Request $request, Encomenda $encomenda)
     {
-        $validated_data = $request->validated();
-        $encomenda->estado = "pendente";
-        $encomenda->cliente->client_id = $validated_data['client_id'];
-        $encomenda->preco_total = $validated_data['preco_total'];
-        $encomenda->notas = $validated_data['notas'];
-        $encomenda->nif = $encomenda->cliente->nif;
-        $encomenda->endereco = $encomenda->cliente->endereco;
-        $encomenda->tipo_pagamento = $encomenda->cliente->tipo_pagamento;
+        if ($request->estado != null){
+            $encomenda->estado = $request->estado;
+        }
+        if ($request->valor != null){
+            $encomenda->preco_total = $request->valor;
+        }
+        if ($request->notas != null){
+            $encomenda->notas = $request->notas;
+        }
+        if ($request->endereco != null){
+            $encomenda->endereco = $request->endereco;
+        }
+        if ($request->tipo != null){
+            $encomenda->tipo_pagamento = $request->tipo;
+        }
+        if ($request->ref != null){
+            $encomenda->ref_pagamento = $request->ref;
+        }
         $encomenda->save();
+        return redirect()->back();
     }
 
     /**
