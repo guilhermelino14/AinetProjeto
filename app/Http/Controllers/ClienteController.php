@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
-use App\Models\User;
-use Facade\FlareClient\Http\Client;
 
 class ClienteController extends Controller
 {

@@ -6,7 +6,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Estampas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Encomendas</h6>
                         </div>
                         <div class="card-body">
                             <a href="{{ route('encomendas.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Encomenda</button></a>
@@ -36,7 +36,7 @@
                                                 <td>{{$encomenda->ref_pagamento}}</td>
                                                 <td>{{$encomenda->preco_total}}</td>
                                                 <td style="vertical-align: middle;">
-                                                    <a href="{{route('encomendas.edit', ['encomenda' => $encomenda->id])}}"
+                                                    <a href="{{route('encomendas.show', ['encomenda' => $encomenda->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Ver</a>
                                                 </td>
                                                 <td >
@@ -58,7 +58,7 @@
                             <div class="col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
                                 {{ $encomendas->links() }}
                             </div>
-                            
+
                         </div>
                     </div>
 

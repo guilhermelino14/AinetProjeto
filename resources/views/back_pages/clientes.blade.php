@@ -7,7 +7,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Estampas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
                         </div>
                         <div class="card-body">
                             {{-- <a href="{{ route('clientes.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Cliente</button></a>  --}}
