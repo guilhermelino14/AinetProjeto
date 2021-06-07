@@ -43,6 +43,21 @@
                     <i class="fas fa-paint-roller"></i>
                     <span>Estampas</span></a>
             </li>
+            <li @if (Request::route()->getName() == "categorias.index") class="nav-item active"@else class="nav-item"@endif>
+                <a class="nav-link" href="{{ url('/admin/categorias') }}">
+                    <i class="fas fa-paint-roller"></i>
+                    <span>Categorias</span></a>
+            </li>
+            <li @if (Request::route()->getName() == "cores.index") class="nav-item active"@else class="nav-item"@endif>
+                <a class="nav-link" href="{{ url('/admin/cores') }}">
+                    <i class="fas fa-tint"></i>
+                    <span>Cores</span></a>
+            </li>
+            <li @if (Request::route()->getName() == "precos.index") class="nav-item active"@else class="nav-item"@endif>
+                <a class="nav-link" href="{{ url('/admin/precos') }}">
+                    <i class="fas fa-euro-sign"></i>
+                    <span>Preços</span></a>
+            </li>
 
             {{-- <!-- Divider -->
             <hr class="sidebar-divider">

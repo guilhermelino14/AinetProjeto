@@ -10,6 +10,11 @@ class Cor extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'codigo';
+    protected $keyType = 'string';
+    
+    protected $table = 'cores'; 
+
     protected $fillable = [
         'codigo','nome',
     ];

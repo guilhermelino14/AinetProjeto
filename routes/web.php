@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CorController;
 use App\Http\Controllers\EncomendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EstampasController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PrecoController;
 use App\Http\Middleware\VerifyIsAdmin;
 use App\Models\Cliente;
 use App\Models\Encomenda;
@@ -41,6 +44,9 @@ Route::resource('admin/users', UserController::class);
 Route::resource('admin/estampas', EstampasController::class);
 Route::resource('admin/encomendas', EncomendaController::class);
 Route::resource('admin/clientes', ClienteController::class);
+Route::resource('admin/categorias', CategoriaController::class);
+Route::resource('admin/cores', CorController::class);
+Route::resource('admin/precos', PrecoController::class);
 
 });
 
@@ -75,3 +81,7 @@ Route::get('verify-mail', function () {
     $user->save();
     return redirect()->back();
 })->name('verify_email');
+
+Route::get('/teste', function () {
+    return view('auth.passwords.email');
+})->name('teste');

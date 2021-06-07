@@ -27,7 +27,8 @@ class EstampasController extends Controller
         $estampas = Estampa::whereNull('cliente_id')->paginate(15);
         $estampasCount = Estampa::whereNull('cliente_id')->count();
         $preco = Preco::find(1);
-        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco'));
+        $categorias = Categoria::all();
+        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco', 'categorias'));
     }
 
     /**
@@ -81,7 +82,8 @@ class EstampasController extends Controller
         $estampas = Estampa::where('categoria_id', $id)->whereNull('cliente_id')->paginate(15); //If user exists
         $estampasCount = Estampa::where('categoria_id', $id)->whereNull('cliente_id')->count();
         $preco = Preco::find(1);
-        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco'));
+        $categorias = Categoria::all();
+        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco', 'categorias'));
     }
 
     /**
