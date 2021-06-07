@@ -82,6 +82,5 @@ Route::get('verify-mail', function () {
     return redirect()->back();
 })->name('verify_email');
 
-Route::get('/teste', function () {
-    return view('auth.passwords.email');
-})->name('teste');
+
+Route::get('/estampas/{estampa}/imagem', [EstampasController::class, 'getEstampaPrivada'])->name('estampas.privadas');

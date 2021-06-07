@@ -41,7 +41,7 @@
                                                 @endif</td>
                                                 <td style="vertical-align: middle;">{{$estampa->nome}}</td>
                                                 <td style="vertical-align: middle;">{{$estampa->descricao}}</td>
-                                                <td><img width="100px" height="100px" src="{{ asset("storage/estampas/$estampa->imagem_url") }}"/></td>
+                                                <td><img width="100px" height="100px" src="{{ route("estampas.privadas", $estampa) }}"/></td>
                                                 <td style="vertical-align: middle;">
                                                     <a href="{{route('estampas.edit', ['estampa' => $estampa->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>

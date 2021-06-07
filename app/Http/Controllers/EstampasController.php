@@ -140,4 +140,11 @@ class EstampasController extends Controller
         $estampas = Estampa::where("cliente_id", $user->id)->paginate(15);
         return view('front_pages.minhasEstampas', compact('estampas'));
     }
+
+    public function getEstampaPrivada(Estampa $estampa){
+        if($estampa->imagem_url){
+            return response()->file(storage_path().'/app/estampas_privadas/'.$estampa->imagem_url);
+        }
+        return '';
+    }
 }
