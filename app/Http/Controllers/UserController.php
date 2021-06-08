@@ -173,7 +173,7 @@ class UserController extends Controller
         return Redirect()->back(); //Redirect page to /admin/users
     }
 
-    public function update_state(Request $request, User $user){
+    public function update_state(User $user){
         if($user->tipo == '0'){
             $user->tipo = 1;
         }else{
