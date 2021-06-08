@@ -61,12 +61,12 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($user->bloqueado == '1')
-                                                        <a href="{{route('users.edit', ['user' => $user->id])}}"
-                                                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">Desbloquear</a>
-                                                    @else
-                                                        <a href="{{route('users.edit', ['user' => $user->id])}}"
-                                                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">Bloquear</a>
+                                                    @if ($user->tipo == 'C' && $user->bloqueado == '0')
+                                                        <a href="{{route('users.update_state', ['user' => $user])}}" method="POST"
+                                                            class="btn btn-success btn-sm" role="button" aria-pressed="true">Desbloquear</a>
+                                                    @elseif ($user->tipo == 'C' && $user->bloqueado == '1')
+                                                        <a href="{{route('users.update_state', ['user' => $user])}}" method="POST"
+                                                            class="btn btn-warning btn-sm" role="button" aria-pressed="true">Bloquear</a>
                                                     @endif
                                                 </td>
                                                     <td >
