@@ -14,16 +14,16 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>nome</th>
-                                            <th>codigo</th>
-                                            <th>imagem da cor</th>
+                                            <th>Nome</th>
+                                            <th>Código</th>
+                                            <th>Imagem da cor</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>nome</th>
-                                            <th>codigo</th>
-                                            <th>imagem da cor</th>
+                                            <th>Nome</th>
+                                            <th>Código</th>
+                                            <th>Imagem da cor</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>

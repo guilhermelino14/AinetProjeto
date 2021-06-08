@@ -77,7 +77,7 @@ Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editI
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Route::get('verify-mail', function () {
-   
+
     $user = Auth::user();
     $user->email_verified_at= Carbon::now()->toDateTimeString();
     $user->save();

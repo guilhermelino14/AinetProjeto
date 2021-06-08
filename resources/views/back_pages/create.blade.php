@@ -13,21 +13,21 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="inputNome">Nome</label>
-                                    <input type="text" class="form-control" name="name" id="inputNome"  value="{{old('name', $user->name)}}" >
+                                    <input type="text" class="form-control" name="name" id="name"  value="{{old('name', $user->name)}}" >
                                     @error('name')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="text" class="form-control" name="email" id="inputEmail"  value="{{old('email', $user->email)}}" >
+                                    <input type="text" class="form-control" name="email" id="email"  value="{{old('email', $user->email)}}" >
                                     @error('email')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword">Password</label>
-                                    <input type="text" class="form-control" name="password" id="inputPassword"  >
+                                    <input type="password" class="form-control" name="password" id="password"  >
                                     @error('password')
                                         <div class="small text-danger">{{$message}}</div>
                                     @enderror
@@ -36,7 +36,6 @@
                                     <label for="inputTipo">Tipo de utilizador:</label>
                                     <select name="tipo" id="tipo" >
                                         <option value="A" {{old('tipo', $user->tipo)=="A" ? 'selected' : ''}}>Administrador</option>
-                                        <option value="C" {{old('tipo', $user->tipo)=="C" ? 'selected' : ''}}>Cliente</option>
                                         <option value="F" {{old('tipo', $user->tipo)=="F" ? 'selected' : ''}}>Funcionário</option>
                                     </select>
                                     @error('tipo')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPostRequest;
+use App\Http\Requests\UserCreatePostRequest;
 use App\Models\User;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -18,10 +19,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(15);
-        return view('back_pages.users', compact('users'));
+        $key = trim($request->get('user')) ?? '';
+        $tipo = $request->tipo ?? '';
+
+        $users = User::query();
+
+        if($key != ""){
+            $users = $users->where(function($qry) use ($key) {
+                    $qry->where('name', 'like', "%$key%")
+                        ->orWhere('email', 'like', "%$key%");
+                });
+        }
+
+        if($tipo != '')
+        {
+            $users = $users->where('tipo', "$tipo");
+        }
+
+        $users = $users->paginate(15);
+
+        return view('back_pages.users', compact(['users', 'tipo', 'key']));
     }
 
     /**
@@ -41,24 +60,18 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreatePostRequest $request)
     {
         $validated_data = $request->validated();
         $newUser = new User;
         $newUser->name = $validated_data['name'];
         $newUser->email = $validated_data['email'];
         $newUser->password = Hash::make($validated_data['password']);
-        $newUser->tipo = $validated_data['tipo'] ?? 'C';
-        $newUser->bloqueado = 0;
+        $newUser->tipo = $validated_data['tipo'];
+        $newUser->bloqueado = $validated_data['bloqueado'];
         $newUser->foto_url = $validated_data['foto_url'];
         $newUser->save();
-        $cliente = new Cliente;
-        $cliente->user_id = $newUser->id;
-        $cliente->nif = $validated_data['nif'];
-        $cliente->endereco = $validated_data['endereco'];
-        $cliente->tipo_pagamento = $validated_data['tipo_pagamento'];
-        $cliente->ref_pagamento = $validated_data['ref_pagamento'];
-        $cliente->save();
+        return redirect('/admin/users');
     }
 
     /**
@@ -83,7 +96,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('back_pages.create', compact('user'));
     }
-    
+
     public function edit_front()
     {
         $id = Auth::user()->id;
@@ -98,7 +111,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserPostRequest $request, User $user)
     {
         $validated_data = $request->validated();
         $user->name = $validated_data['name'];
@@ -113,6 +126,7 @@ class UserController extends Controller
         $user->tipo_pagamento = $validated_data['tipo_pagamento'];
         $user->ref_pagamento = $validated_data['ref_pagamento'];
         $user->save();
+        return redirect('/admin/users');
     }
 
     public function update_front(UserPostRequest $request, User $user)
@@ -126,7 +140,7 @@ class UserController extends Controller
         if($validated_data['nif'] != null){
             $cliente->nif = $validated_data['nif'];
         }
-        
+
         if(isset($validated_data['img'])){
             Storage::delete('public/fotos/'.$user->foto_url);
             $file = $request->file('img');
