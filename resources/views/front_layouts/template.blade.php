@@ -13,7 +13,7 @@
     <title>teste</title>
 
     <!-- Google Font -->
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- Css Styles -->
@@ -28,13 +28,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
-    
+
     @yield('head')
 </head>
 
 <body>
     @include('front_layouts.navbar')
 
+    @include('back_layouts.flash-message')
     @yield('content')
 
     {{-- @include('front_layouts.footer') --}}

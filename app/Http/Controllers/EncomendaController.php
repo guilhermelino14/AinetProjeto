@@ -59,7 +59,7 @@ class EncomendaController extends Controller
         $newEncomenda->tipo_pagamento = $cliente->tipo_pagamento;
         $newEncomenda->ref_pagamento = $cliente->ref_pagamento;
         $newEncomenda->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Encomenda criada com sucesso');
     }
 
     /**
@@ -114,7 +114,7 @@ class EncomendaController extends Controller
             $encomenda->ref_pagamento = $request->ref;
         }
         $encomenda->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Encomenda alterada com sucesso');
     }
 
     /**
@@ -128,6 +128,6 @@ class EncomendaController extends Controller
         $encomenda = Encomenda::findOrFail($id); //If Encomenda exists
         $encomenda->delete(); //Remove Encomenda
 
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Encomenda removida com sucesso');
     }
 }

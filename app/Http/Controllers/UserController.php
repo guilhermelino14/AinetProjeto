@@ -71,7 +71,7 @@ class UserController extends Controller
         $newUser->bloqueado = $validated_data['bloqueado'];
         $newUser->foto_url = $validated_data['foto_url'];
         $newUser->save();
-        return redirect('/admin/users');
+        return redirect('/admin/users')->with('success','Utilizador criado com sucesso');
     }
 
     /**
@@ -126,7 +126,7 @@ class UserController extends Controller
         $user->tipo_pagamento = $validated_data['tipo_pagamento'];
         $user->ref_pagamento = $validated_data['ref_pagamento'];
         $user->save();
-        return redirect('/admin/users');
+        return redirect('/admin/users')->with('success','Utilizador atualizado com sucesso');
     }
 
     public function update_front(UserPostRequest $request, User $user)
@@ -156,7 +156,7 @@ class UserController extends Controller
         if($cliente != null){
             $cliente->save();
         }
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Utilizador atualizado com sucesso');
     }
 
     /**
@@ -167,19 +167,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id); //If user exists
-        $user->delete(); //Remove user
+        $user = User::findOrFail($id);
+        $user->delete();
 
-        return Redirect()->back(); //Redirect page to /admin/users
+        return Redirect()->back()->with('success','Utilizador removido com sucesso');
     }
 
-    public function update_state(User $user){
-        if($user->tipo == '0'){
-            $user->tipo = 1;
-        }else{
-            $user->tipo = 0;
-        }
+    public function update_state(Request $request){
+        $user = User::find($request->id);
+        $user->bloqueado = !$user->bloqueado;
+        $user->timestamps = false;
         $user->save();
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Estado do utilizador atualizado com sucesso');
     }
 }

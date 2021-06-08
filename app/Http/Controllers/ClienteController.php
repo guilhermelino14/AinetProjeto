@@ -85,6 +85,6 @@ class ClienteController extends Controller
         $client = Cliente::findOrFail($id); //If client exists
         $client->delete(); //Remove client
 
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Cliente removido com sucesso');
     }
 }

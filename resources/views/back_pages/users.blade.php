@@ -8,6 +8,7 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Lista de Utilizadores</h6>
                         </div>
+
                         <div class="card-body">
                             <a href="{{ route('users.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Utilizador</button></a>
                             <!-- Topbar Search -->
@@ -61,11 +62,11 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($user->tipo == 'C' && $user->bloqueado == '0')
-                                                        <a href="{{route('users.update_state', ['user' => $user])}}" method="POST"
+                                                    @if ($user->tipo == 'C' && $user->bloqueado == '1')
+                                                        <a href="{{route('client_state', ['id' => $user->id])}}" method="POST"
                                                             class="btn btn-success btn-sm" role="button" aria-pressed="true">Desbloquear</a>
-                                                    @elseif ($user->tipo == 'C' && $user->bloqueado == '1')
-                                                        <a href="{{route('users.update_state', ['user' => $user])}}" method="POST"
+                                                    @elseif ($user->tipo == 'C' && $user->bloqueado == '0')
+                                                        <a href="{{route('client_state', ['id' => $user->id])}}" method="POST"
                                                             class="btn btn-warning btn-sm" role="button" aria-pressed="true">Bloquear</a>
                                                     @endif
                                                 </td>

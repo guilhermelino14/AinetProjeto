@@ -64,7 +64,7 @@ class EstampasController extends Controller
         $file->storeAs('estampas_privadas',$file_name);
         $estampa->imagem_url = $file_name;
         $estampa->save();
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Estampa adicionada com sucesso');
     }
 
     /**
@@ -118,7 +118,7 @@ class EstampasController extends Controller
         $estampa->imagem_url = $file_name;
         $estampa->informacao_extra = $validated_data['informacao_extra'];
         $estampa->save();
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Estampa atualizada com sucesso');
     }
 
     /**
@@ -132,7 +132,7 @@ class EstampasController extends Controller
         $estampa = Estampa::findOrFail($id); //If Estampa exists
         $estampa->delete(); //Remove Estampa
 
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Estampa removida com sucesso');
     }
 
     public function minhasEstampas(){

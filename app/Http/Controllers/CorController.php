@@ -44,7 +44,7 @@ class CorController extends Controller
             $newCor->save();
             return redirect('/admin/cores');
         }
-        return redirect()->back();
+        return redirect()->back()->with('success','Cor adicionada com sucesso');
     }
 
     /**
@@ -83,9 +83,9 @@ class CorController extends Controller
         if($request->nome != null){
             $cor->nome = $request->nome;
             $cor->timestamps = false;
-            $cor->save(); 
+            $cor->save();
         }
-        return redirect('/admin/cores');
+        return redirect('/admin/cores')->with('success','Cor atualizada com sucesso');
     }
 
     /**
@@ -100,6 +100,6 @@ class CorController extends Controller
         $cor->timestamps = false;
         $cor->delete(); //Remove Encomenda
 
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Cor removida com sucesso');
     }
 }

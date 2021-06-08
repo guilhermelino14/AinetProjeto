@@ -40,7 +40,7 @@ class CategoriaController extends Controller
         $newCategoria->nome = $request->nome;
         $newCategoria->timestamps = false;
         $newCategoria->save();
-        return redirect('/admin/categorias');
+        return redirect('/admin/categorias')->with('success','Categoria adicionada com sucesso');
     }
 
     /**
@@ -78,10 +78,11 @@ class CategoriaController extends Controller
         if($request->nome != null){
             $categoria->nome = $request->nome;
             $categoria->timestamps = false;
-            $categoria->save(); 
+            $categoria->save();
+            return redirect('/admin/categorias')->with('success','Categoria alterada com sucesso');
+        }else{
+            return redirect('/admin/categorias')->with('error','Erro ao alterar categoria');
         }
-        
-        return redirect('/admin/categorias');
     }
 
     /**
@@ -96,6 +97,6 @@ class CategoriaController extends Controller
         $categoria->timestamps = false;
         $categoria->delete(); //Remove Encomenda
 
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Categoria removida com sucesso');
     }
 }

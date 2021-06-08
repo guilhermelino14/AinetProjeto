@@ -9,7 +9,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Lista de Cores</h6>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('cores.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Encomenda</button></a>
+                            <a href="{{ route('cores.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Adicionar Cor</button></a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>

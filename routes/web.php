@@ -48,6 +48,8 @@ Route::resource('admin/categorias', CategoriaController::class);
 Route::resource('admin/cores', CorController::class);
 Route::resource('admin/precos', PrecoController::class);
 
+Route::get('/admin/client_state', [UserController::class, 'update_state'])->name('client_state');
+
 });
 
 Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
@@ -68,8 +70,7 @@ Route::middleware([VerifyIsFuncionario::class])->group(function () {
 
 Route::get('/profile', [UserController::class, 'edit_front'])->name('profile');
 Route::put('/profile/{user}', [UserController::class, 'update_front'])->name('profile_update');
-Route::get('/admin/client_state', [UserController::class, 'update_state'])->name('client_state');
-
+});
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::get('/remove-From-Cart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editItemFromCart'])->name('editItemFromCart');

@@ -19,22 +19,22 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('admin_pub/css/sb-admin-2.min.css')}}" rel="stylesheet">    
+    <link href="{{ asset('admin_pub/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
-    
+
     <!-- Styles -->
-    
+
     @yield('css')
-    
+
     @yield('head')
 </head>
 
 <body>
     @include('back_layouts.navbar')
 
-    
-
+    @include('back_layouts.flash-message')
     @yield('content')
+
 
     {{-- @include('front_layouts.footer') --}}
 
@@ -55,6 +55,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('admin_pub/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{ asset('admin_pub/js/demo/chart-pie-demo.js')}}"></script>
+
     @yield('scripts')
     @include('back_layouts.footer')
 </body>

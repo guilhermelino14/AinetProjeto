@@ -9,7 +9,8 @@
                             <h6 class="m-0 font-weight-bold text-primary">Editar Estampa</h6>
                         </div>
                             <div class="card-body">
-                                <form method="POST" action="{{route('estampas.store')}}" class="form-group">
+                                <form method="POST" action="{{route('estampas.update', $estampa)}}" class="form-group">
+                                    @method('PATCH')
                                     @csrf
                                     <div class="form-group">
                                         <label>Categoria</label>
