@@ -77,14 +77,6 @@
                         @endguest
         </div>
     </div>
-    <div class="humberger__menu__cart">
-        <ul>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{ Session::has('cart') ? Session::get('cart')->totalQty() : '0' }}</span></a></li>
-        </ul>
-        <div class="header__cart__price">item: 
-            <span>{{ Session::has('cart') ? Session::get('cart')->totalPrice() : '0' }}€</span>
-        </div>
-    </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
