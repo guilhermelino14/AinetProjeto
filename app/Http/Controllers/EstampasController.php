@@ -141,7 +141,7 @@ class EstampasController extends Controller
         $estampa = Estampa::findOrFail($id); //If Estampa exists
         $estampa->delete(); //Remove Estampa
 
-        return Redirect()->back();
+        return Redirect()->back()->with('success','Estampa removida com sucesso');
     }
     public function edit_privadas($id)
     {
@@ -149,7 +149,7 @@ class EstampasController extends Controller
         $categorias = Categoria::all();
         return view('front_pages.estampas_edit', compact('estampa','categorias'));
     }
-    
+
     public function update_privadas(Request $request, Estampa $estampa)
     {
         $user = Auth::user();
@@ -157,7 +157,7 @@ class EstampasController extends Controller
         $estampa->nome = $request->nome;
         $estampa->descricao = $request->descricao;
         $estampa->save();
-        return redirect('/minhasEstampas');
+        return redirect('/minhasEstampas')->with('success','Estampa alterada com sucesso');
     }
 
     public function minhasEstampas(){
