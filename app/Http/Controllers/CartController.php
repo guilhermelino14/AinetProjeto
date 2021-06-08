@@ -36,7 +36,7 @@ class CartController extends Controller
         $cart = new Cart($oldCart);
         
         $cart->add($estampa, $estampa->id, $request->qty,$request->tamanho,$request->cor);
-        dd($cart);
+        
         $request->session()->put('cart',$cart);
         return redirect()->back();
     }

@@ -154,9 +154,11 @@
                                         Profile
                                     </a></li>
                                     @endif
+                                    @if (Auth::User()->tipo == "C")
                                     <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
                                             Minhas Estampas
                                         </a></li>
+                                    @endif
                                     @if (Auth::user()->tipo === 'A')
 
 
@@ -199,9 +201,14 @@
                         <li @if (Request::route()->getName() == 'shopgrid') class="active" @endif>
                             <a href="{{ url('shopgrid') }}">Estampas</a>
                         </li>
-                        <li @if (Request::route()->getName() == 'criarEstampa') class="active" @endif>
-                            <a href="{{ url('criarEstampa') }}">Criar</a>
-                        </li>
+                        @guest
+                        @else
+                        @if (Auth::User()->tipo == "C")
+                            <li @if (Request::route()->getName() == 'criarEstampa') class="active" @endif>
+                                <a href="{{ url('criarEstampa') }}">Criar</a>
+                            </li>
+                        @endif
+                        @endguest
                         <li @if (Request::route()->getName() == 'contact') class="active" @endif>
                             <a href="{{ url('contact') }}">Contactos</a>
                         </li>

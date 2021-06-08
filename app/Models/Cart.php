@@ -24,6 +24,7 @@ class Cart
             
         $storedItem = ['id' => 0,'qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
         if($this->items){
+            
             if(array_key_exists($id, $this->items)){
                 $storedItem = $this->items[count($this->items)];
             }

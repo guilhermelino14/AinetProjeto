@@ -86,3 +86,6 @@ Route::get('verify-mail', function () {
 
 
 Route::get('/estampas/{estampa}/imagem', [EstampasController::class, 'getEstampaPrivada'])->name('estampas.privadas');
+Route::delete('/estampas/{estampa}', [EstampasController::class, 'destroy_privadas'])->name('estampas.privadas.destroy');
+Route::get('/estampas/{estampa}/edit', [EstampasController::class, 'edit_privadas'])->name('estampas.privadas.edit');
+Route::PATCH('/estampas/{estampa}', [EstampasController::class, 'update_privadas'])->name('estampas.privadas.update');
