@@ -2633,7 +2633,7 @@ ol {
 }
 
 .footer__widget ul {
-	width: 50%;
+	width: auto;
 	float: left;
 }
 

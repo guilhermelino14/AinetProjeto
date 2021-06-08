@@ -9,73 +9,70 @@
     <div class="humberger__menu__logo">
         <a href="#"><img src="{{ asset('img/logoAI.png') }}" alt=""></a>
     </div>
-    <div class="humberger__menu__widget">
-        <div class="header__top__right__auth">
-        @guest
-                            @if (Route::has('login'))
+    <div class="header__top__right">
+            @guest
+                @if (Route::has('login'))
 
 
-                                <div class="header__top__right__auth" style="position: relative;top: 4px;">
+                    <div class="header__top__right__auth" style="position: relative;top: 4px;">
 
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 
-                                </div>
+                    </div>
+                @endif
+                @if (Route::has('register'))
+                    <div class="header__top__right__auth" style="position: relative;top: 4px;">
+
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+
+                    </div>
+                @endif
+            @else
+
+                <div class="header__top__right__language" style="top: 4px" aria-haspopup="true"
+                    aria-expanded="false">
+                    <div>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span>{{ Auth::user()->name }}</span>
+                            @if (Auth::user()->foto_url != null)
+                                <img class="img-profile rounded-circle" width="20px"
+                                    src="{{ asset('storage/fotos/' . Auth::user()->foto_url) }}">
+                            @else
+                                <img class="img-profile rounded-circle" width="20px"
+                                    src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
                             @endif
-                            @if (Route::has('register'))
-                                <div class="header__top__right__auth" style="position: relative;top: 4px;">
 
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </a>
+                    </div>
 
-                                </div>
-                            @endif
-                        @else
-
-                            <div class="header__top__right__language" style="top: 4px" aria-haspopup="true"
-                                aria-expanded="false">
-                                <div>
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <span
-                                            class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                        @if (Auth::user()->foto_url != null)
-                                            <img class="img-profile rounded-circle" width="20px"
-                                                src="{{ asset('storage/fotos/' . Auth::user()->foto_url) }}">
-                                        @else
-                                            <img class="img-profile rounded-circle" width="20px"
-                                                src="{{ asset('admin_pub/img/undraw_profile.svg') }}">
-                                        @endif
-
-                                    </a>
-                                </div>
-
-                                <ul style="top: 40px">
-                                    <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                            Profile
-                                        </a></li>
-                                    <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
-                                            Minhas Estampas
-                                        </a></li>
-                                    @if (Auth::user()->tipo === 'A')
+                    <ul style="top: 40px">
+                        <li><a class="dropdown-item" href="{{ route('profile') }}">
+                                Profile
+                            </a></li>
+                        <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
+                                Minhas Estampas
+                            </a></li>
+                        @if (Auth::user()->tipo === 'A')
 
 
-                                        <li><a class="dropdown-item" href="{{ route('admin') }}">
-                                                Admin
-                                            </a></li>
-                                    @endif
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                      document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
+                            <li><a class="dropdown-item" href="{{ route('admin') }}">
+                                    Admin
+                                </a></li>
+                        @endif
+                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        @endguest
-        </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @endguest
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
@@ -178,9 +175,6 @@
                                 </ul>
                             </div>
                         @endguest
-
-
-
 
                     </div>
                 </div>
