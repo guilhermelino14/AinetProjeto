@@ -53,6 +53,12 @@
                         <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
                                 Minhas Estampas
                             </a></li>
+                        <li><a class="dropdown-item" href="{{ route('shoppingcart') }}">
+                                Meu Carrinho
+                            </a></li>
+                        <li><a class="dropdown-item" >
+                                Minhas Encomendas
+                            </a></li>
                         @if (Auth::user()->tipo === 'A')
 
 
@@ -155,8 +161,14 @@
                                     </a></li>
                                     @endif
                                     <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
-                                            Minhas Estampas
+                                        Minhas Estampas
                                         </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('shoppingcart') }}">
+                                        Meu Carrinho
+                                    </a></li>
+                                    <li><a class="dropdown-item" >
+                                        Minhas Encomendas
+                                    </a></li>
                                     @if (Auth::user()->tipo === 'A')
 
 
