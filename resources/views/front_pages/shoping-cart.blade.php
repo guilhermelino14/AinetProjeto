@@ -36,7 +36,7 @@
                             </thead>
                             <tbody>
                                 @if (Session::has('cart'))
-                                    @foreach ($items as $item)
+                                    @foreach ($items as $key => $item)
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="{{ asset("storage/estampas/".$item['item']['imagem_url']) }}" alt="" width="100px">
@@ -52,12 +52,13 @@
                                         @php($cor = App\Models\Cor::where('codigo',$item['cor'])->first())
                                             {{$cor->nome}}
                                     </td>
+                                    
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <a href="{{route('editItemFromCart', ['id' => $item['item']['id'],'operator' => '-'])}}"><span class="dec qtybtn">-</span></a>
+                                                <a href="{{route('editItemFromCart', ['id' => $key,'operator' => '-'])}}"><span class="dec qtybtn">-</span></a>
                                                 <input type="text" value="{{ $item['qty'] }}" disabled>
-                                                <a href="{{route('editItemFromCart', ['id' => $item['item']['id'],'operator' => '+'])}}"><span class="inc qtybtn">+</span></a>
+                                                <a href="{{route('editItemFromCart', ['id' => $key,'operator' => '+'])}}"><span class="inc qtybtn">+</span></a>
                                             </div>
                                         </div>
                                     </td>
@@ -65,7 +66,7 @@
                                         {{ $item['price'] }}€
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <a href="{{route('removeFromCart', ['id' => $item['item']['id']])}}"><span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+                                        <a href="{{route('removeFromCart', ['id' => $key])}}"><span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
                                     </td>
                                 </tr>
                                 @endforeach

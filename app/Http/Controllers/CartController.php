@@ -36,26 +36,24 @@ class CartController extends Controller
         $cart = new Cart($oldCart);
         
         $cart->add($estampa, $estampa->id, $request->qty,$request->tamanho,$request->cor);
-        dd($cart);
+        $request->session()->put('cart',$cart);
+        
+        return redirect()->back();
+    }
+
+    public function removeFromCart(Request $request, $index){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->remove($index);
+
         $request->session()->put('cart',$cart);
         return redirect()->back();
     }
 
-    public function removeFromCart(Request $request, $id){
-        $estampa = Estampa::find($id);
+    public function editItemFromCart(Request $request, $index, $operator){
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->remove($estampa, $estampa->id, $request->tamanho, $request->cor);
-
-        $request->session()->put('cart',$cart);
-        return redirect()->back();
-    }
-
-    public function editItemFromCart(Request $request, $id, $operator){
-        $estampa = Estampa::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->editQuantity($estampa, $estampa->id, $operator, $request->tamanho, $request->cor);
+        $cart->editQuantity($index,$operator);
 
         $request->session()->put('cart',$cart);
         return redirect()->back();

@@ -23,53 +23,53 @@ class Cart
         }
             
         $storedItem = ['id' => 0,'qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
+        $itemIndex = 0;
         if($this->items){
-            
-            if(array_key_exists($id, $this->items)){
-                $storedItem = $this->items[count($this->items)];
+            $itemIndex = count($this->items);
+            for($index = 0; $index <= count($this->items); $index++){
+                if($item[$index]['id'] == $id && $item[$index]['tamanho'] == $tamanho && $item[$index]['cor'] == $cor){
+                    $storedItem = $item[$index];
+                    $itemIndex = $index;
+                    $index = count($this->items);
+                }
             }
         }
+
         $storedItem['id']= $id;
         $storedItem['qty']+= $qty;
         $storedItem['price'] = $price * $storedItem['qty'];
-        $this->items[$id] = $storedItem;
+        $this->items[$itemIndex] = $storedItem;
     }
 
-    public function remove($item, $id, $tamanho, $cor){
+    public function remove($index){
+        $storedItem = $this->items[$index];
+        $estampa = Estampa::find($storedItem['id']);
+
         $preco = Preco::find(1);
-        if($item->cliente_id == null){
+        if($estampa->cliente_id == null){
             $price = $preco->preco_un_catalogo;
         }
         else{
             $price = $preco->preco_un_proprio;
         }
-            
-        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
-        if($this->items){
-            if(array_key_exists($id, $this->items)){
-                $storedItem = $this->items[$id];
-            }
-        }
+
         $storedItem['qty']--;
         $storedItem['price'] = $price * $storedItem['qty'];
-        unset($this->items[$id]);
+        unset($this->items[$index]);
     }
 
-    public function editQuantity($item, $id, $operator, $tamanho, $cor){
+    public function editQuantity($index, $operator){
+        $storedItem = $this->items[$index];
+        $estampa = Estampa::find($storedItem['id']);
+
         $preco = Preco::find(1);
-        if($item->cliente_id == null){
+        if($estampa->cliente_id == null){
             $price = $preco->preco_un_catalogo;
         }
         else{
             $price = $preco->preco_un_proprio;
         }
-            
-        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
-        if($this->items){
-            if(array_key_exists($id, $this->items)){
-                $storedItem = $this->items[$id];
-            }
-        }
+
         if($operator == '+'){
             $storedItem['qty']++;
         }
@@ -79,7 +79,7 @@ class Cart
             }
         }
         $storedItem['price'] = $price * $storedItem['qty'];
-        $this->items[$id] = $storedItem;
+        $this->items[$index] = $storedItem;
     }
 
     public function totalPrice(){
