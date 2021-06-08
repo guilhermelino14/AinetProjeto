@@ -149,9 +149,11 @@
                                 </div>
 
                                 <ul style="top: 40px">
+                                    @if (Auth::User()->tipo != "F")
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                            Profile
-                                        </a></li>
+                                        Profile
+                                    </a></li>
+                                    @endif
                                     <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
                                             Minhas Estampas
                                         </a></li>
@@ -236,27 +238,12 @@
                         <span>Categorias</span>
                     </div>
                     <ul style="display: none; position:absolute; background-color:white; z-index: 3; width:90%">
-                        <li><a href="{{ route('shopgrid_categorias', 12) }}">Bebidas</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 20) }}">Cool</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 11) }}">Desenhos Abstratos</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 15) }}">Desporto</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 1) }}">Engraçadas</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 6) }}">Filmes</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 21) }}">Frases</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 2) }}">Geeks</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 14) }}">Infantil</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 4) }}">Inspiração</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 8) }}">Locais</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 9) }}">Logotipos</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 3) }}">Memes</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 7) }}">Musica</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 10) }}">Publicidade e Marcas</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 13) }}">Sem Sentido</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 5) }}">Simples</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 17) }}">Surf</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 16) }}">Verão</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 19) }}">Vintage</a></li>
-                        <li><a href="{{ route('shopgrid_categorias', 18) }}">Tattoo</a></li>
+                        @php($categorias = App\Models\Categoria::all())
+                        @if(count($categorias)> 0)
+                            @foreach($categorias as $categoria)
+                                <li><a href="{{ route('shopgrid_categorias', $categoria->id) }}">{{$categoria->nome}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>
