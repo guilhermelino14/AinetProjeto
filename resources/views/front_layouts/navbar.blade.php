@@ -48,7 +48,7 @@
 
                     <ul style="top: 40px">
                         <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                Profile
+                                Perfil
                             </a></li>
                         <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
                                 Minhas Estampas
@@ -151,7 +151,7 @@
                                 <ul style="top: 40px">
                                     @if (Auth::User()->tipo != "F")
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                        Profile
+                                        Perfil
                                     </a></li>
                                     @endif
                                     <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
