@@ -13,7 +13,7 @@ class Cart
         }
     }
 
-    public function add($item, $id , $qty){
+    public function add($item, $id , $qty, $tamanho, $cor){
         $preco = Preco::find(1);
         if($item->cliente_id == null){
             $price = $preco->preco_un_catalogo;
@@ -22,18 +22,20 @@ class Cart
             $price = $preco->preco_un_proprio;
         }
             
-        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item];
+        $storedItem = ['id' => 0,'qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
         if($this->items){
+            
             if(array_key_exists($id, $this->items)){
-                $storedItem = $this->items[$id];
+                $storedItem = $this->items[count($this->items)];
             }
         }
+        $storedItem['id']= $id;
         $storedItem['qty']+= $qty;
         $storedItem['price'] = $price * $storedItem['qty'];
         $this->items[$id] = $storedItem;
     }
 
-    public function remove($item, $id){
+    public function remove($item, $id, $tamanho, $cor){
         $preco = Preco::find(1);
         if($item->cliente_id == null){
             $price = $preco->preco_un_catalogo;
@@ -42,7 +44,7 @@ class Cart
             $price = $preco->preco_un_proprio;
         }
             
-        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item];
+        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $storedItem = $this->items[$id];
@@ -53,7 +55,7 @@ class Cart
         unset($this->items[$id]);
     }
 
-    public function editQuantity($item, $id, $operator){
+    public function editQuantity($item, $id, $operator, $tamanho, $cor){
         $preco = Preco::find(1);
         if($item->cliente_id == null){
             $price = $preco->preco_un_catalogo;
@@ -62,7 +64,7 @@ class Cart
             $price = $preco->preco_un_proprio;
         }
             
-        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item];
+        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item, 'tamanho' => $tamanho, 'cor' => $cor];
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $storedItem = $this->items[$id];

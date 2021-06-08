@@ -34,8 +34,9 @@ class CartController extends Controller
         $estampa = Estampa::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($estampa, $estampa->id, $request->qty);
-
+        
+        $cart->add($estampa, $estampa->id, $request->qty,$request->tamanho,$request->cor);
+        
         $request->session()->put('cart',$cart);
         return redirect()->back();
     }
@@ -44,7 +45,7 @@ class CartController extends Controller
         $estampa = Estampa::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->remove($estampa, $estampa->id);
+        $cart->remove($estampa, $estampa->id, $request->tamanho, $request->cor);
 
         $request->session()->put('cart',$cart);
         return redirect()->back();
@@ -54,7 +55,7 @@ class CartController extends Controller
         $estampa = Estampa::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->editQuantity($estampa, $estampa->id, $operator);
+        $cart->editQuantity($estampa, $estampa->id, $operator, $request->tamanho, $request->cor);
 
         $request->session()->put('cart',$cart);
         return redirect()->back();

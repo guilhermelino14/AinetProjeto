@@ -43,11 +43,11 @@
                                                 <td style="vertical-align: middle;">{{$estampa->descricao}}</td>
                                                 <td><img width="100px" height="100px" src="{{ route("estampas.privadas", $estampa) }}"/></td>
                                                 <td style="vertical-align: middle;">
-                                                    <a href="{{route('estampas.edit', ['estampa' => $estampa->id])}}"
+                                                    <a href="{{route('estampas.privadas.edit', ['estampa' => $estampa->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                 </td>
                                                 <td style="vertical-align: middle;">
-                                                        <form action="{{route('estampas.destroy', ['estampa' => $estampa->id])}}" method="POST">
+                                                        <form action="{{route('estampas.privadas.destroy', ['estampa' => $estampa->id])}}" method="POST">
                                                             @csrf
                                                             @method("DELETE")
                                                             <input type="submit" class="btn btn-danger btn-sm" value="Apagar">

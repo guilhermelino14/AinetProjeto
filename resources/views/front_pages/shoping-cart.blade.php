@@ -27,6 +27,8 @@
                                 <tr>
                                     <th class="shoping__product">Produto</th>
                                     <th>Preço</th>
+                                    <th>Tamanho</th>
+                                    <th>Cor</th>
                                     <th>Quantidade</th>
                                     <th>Total</th>
                                     <th></th>
@@ -38,10 +40,17 @@
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="{{ asset("storage/estampas/".$item['item']['imagem_url']) }}" alt="" width="100px">
-                                        <h5>{{ $item['item']['nome']}}</h5>
+                                        <h5><a href="{{route('shopdetails', $item['item']['id'])}}">{{ $item['item']['nome']}}</a></h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         {{ $item['price'] / $item['qty']}}€
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{ $item['tamanho']}}
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        @php($cor = App\Models\Cor::where('codigo',$item['cor'])->first())
+                                            {{$cor->nome}}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">

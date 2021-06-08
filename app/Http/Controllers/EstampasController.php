@@ -7,6 +7,7 @@ use App\Models\Categoria;
 use App\Models\Estampa;
 use App\Models\Preco;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -133,6 +134,30 @@ class EstampasController extends Controller
         $estampa->delete(); //Remove Estampa
 
         return Redirect()->back()->with('success','Estampa removida com sucesso');
+    }
+
+    public function destroy_privadas($id)
+    {
+        $estampa = Estampa::findOrFail($id); //If Estampa exists
+        $estampa->delete(); //Remove Estampa
+
+        return Redirect()->back();
+    }
+    public function edit_privadas($id)
+    {
+        $estampa = Estampa::findOrFail($id);
+        $categorias = Categoria::all();
+        return view('front_pages.estampas_edit', compact('estampa','categorias'));
+    }
+    
+    public function update_privadas(Request $request, Estampa $estampa)
+    {
+        $user = Auth::user();
+        $estampa->categoria_id = $request->categoria;
+        $estampa->nome = $request->nome;
+        $estampa->descricao = $request->descricao;
+        $estampa->save();
+        return redirect('/minhasEstampas');
     }
 
     public function minhasEstampas(){
