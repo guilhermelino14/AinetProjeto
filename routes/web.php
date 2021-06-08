@@ -64,7 +64,6 @@ Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('s
 Route::get('/shoppingcart', [CartController::class, 'index'])->name('shoppingcart');
 Route::get('/search', [MainController::class, 'search'])->name('search');
 
-
 Route::get('/profile', [UserController::class, 'edit_front'])->name('profile');
 Route::put('/profile/{user}', [UserController::class, 'update_front'])->name('profile_update');
 
@@ -75,7 +74,7 @@ Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editI
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Route::get('verify-mail', function () {
-   
+
     $user = Auth::user();
     $user->email_verified_at= Carbon::now()->toDateTimeString();
     $user->save();

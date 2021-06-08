@@ -16,7 +16,7 @@
                                             <th>Categoria</th>
                                             <th>Nome</th>
                                             <th>Descrição</th>
-                                            <th>foto</th>
+                                            <th>Foto</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -24,7 +24,7 @@
                                             <th>Categoria</th>
                                             <th>Nome</th>
                                             <th>Descrição</th>
-                                            <th>foto</th>
+                                            <th>Foto</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>

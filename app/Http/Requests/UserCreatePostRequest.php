@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UserPostRequest extends FormRequest
+class UserCreatePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +25,14 @@ class UserPostRequest extends FormRequest
     {
         return [
             'name' =>         'required',
-            'endereco' =>        'sometimes',
-            'nif' =>       'sometimes',
             'email' => [
                 'required',
                 'email',
             ],
-            'password' =>       'nullable|min:8|confirmed',
-            'img' =>       'nullable',
+            'tipo' => 'required',
+            'password' =>       'required|min:8',
+            'bloqueado' => 'required',
+            'foto_url' =>       'nullable',
         ];
     }
 
@@ -42,6 +41,8 @@ class UserPostRequest extends FormRequest
         return [
             'name.required' => 'Campo "Nome" tem que ser preenchido',
             'email.required' => 'Campo "Email" tem que ser preenchido',
+            'password.required' => 'Campo "Password" tem que ser preenchido',
+            'bloqueado.required' => 'Campo "Bloqueado" tem que ser preenchido',
         ];
     }
 }

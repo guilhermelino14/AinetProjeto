@@ -10,6 +10,25 @@
                         </div>
                         <div class="card-body">
                             <a href="{{ route('users.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Utilizador</button></a>
+                            <!-- Topbar Search -->
+                            <form form action="{{ route('users.index') }}" method="GET" role="search"
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" id="user" name="user" class="form-control bg-light border-0 small" placeholder="Pesquisar"
+                                        aria-label="Search" aria-describedby="basic-addon2"value="{{ old('user', $key) }}">
+                                        <select name="tipo" id="tipo" >
+                                            <option value="*")>Todos</option>
+                                            <option value="A" {{ old('tipo', $tipo) == "A" ? 'selected' : '' }}>Administrador</option>
+                                            <option value="C" {{ old('tipo', $tipo) == "C" ? 'selected' : '' }}>Cliente</option>
+                                            <option value="F" {{ old('tipo', $tipo) == "F" ? 'selected' : '' }}>Funcionário</option>
+                                        </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -36,9 +55,20 @@
                                                 <td>{{$user->tipo}}</td>
                                                 <td>{{$user->bloqueado}}</td>
                                                 <td>
-                                                    <a href="{{route('users.edit', ['user' => $user->id])}}"
-                                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
-                                                    </td>
+                                                    @if ($user->tipo != 'C')
+                                                        <a href="{{route('users.edit', ['user' => $user->id])}}"
+                                                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($user->bloqueado == '1')
+                                                        <a href="{{route('users.edit', ['user' => $user->id])}}"
+                                                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">Desbloquear</a>
+                                                    @else
+                                                        <a href="{{route('users.edit', ['user' => $user->id])}}"
+                                                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">Bloquear</a>
+                                                    @endif
+                                                </td>
                                                     <td >
                                                         <form action="{{route('users.destroy', ['user' => $user->id])}}" method="POST">
                                                             @csrf
