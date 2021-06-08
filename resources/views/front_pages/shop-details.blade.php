@@ -57,16 +57,38 @@
 
                         <ul>
                             <form method="GET" action="{{ route('addToCart', ['id' => $estampa->id]) }}">
-                            <div class="product__details__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <span class="dec qtybtn">-</span>
-                                        <input type="text" value="1" id="qty" name="qty">
-                                        <span class="inc qtybtn">+</span>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <select name="tamanho" id="tamanho" class="form-control form-control-lg">
+                                            <option value="XS">XS</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="cor" id="cor" class="form-control form-control-lg">
+                                            @foreach ($cores as $cor)
+                                                <option value="{{$cor->codigo}}">{{$cor->nome}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mt-3 mb-3">
+                                        <div class="product__details__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <span class="dec qtybtn">-</span>
+                                                    <input type="text" value="1" id="qty" name="qty">
+                                                    <span class="inc qtybtn">+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="primary-btn">ADD TO CARD</button>
                                     </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="primary-btn">ADD TO CARD</button>
                         </ul>
                     </div>
                 </div>
@@ -172,16 +194,17 @@
                             <div class="product__item__pic set-bg"
                                 data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="{{ route('addToCart', ['id' => $estampa->id]) }}"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="{{ route('addToCart', ['id' => $estampa->id]) }}"><i
+                                                class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="{{ route('shopdetails', $estampa->id) }}">{{ $estampa->nome }}</a></h6>
                                 @if ($estampa->cliente_id == null)
-                                        <h5>{{$preco->preco_un_catalogo}}</h5>
-                                        @else
-                                        <h5>{{$preco->preco_un_proprio}}</h5>
-                                        @endif
+                                    <h5>{{ $preco->preco_un_catalogo }}</h5>
+                                @else
+                                    <h5>{{ $preco->preco_un_proprio }}</h5>
+                                @endif
                             </div>
                         </div>
                     </div>
