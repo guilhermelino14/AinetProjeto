@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cor;
 use App\Models\Estampa;
 use App\Models\Preco;
 use Illuminate\Http\Request;
@@ -33,8 +34,8 @@ class MainController extends Controller
         $estampa = Estampa::findOrFail($id);
         $preco = Preco::find(1);
         $estampasRelated = Estampa::whereNull('cliente_id')->inRandomOrder()->where('categoria_id', $estampa->categoria_id)->limit(4)->get();
-        
-        return view('front_pages.shop-details', compact('estampa', 'estampasRelated', 'preco'));
+        $cores = Cor::all();
+        return view('front_pages.shop-details', compact('estampa', 'estampasRelated', 'preco','cores'));
     }
 
     public function search(Request $request)
