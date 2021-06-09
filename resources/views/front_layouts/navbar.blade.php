@@ -284,7 +284,4 @@
     </div>
 </section>
 <!-- Hero Section End -->
-<script>
-    console.log($request - > path())
 
-</script>

@@ -22,7 +22,8 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
+                            <input id="image_url" hidden value="{{$estampa->imagem_url}}">
+                            <img class="product__details__pic__item--large" id="estampa"
                             @if ($estampa->cliente_id == null)
                             src="{{ asset("storage/estampas/$estampa->imagem_url") }}"
                             @else
@@ -92,6 +93,11 @@
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="primary-btn">ADD TO CARD</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <button onclick="preview()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#preview">
+                                            Preview
+                                          </button>
                                     </div>
                                 </div>
                         </ul>
@@ -193,24 +199,24 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($estampasRelated as $estampa)
+                @foreach ($estampasRelated as $estamparelated)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
-                            @if ($estampa->cliente_id == null)
-                            data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}"
+                            @if ($estamparelated->cliente_id == null)
+                            data-setbg="{{ asset("storage/estampas/$estamparelated->imagem_url") }}"
                             @else
-                            data-setbg="{{ route("estampas.privadas", $estampa) }}"
+                            data-setbg="{{ route("estampas.privadas", $estamparelated) }}"
                             @endif
                                 >
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="{{ route('shopdetails', $estampa->id)}}"><i
+                                    <li><a href="{{ route('shopdetails', $estamparelated->id)}}"><i
                                                 class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="{{ route('shopdetails', $estampa->id) }}">{{ $estampa->nome }}</a></h6>
-                                @if ($estampa->cliente_id == null)
+                                <h6><a href="{{ route('shopdetails', $estamparelated->id) }}">{{ $estamparelated->nome }}</a></h6>
+                                @if ($estamparelated->cliente_id == null)
                                     <h5>{{ $preco->preco_un_catalogo }}€</h5>
                                 @else
                                     <h5>{{ $preco->preco_un_proprio }}€</h5>
@@ -223,6 +229,37 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="position: relative; top: 0; left: 0;">
+              <img id="tshirt" src="" style="position: relative; top: 0; left: 0;"/>
+              <img id="tshirtTeste" src="" style=" position: absolute;top: 18%; left: 34%; width: 35%;"/>
+              <img src="{{ route("estampas.privadas", $estampa) }}" style=" position: absolute;top: 18%; left: 34%; width: 35%;"/>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      @section('scripts')
+      <script>
+          function preview() {
+            var tshirt = document.getElementById("tshirt")
+            var tshirtTeste = document.getElementById("tshirtTeste")
+            var image_url = document.getElementById("image_url").value
+            
+            var cor = document.getElementById("cor").value
+            console.log(estampa);
+            tshirt.src='{{asset("storage/tshirt_base/")}}/'+cor+'.jpg'
+            tshirtTeste.src='{{ asset("storage/estampas/")}}/'+image_url
+            }
+      </script>
+      @endsection
     <!-- Related Product Section End -->
 
 @endsection
