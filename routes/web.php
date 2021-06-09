@@ -17,6 +17,7 @@ use App\Models\Estampa;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,35 @@ Route::get('/admin', function () {
     $clientes = Cliente::count();
     $encomendas = Encomenda::count();
     $estampas = Estampa::count();
-    return view('back_pages.index',compact('users', 'clientes','encomendas', 'estampas'));
+    $year = ['2015','2016','2017','2018','2019','2020','2021'];
+
+        $encomendas_data = [];
+        foreach ($year as $key => $value) {
+            $encomendas_data[] = Encomenda::where(\DB::raw("DATE_FORMAT(created_at, '%Y')"),$value)->count();
+        }
+
+        $user = [];
+        foreach ($year as $value) {
+            $user[] = User::where(\DB::raw("DATE_FORMAT(created_at, '%Y')"),$value)->count();
+            
+        }
+        $clientes_data = [];
+        foreach ($year as $value) {
+            $clientes_data[] = Cliente::where(\DB::raw("DATE_FORMAT(created_at, '%Y')"),$value)->count();
+            
+        }
+        $estampas_data = [];
+        foreach ($year as $value) {
+            $estampas_data[] = Estampa::where(\DB::raw("DATE_FORMAT(created_at, '%Y')"),$value)->count();
+            
+        }
+
+    return view('back_pages.index',compact('users', 'clientes','encomendas', 'estampas'))
+    ->with('year',json_encode($year,JSON_NUMERIC_CHECK))
+    ->with('encomendas_data',json_encode($encomendas_data,JSON_NUMERIC_CHECK))
+    ->with('user',json_encode($user,JSON_NUMERIC_CHECK))
+    ->with('clientes_data',json_encode($clientes_data,JSON_NUMERIC_CHECK))
+    ->with('estampas_data',json_encode($estampas_data,JSON_NUMERIC_CHECK));
 })->name('admin');
 
 Route::resource('admin/users', UserController::class);

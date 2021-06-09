@@ -239,9 +239,11 @@
             </div>
             <div class="modal-body" style="position: relative; top: 0; left: 0;">
               <img id="tshirt" src="" style="position: relative; top: 0; left: 0;"/>
-              <img id="tshirtTeste" src="" style=" position: absolute;top: 18%; left: 34%; width: 35%;"/>
-              <img src="{{ route("estampas.privadas", $estampa) }}" style=" position: absolute;top: 18%; left: 34%; width: 35%;"/>
-              
+              @if ($estampa->cliente_id == null)
+                <img id="tshirtTeste" src="" style=" position: absolute;top: 18%; left: 34%; width: 35%;"/>
+                @else
+                <img src="{{ route("estampas.privadas", $estampa) }}" style=" position: absolute;top: 18%; left: 34%; width: 35%;"/>
+                @endif
             </div>
           </div>
         </div>

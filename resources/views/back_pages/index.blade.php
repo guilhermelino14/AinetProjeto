@@ -103,37 +103,97 @@
         <div class="row">
 
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            
+            <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
+                        <h6 class="m-0 font-weight-bold text-primary">Utilizadores Criadas por Ano</h6>
+                        
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <canvas id="canvasUtilizadores" height="280" width="600"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Clientes Criadas por Ano</h6>
+                        
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <canvas id="canvasClientes" height="280" width="600"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Encomendas criadas por ano</h6>
+                        
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <canvas id="canvas" height="280" width="600"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Estampas criadas por ano</h6>
+                        
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <canvas id="canvasEstampas" height="280" width="600"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
 
             <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
+            {{-- <div class="col-xl-4 col-lg-5">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -171,7 +231,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         {{-- <!-- Content Row -->
@@ -328,4 +388,161 @@
     </div>
     <!-- End of Main Content -->
 
+    @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script>
+    var year =  {!!  $year; !!}
+    var encomenda = {!! $encomendas_data;!!}
+    var barChartData = {
+        labels: year,
+        datasets: [{
+            label: 'Encomendas',
+            backgroundColor: "#36b9cc",
+            data: encomenda
+        }]
+    };
+
+    var user = {!! $user;!!}
+    var barChartData2 = {
+        labels: year,
+        datasets: [{
+            label: 'Utlizadores',
+            backgroundColor: "#4e73df",
+            data: user
+        }]
+    };
+
+    var cliente = {!! $clientes_data;!!}
+    var barChartData3 = {
+        labels: year,
+        datasets: [{
+            label: 'Clientes',
+            backgroundColor: "#1cc88a",
+            data: cliente
+        }]
+    };
+
+    var estampa = {!! $estampas_data;!!}
+    var barChartData4 = {
+        labels: year,
+        datasets: [{
+            label: 'Estampas',
+            backgroundColor: "#f6c23e",
+            data: estampa
+        }]
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                legend: {
+                     display: false
+                },
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: false,
+                    text: 'Yearly User Joined'
+                }
+            }
+        });
+        var ctx2 = document.getElementById("canvasUtilizadores").getContext("2d");
+        window.myBar2 = new Chart(ctx2, {
+            type: 'bar',
+            data: barChartData2,
+            options: {
+                legend: {
+                     display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: false,
+                    text: 'Yearly User Joined'
+                }
+            }
+        });
+        var ctx3 = document.getElementById("canvasClientes").getContext("2d");
+        window.myBar3 = new Chart(ctx3, {
+            type: 'bar',
+            data: barChartData3,
+            options: {
+                legend: {
+                     display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: false,
+                    text: 'Yearly User Joined'
+                }
+            }
+        });
+        var ctx4 = document.getElementById("canvasEstampas").getContext("2d");
+        window.myBar4 = new Chart(ctx4, {
+            type: 'bar',
+            data: barChartData4,
+            options: {
+                legend: {
+                     display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: false,
+                    text: 'Yearly User Joined'
+                }
+            }
+        });
+    };
+</script>
+    @endsection
 @endsection
