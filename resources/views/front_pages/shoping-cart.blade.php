@@ -39,7 +39,12 @@
                                     @foreach ($items as $key => $item)
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="{{ asset("storage/estampas/".$item['item']['imagem_url']) }}" alt="" width="100px">
+                                        
+                                        <img @if ($item['item']['cliente_id'] == null)
+                                        src="{{ asset("storage/estampas/".$item['item']['imagem_url']) }}"
+                                        @else
+                                        src="{{ route("estampas.privadas", $item['item']) }}"
+                                        @endif alt="" width="100px">
                                         <h5><a href="{{route('shopdetails', $item['item']['id'])}}">{{ $item['item']['nome']}}</a></h5>
                                     </td>
                                     <td class="shoping__cart__price">

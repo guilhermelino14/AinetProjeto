@@ -23,7 +23,12 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{ asset("storage/estampas/$estampa->imagem_url") }}" alt="">
+                            @if ($estampa->cliente_id == null)
+                            src="{{ asset("storage/estampas/$estampa->imagem_url") }}"
+                            @else
+                            src="{{ route("estampas.privadas", $estampa) }}"
+                            @endif
+                                alt="">
                         </div>
                         {{-- <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="img/product/details/product-details-2.jpg"
@@ -192,9 +197,14 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
+                            @if ($estampa->cliente_id == null)
+                            data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}"
+                            @else
+                            data-setbg="{{ route("estampas.privadas", $estampa) }}"
+                            @endif
+                                >
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="{{ route('addToCart', ['id' => $estampa->id]) }}"><i
+                                    <li><a href="{{ route('shopdetails', $estampa->id)}}"><i
                                                 class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>

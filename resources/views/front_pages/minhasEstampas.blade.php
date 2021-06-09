@@ -43,6 +43,10 @@
                                                 <td style="vertical-align: middle;">{{$estampa->descricao}}</td>
                                                 <td><img width="100px" height="100px" src="{{ route("estampas.privadas", $estampa) }}"/></td>
                                                 <td style="vertical-align: middle;">
+                                                    <a href="{{ route('shopdetails', $estampa->id)}}"
+                                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">Comprar</a>
+                                                </td>
+                                                <td style="vertical-align: middle;">
                                                     <a href="{{route('estampas.privadas.edit', ['estampa' => $estampa->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                 </td>

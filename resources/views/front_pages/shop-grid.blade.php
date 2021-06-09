@@ -212,7 +212,7 @@
                                     <div class="product__item__pic set-bg"
                                         data-setbg="{{ asset("storage/estampas/$estampa->imagem_url") }}">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="{{ route('addToCart', ['id' => $estampa->id]) }}"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="{{ route('shopdetails', $estampa->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">

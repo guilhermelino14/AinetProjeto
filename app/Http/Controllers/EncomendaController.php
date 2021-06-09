@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EncomendaCriarPostRequest;
 use App\Models\Cliente;
 use App\Models\Encomenda;
+use App\Models\Tshirt;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class EncomendaController extends Controller
 {
@@ -20,6 +23,12 @@ class EncomendaController extends Controller
     {
         $encomendas = Encomenda::paginate(15);
         return view('back_pages.encomendas', compact('encomendas'));
+    }
+    public function index_front()
+    {
+        $user = Auth::user();
+        $encomendas = Encomenda::where('cliente_id', $user->id)->paginate(15);
+        return view('front_pages.minhasEncomendas', compact('encomendas'));
     }
 
     /**
@@ -72,6 +81,12 @@ class EncomendaController extends Controller
     {
         $encomenda = Encomenda::findOrFail($id);
         return view('back_pages.encomendas_show', compact('encomenda'));
+    }
+    public function show_front($id)
+    {
+        $encomenda = Encomenda::findOrFail($id);
+        $tshirts = Tshirt::where('encomenda_id', $id)->get();
+        return view('front_pages.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
     }
 
     /**
@@ -129,5 +144,13 @@ class EncomendaController extends Controller
         $encomenda->delete(); //Remove Encomenda
 
         return Redirect()->back()->with('success','Encomenda removida com sucesso');
+    }
+
+    public function show_front_pdf($id)
+    {
+        $encomenda = Encomenda::findOrFail($id);
+        $tshirts = Tshirt::where('encomenda_id', $id)->get();
+        $pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
+        return $pdf->download("teste.pdf");
     }
 }

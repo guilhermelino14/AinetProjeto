@@ -62,7 +62,7 @@ Route::get('/minhasEstampas', [EstampasController::class, 'minhasEstampas'])->na
 Route::get('/', [MainController::class, 'index'])->name('homeT');
 
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
-Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('shopdetails');
+Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('shopdetails')->middleware('VerifyIfEstampaIsFromUser');
 Route::get('/shoppingcart', [CartController::class, 'index'])->name('shoppingcart');
 Route::get('/search', [MainController::class, 'search'])->name('search');
 
@@ -75,6 +75,8 @@ Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 Route::get('/remove-From-Cart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editItemFromCart'])->name('editItemFromCart');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/checkoutcart', [CartController::class, 'checkoutCart'])->name('checkoutCart');
+
 
 Route::get('verify-mail', function () {
 
@@ -86,6 +88,11 @@ Route::get('verify-mail', function () {
 
 
 Route::get('/estampas/{estampa}/imagem', [EstampasController::class, 'getEstampaPrivada'])->name('estampas.privadas');
-Route::delete('/estampas/{estampa}', [EstampasController::class, 'destroy_privadas'])->name('estampas.privadas.destroy');
-Route::get('/estampas/{estampa}/edit', [EstampasController::class, 'edit_privadas'])->name('estampas.privadas.edit');
-Route::PATCH('/estampas/{estampa}', [EstampasController::class, 'update_privadas'])->name('estampas.privadas.update');
+Route::delete('/estampas/{estampa}', [EstampasController::class, 'destroy_privadas'])->name('estampas.privadas.destroy')->middleware('VerifyIfEstampaIsFromUser');
+Route::get('/estampas/{estampa}/edit', [EstampasController::class, 'edit_privadas'])->name('estampas.privadas.edit')->middleware('VerifyIfEstampaIsFromUser');
+Route::PATCH('/estampas/{estampa}', [EstampasController::class, 'update_privadas'])->name('estampas.privadas.update')->middleware('VerifyIfEstampaIsFromUser');
+
+
+Route::get('/minhasencomendas', [EncomendaController::class, 'index_front'])->name('minhasencomendas');
+Route::get('/minhasencomendas/{encomenda}', [EncomendaController::class, 'show_front'])->name('minhasencomendas.show');
+Route::get('/minhasencomendas/{encomenda}/pdf', [EncomendaController::class, 'show_front_pdf'])->name('minhasencomendas.show.pdf');

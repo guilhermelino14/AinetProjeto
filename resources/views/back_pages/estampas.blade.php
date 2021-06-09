@@ -35,7 +35,12 @@
                                                 @endif</td>
                                                 <td style="vertical-align: middle;">{{$estampa->nome}}</td>
                                                 <td style="vertical-align: middle;">{{$estampa->descricao}}</td>
-                                                <td><img width="100px" height="100px" src="{{ asset("storage/estampas/$estampa->imagem_url") }}"/></td>
+                                                <td><img @if ($estampa->cliente_id == null)
+                                                    src="{{ asset("storage/estampas/".$estampa->imagem_url) }}"
+                                                    @else
+                                                    src="{{ route("estampas.privadas", $estampa->imagem_url) }}"
+                                                    @endif alt="" width="100px" height="100px">
+                                                </td>
                                                 <td style="vertical-align: middle;">
                                                     <a href="{{route('estampas.edit', ['estampa' => $estampa->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
