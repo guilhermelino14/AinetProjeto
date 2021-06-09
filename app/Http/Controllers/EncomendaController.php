@@ -21,7 +21,13 @@ class EncomendaController extends Controller
      */
     public function index()
     {
-        $encomendas = Encomenda::paginate(15);
+        $user = Auth::User();
+        if($user->tipo == 'F'){
+            $encomendas = Encomenda::where('estado','pendente')->orwhere('estado','paga')->paginate(15);
+        }elseif($user->tipo == 'A'){
+            $encomendas = Encomenda::paginate(15);
+        }
+        
         return view('back_pages.encomendas', compact('encomendas'));
     }
     public function index_front()

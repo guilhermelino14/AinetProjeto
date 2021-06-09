@@ -170,6 +170,6 @@ class EstampasController extends Controller
         if($estampa->imagem_url){
             return response()->file(storage_path().'/app/estampas_privadas/'.$estampa->imagem_url);
         }
-        return 'asd';
+        return;
     }
 }

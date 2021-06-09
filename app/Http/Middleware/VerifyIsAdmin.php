@@ -18,7 +18,7 @@ class VerifyIsAdmin
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if($user->tipo == 'A'){
+        if($user->tipo == 'A' || $user->tipo == 'F'){
             return $next($request);
         }else{
             return redirect()->back();

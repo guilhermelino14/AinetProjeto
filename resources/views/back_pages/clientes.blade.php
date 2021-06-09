@@ -32,7 +32,7 @@
                                     <tbody>
                                             @foreach ($clientes as $cliente)
                                             <tr>
-                                                <td>{{$cliente->id}}</td>
+                                                <td><a href="{{route('users.edit', ['user' => $cliente->id])}}">{{$cliente->id}}</a></td>
                                                 <td>{{$cliente->user->name}}</td>
                                                 <td>{{$cliente->nif}}</td>
                                                 <td>{{$cliente->endereco}}</td>

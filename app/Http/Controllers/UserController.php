@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPostRequest;
 use App\Http\Requests\UserCreatePostRequest;
+use App\Http\Requests\UserEditPostRequest;
 use App\Models\User;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -27,10 +28,7 @@ class UserController extends Controller
         $users = User::query();
 
         if($key != ""){
-            $users = $users->where(function($qry) use ($key) {
-                    $qry->where('name', 'like', "%$key%")
-                        ->orWhere('email', 'like', "%$key%");
-                });
+            $users = $users->where('name', 'like', "%$key%")->orWhere('email', 'like', "%$key%");
         }
 
         if($tipo != '')
@@ -94,7 +92,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('back_pages.create', compact('user'));
+        return view('back_pages.users_edit', compact('user'));
     }
 
     public function edit_front()
@@ -111,22 +109,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserPostRequest $request, User $user)
+    public function update(UserEditPostRequest $request, User $user)
     {
         $validated_data = $request->validated();
         $user->name = $validated_data['name'];
         $user->email = $validated_data['email'];
-        $user->password = Hash::make($validated_data['password']);
-        $user->tipo = $validated_data['tipo'] ?? 'C';
+        if($validated_data['password'] != null){
+            if(strlen($validated_data['password']) >= 8){
+                $user->password = Hash::make($validated_data['password']);
+            }else{
+                return redirect()->back()->with('error','Password tem de ter no minimo 8 caracteres');
+            }
+            
+        }
+        $user->tipo = $validated_data['tipo'];
         $user->bloqueado = $validated_data['bloqueado'];
-        $user->foto_url = $validated_data['foto_url'];
+
+        if(isset($validated_data['foto_url'])){
+            Storage::delete('public/fotos/'.$user->foto_url);
+            $file = $request->file('foto_url');
+            $file_name = $user->id.'_'.time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/fotos',$file_name);
+            $user->foto_url = $file_name;
+        }
+        
         $user->save();
-        $user->cliente->nif = $validated_data['nif'];
-        $user->endereco = $validated_data['endereco'];
-        $user->tipo_pagamento = $validated_data['tipo_pagamento'];
-        $user->ref_pagamento = $validated_data['ref_pagamento'];
-        $user->save();
-        return redirect('/admin/users')->with('success','Utilizador atualizado com sucesso');
+        return redirect()->back()->with('success','Utilizador atualizado com sucesso');
     }
 
     public function update_front(UserPostRequest $request, User $user)

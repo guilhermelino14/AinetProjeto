@@ -56,7 +56,7 @@
                         <li><a class="dropdown-item" >
                                 Minhas Encomendas
                             </a></li>
-                        @if (Auth::user()->tipo === 'A')
+                        @if (Auth::user()->tipo === 'A' || Auth::user()->tipo === 'F')
 
 
                             <li><a class="dropdown-item" href="{{ route('admin') }}">
@@ -165,7 +165,7 @@
                                     <li><a href="{{ route('minhasencomendas') }}" class="dropdown-item" >
                                         Minhas Encomendas
                                     </a></li>
-                                    @if (Auth::user()->tipo === 'A')
+                                    @if (Auth::user()->tipo === 'A' || Auth::user()->tipo === 'F')
 
 
                                         <li><a class="dropdown-item" href="{{ route('admin') }}">

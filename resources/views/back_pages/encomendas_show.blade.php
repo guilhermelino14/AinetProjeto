@@ -57,6 +57,18 @@
                                 <label>Referência para pagamento</label>
                                 <input type="text" value="{{$encomenda->ref_pagamento}}" class="form-control" disabled>
                             </div>
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group text-left">
+                                        <a href="{{route('encomendas.index')}}" class="btn btn-primary">Voltar</a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group text-right">
+                                        <a href="{{route('encomendas.index')}}" class="btn btn-primary">Voltar</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group text-right">
                                 <a href="{{route('encomendas.index')}}" class="btn btn-primary">Voltar</a>
                             </div>

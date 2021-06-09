@@ -3451,3 +3451,9 @@ ol {
 		font-size: 24px;
 	}
 }
+
+.nice-select .list {
+	height: 200px;
+    overflow: auto;
+    width: 100%;
+}

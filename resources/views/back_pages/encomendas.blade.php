@@ -18,6 +18,7 @@
                                             <th>Data</th>
                                             <th>Ref</th>
                                             <th>Preço</th>
+                                            <th>Estado</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -26,6 +27,7 @@
                                             <th>Data</th>
                                             <th>Ref</th>
                                             <th>Preço</th>
+                                            <th>Estado</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -35,6 +37,7 @@
                                                 <td>{{$encomenda->data}}</td>
                                                 <td>{{$encomenda->ref_pagamento}}</td>
                                                 <td>{{$encomenda->preco_total}}</td>
+                                                <td>{{$encomenda->estado}}</td>
                                                 <td style="vertical-align: middle;">
                                                     <a href="{{route('encomendas.show', ['encomenda' => $encomenda->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Ver</a>
