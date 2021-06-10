@@ -78,6 +78,7 @@ Route::resource('admin/cores', CorController::class);
 Route::resource('admin/precos', PrecoController::class);
 
 Route::get('/admin/client_state', [UserController::class, 'update_state'])->name('client_state');
+Route::get('/admin/encomendas/state/{encomenda}{estado}', [EncomendaController::class, 'changeEncomendaEstado'])->name('encomendas.changeEncomendaEstado');
 
 });
 
@@ -125,3 +126,4 @@ Route::PATCH('/estampas/{estampa}', [EstampasController::class, 'update_privadas
 Route::get('/minhasencomendas', [EncomendaController::class, 'index_front'])->name('minhasencomendas');
 Route::get('/minhasencomendas/{encomenda}', [EncomendaController::class, 'show_front'])->name('minhasencomendas.show');
 Route::get('/minhasencomendas/{encomenda}/pdf', [EncomendaController::class, 'show_front_pdf'])->name('minhasencomendas.show.pdf');
+

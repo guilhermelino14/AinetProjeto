@@ -159,4 +159,25 @@ class EncomendaController extends Controller
         $pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
         return $pdf->download("teste.pdf");
     }
+
+    public function changeEncomendaEstado($encomenda,$estado)
+    {
+        $encomenda = Encomenda::find($encomenda);
+        switch ($estado) {
+            case 1:
+                $encomenda->estado = "paga";
+                $encomenda->save();
+                break;
+            case 2:
+                $encomenda->estado = "fechada";
+                $encomenda->save();
+                break;
+
+            case 3:
+                $encomenda->estado = "anulada";
+                $encomenda->save();
+                break;
+        }
+        return redirect()->back()->with('success', 'Estado da encomenda alterado com sucesso');
+    }
 }
