@@ -131,7 +131,7 @@ class Initial extends Migration
         Schema::create('tshirts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('encomenda_id')->unsigned();
-            $table->foreign('encomenda_id')->references('id')->on('encomendas');
+            $table->foreign('encomenda_id')->references('id')->on('encomendas')->constrained()->onDelete('cascade');;
             $table->bigInteger('estampa_id')->unsigned();
             $table->foreign('estampa_id')->references('id')->on('estampas');
             $table->string('cor_codigo', 50);

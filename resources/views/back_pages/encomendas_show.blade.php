@@ -58,6 +58,58 @@
                     <input type="text" value="{{ $encomenda->ref_pagamento }}" class="form-control" disabled>
                 </div>
                 <div class="row">
+                    <div class="card-body">
+                        <span class="font-weight-bold mb-3">Encomenda:</span>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Nome Da Estampa</th>
+                                    <th>Cor</th>
+                                    <th>Tamanho</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço por Unidade</th>
+                                    <th>Preço Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    @foreach ($encomenda->tshirt as $tshirt)
+                                    @php($estampa = App\Models\Estampa::where('id', $tshirt->estampa_id)->first())
+                                    @php($cor = App\Models\Cor::where('codigo', $tshirt->cor_codigo)->first())
+                                    <tr>
+                                        <td><img @if ($estampa->cliente_id == null)
+                                            src="{{ asset("storage/estampas/".$estampa->imagem_url) }}"
+                                            @else
+                                            src="{{ route("estampas.privadas", $estampa->imagem_url) }}"
+                                            @endif alt="" width="100px">
+                                        </td>
+                                        <td>
+                                            {{$estampa->nome}}
+                                        </td>
+                                        <td>
+                                            @if ($cor != null)
+                                                {{$cor->nome}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{$tshirt->tamanho}}                                                        
+                                        </td>
+                                        <td>
+                                            {{$tshirt->quantidade}}     
+                                        </td>
+                                        <td>
+                                            {{$tshirt->preco_un}}€
+                                        </td>
+                                        <td>
+                                            {{$tshirt->subtotal}}€  
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
                 @switch($encomenda->estado)
                     @case("pendente")
                         <div class="col-6">
