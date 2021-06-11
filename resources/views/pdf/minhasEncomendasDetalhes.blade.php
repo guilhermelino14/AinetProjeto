@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>teste</title>
+    <title>Encomenda Numero: {{$encomenda->id}}</title>
 
     <!-- Google Font -->
 
@@ -38,67 +38,67 @@
     <section class="categories">
         <div class="container">
             <div class="row">
-
+                
                 <div class="container-fluid">
-
+                    <img src="http://localhost:8000/img/logoAi.png">
+                    <h1>MagicShirts</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Minha Encomenda</h6>
+                            <h3 class="m-0 font-weight-bold text-primary">Minha Encomenda</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-lg-6 ">
                                     <div>
-                                        <span class="font-weight-bold mb-3">Numero da Encomenda:</span>
-                                        <p class="font-weight-normal">{{$encomenda->id}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>Nome do Cliente:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->cliente->user->name}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-weight-bold mb-3"><strong>Numero da Encomenda:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->id}}</span>
                                     </div>
     
                                     <div>
-                                        <span class="font-weight-bold mb-3">Estado da Encomenda:</span>
-                                        <p class="font-weight-normal">{{$encomenda->estado}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>Estado da Encomenda:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->estado}}</span>
                                     </div>
     
                                     <div>
-                                        <span class="font-weight-bold mb-3">Data da Encomenda:</span>
-                                        <p class="font-weight-normal">{{$encomenda->data}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>Data da Encomenda:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->data}}</span>
                                     </div>
     
                                     <div>
-                                        <span class="font-weight-bold mb-3">Preço Total da Encomenda:</span>
-                                        <p class="font-weight-normal">{{$encomenda->preco_total}}€</p>
+                                        <span class="font-weight-bold mb-3"><strong>Preço Total da Encomenda:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->preco_total}}€</span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6 ">
                                     <div>
-                                        <span class="font-weight-bold mb-3">NIF de Faturação:</span>
-                                        <p class="font-weight-normal">{{$encomenda->nif}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>NIF de Faturação:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->nif}}</span>
                                     </div>
     
                                     <div>
-                                        <span class="font-weight-bold mb-3">Endereço de Faturação:</span>
-                                        <p class="font-weight-normal">{{$encomenda->endereco}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>Endereço de Faturação:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->endereco}}</span>
                                     </div>
     
                                     <div>
-                                        <span class="font-weight-bold mb-3">Metodo de Pagamento:</span>
-                                        <p class="font-weight-normal">{{$encomenda->tipo_pagamento}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>Metodo de Pagamento:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->tipo_pagamento}}</span>
                                     </div>
     
                                     <div>
-                                        <span class="font-weight-bold mb-3">Referencia de Pagamento:</span>
-                                        <p class="font-weight-normal">{{$encomenda->ref_pagamento}}</p>
-                                    </div>
-    
-                                    <div>
-                                        <span class="font-weight-bold mb-3">Recibo:</span>
-                                        <p class="font-weight-normal">{{$encomenda->recibo_url}}</p>
+                                        <span class="font-weight-bold mb-3"><strong>Referencia de Pagamento:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->ref_pagamento}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="container">
-                                    <span class="font-weight-bold mb-3">Encomenda:</span>
+                                    <h3 class="font-weight-bold mb-3">Encomenda:</h3>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -116,11 +116,14 @@
                                                 @php($cor = App\Models\Cor::where('codigo', $tshirt->cor_codigo)->first())
                                                 <tr>
                                                     <td>
+                                                        @if ($estampa != null)
                                                         {{$estampa->nome}}
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        {{$cor->nome}}
-                                                        
+                                                        @if ($cor != null)
+                                                            {{$cor->nome}}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         {{$tshirt->tamanho}}                                                        

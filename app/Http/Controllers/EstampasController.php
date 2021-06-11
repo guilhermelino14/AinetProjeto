@@ -65,7 +65,7 @@ class EstampasController extends Controller
         $file->storeAs('estampas_privadas',$file_name);
         $estampa->imagem_url = $file_name;
         $estampa->save();
-        return Redirect()->back()->with('success','Estampa adicionada com sucesso');
+        return redirect()->route('minhasEstampas')->with('success','Estampa Criada com sucesso');
     }
 
     /**

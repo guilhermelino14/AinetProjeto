@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EncomendaCriarPostRequest;
+use App\Mail\MailEncomendaFechada;
 use App\Models\Cliente;
 use App\Models\Encomenda;
 use App\Models\Tshirt;
+use App\Models\User;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 class EncomendaController extends Controller
@@ -19,16 +23,36 @@ class EncomendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $tipo = $request->tipo ?? '';
+        
         $user = Auth::User();
         if($user->tipo == 'F'){
-            $encomendas = Encomenda::where('estado','pendente')->orwhere('estado','paga')->paginate(15);
+            if($tipo == "pendente"){
+                $encomendas = Encomenda::where('estado','pendente')->paginate(15);
+            }elseif($tipo == "paga"){
+                $encomendas = Encomenda::where('estado','paga')->paginate(15);
+            }else{
+                $encomendas = Encomenda::where('estado','pendente')->orwhere('estado','paga')->paginate(15);
+            }
+            
         }elseif($user->tipo == 'A'){
-            $encomendas = Encomenda::paginate(15);
+            if($tipo == "pendente"){
+                $encomendas = Encomenda::where('estado','pendente')->paginate(15);
+            }elseif($tipo == "paga"){
+                $encomendas = Encomenda::where('estado','paga')->paginate(15);
+            }elseif($tipo == "fechada"){
+                $encomendas = Encomenda::where('estado','fechada')->paginate(15);
+            }elseif($tipo == "anulada"){
+                $encomendas = Encomenda::where('estado','anulada')->paginate(15);
+            }else{
+                $encomendas = Encomenda::paginate(15);
+            }
+            
         }
         
-        return view('back_pages.encomendas', compact('encomendas'));
+        return view('back_pages.encomendas', compact('encomendas', 'tipo'));
     }
     public function index_front()
     {
@@ -155,9 +179,10 @@ class EncomendaController extends Controller
     public function show_front_pdf($id)
     {
         $encomenda = Encomenda::findOrFail($id);
-        $tshirts = Tshirt::where('encomenda_id', $id)->get();
-        $pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
-        return $pdf->download("teste.pdf");
+        //$tshirts = Tshirt::where('encomenda_id', $id)->get();
+        //$pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
+        //return $pdf->download("teste.pdf");
+        return response()->file(storage_path().'/app/pdf_recibos/'.$encomenda->recibo_url);
     }
 
     public function changeEncomendaEstado($encomenda,$estado)
@@ -170,7 +195,14 @@ class EncomendaController extends Controller
                 break;
             case 2:
                 $encomenda->estado = "fechada";
+                $tshirts = Tshirt::where('encomenda_id', $encomenda->id)->get();
+                $pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
+                $content = $pdf->download()->getOriginalContent();
+                Storage::put('pdf_recibos/'.$encomenda->id.'.pdf',$content) ;
+                $encomenda->recibo_url = $encomenda->id.'.pdf';
                 $encomenda->save();
+                $user = User::find($encomenda->cliente_id);
+                Mail::to($user->email)->send(new MailEncomendaFechada($encomenda));
                 break;
 
             case 3:

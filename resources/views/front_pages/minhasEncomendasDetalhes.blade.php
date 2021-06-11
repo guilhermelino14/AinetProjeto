@@ -57,11 +57,13 @@
                                         <span class="font-weight-bold mb-3">Referencia de Pagamento:</span>
                                         <p class="font-weight-normal">{{$encomenda->ref_pagamento}}</p>
                                     </div>
-    
+                                    @if ($encomenda->estado == "fechada")
                                     <div>
                                         <span class="font-weight-bold mb-3">Recibo:</span>
                                         <p class="font-weight-normal"><a href="{{ route("minhasencomendas.show.pdf", $encomenda) }}">Clique aqui</a></p>
                                     </div>
+                                    @endif
+                                    
                                 </div>
                             </div>
                             <div class="row">
@@ -84,18 +86,23 @@
                                                 @php($estampa = App\Models\Estampa::where('id', $tshirt->estampa_id)->first())
                                                 @php($cor = App\Models\Cor::where('codigo', $tshirt->cor_codigo)->first())
                                                 <tr>
-                                                    <td><img @if ($estampa->cliente_id == null)
+                                                    <td>@if ($estampa != null)
+                                                        <img @if ($estampa->cliente_id == null)
                                                         src="{{ asset("storage/estampas/".$estampa->imagem_url) }}"
                                                         @else
                                                         src="{{ route("estampas.privadas", $estampa->imagem_url) }}"
                                                         @endif alt="" width="100px">
+                                                        @endif
                                                     </td>
                                                     <td>
+                                                        @if ($estampa != null)
                                                         {{$estampa->nome}}
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        {{$cor->nome}}
-                                                        
+                                                        @if ($cor != null)
+                                                            {{$cor->nome}}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         {{$tshirt->tamanho}}                                                        

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Cor;
 use App\Models\Estampa;
 use App\Models\Preco;
@@ -52,6 +53,7 @@ class MainController extends Controller
         ->orWhere('descricao', 'like', "%{$key}%")
         ->count();
         $preco = Preco::find(1);
-        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco'));
+        $categorias = Categoria::all();
+        return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco', 'categorias'));
     }
 }

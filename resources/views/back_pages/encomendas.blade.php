@@ -10,6 +10,25 @@
                         </div>
                         <div class="card-body">
                             <a href="{{ route('encomendas.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Encomenda</button></a>
+                            <form form action="{{ route('encomendas.index') }}" method="GET" role="search"
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                        <select name="tipo" id="tipo" >
+                                            <option value="*")>Todos</option>
+                                            <option value="pendente" {{ old('tipo', $tipo) == "pendente" ? 'selected' : '' }}>Pendente</option>
+                                            <option value="paga" {{ old('tipo', $tipo) == "paga" ? 'selected' : '' }}>Paga</option>
+                                            @if (Auth::User()->tipo != 'F')
+                                                <option value="fechada" {{ old('tipo', $tipo) == "fechada" ? 'selected' : '' }}>Fechada</option>
+                                                <option value="anulada" {{ old('tipo', $tipo) == "anulada" ? 'selected' : '' }}>Anulada</option>
+                                            @endif
+                                        </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>

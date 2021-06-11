@@ -57,6 +57,12 @@
                     <label>Referência para pagamento</label>
                     <input type="text" value="{{ $encomenda->ref_pagamento }}" class="form-control" disabled>
                 </div>
+                @if ($encomenda->estado == "fechada")
+                    <div>
+                        <span class="font-weight-bold mb-3">Recibo:</span>
+                        <p class="font-weight-normal"><a href="{{ route("minhasencomendas.show.pdf", $encomenda) }}">Clique aqui</a></p>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="card-body">
                         <span class="font-weight-bold mb-3">Encomenda:</span>
@@ -77,14 +83,18 @@
                                     @php($estampa = App\Models\Estampa::where('id', $tshirt->estampa_id)->first())
                                     @php($cor = App\Models\Cor::where('codigo', $tshirt->cor_codigo)->first())
                                     <tr>
-                                        <td><img @if ($estampa->cliente_id == null)
+                                        <td>@if ($estampa != null)
+                                            <img @if ($estampa->cliente_id == null)
                                             src="{{ asset("storage/estampas/".$estampa->imagem_url) }}"
                                             @else
                                             src="{{ route("estampas.privadas", $estampa->imagem_url) }}"
                                             @endif alt="" width="100px">
+                                            @endif
                                         </td>
                                         <td>
+                                            @if ($estampa != null)
                                             {{$estampa->nome}}
+                                            @endif
                                         </td>
                                         <td>
                                             @if ($cor != null)

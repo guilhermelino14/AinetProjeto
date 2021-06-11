@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\MailEncomenda;
+use App\Mail\MailRegisto;
 use App\Models\Estampa;
 use App\Models\Cart;
 use App\Models\Cliente;
@@ -96,6 +97,8 @@ class CartController extends Controller
                 
                 $newCliente->save();
                 $user = $newUser;
+                Auth::login($user);
+                Mail::to($user->email)->send(new MailRegisto($user));
             }
         }
         //gerar Econmenda
@@ -134,6 +137,7 @@ class CartController extends Controller
         //apagar sessao
         Session::forget('cart');
         Mail::to($user->email)->send(new MailEncomenda($encomenda));
-        return redirect()->back();
+        
+        return redirect()->route('minhasencomendas');
     }
 }
