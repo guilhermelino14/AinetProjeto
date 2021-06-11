@@ -28,10 +28,12 @@
                                                 <td style="vertical-align: middle;">{{$preco->preco_un_catalogo_desconto}}€</td>
                                                 <td style="vertical-align: middle;">{{$preco->preco_un_proprio_desconto}}€</td>
                                                 <td style="vertical-align: middle;">{{$preco->quantidade_desconto}}%</td>
+                                                @if (Auth::User()->tipo == 'A')
                                                 <td >
                                                     <a href="{{route('precos.edit', ['preco' => $preco->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
                                                 </td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                     </tbody>

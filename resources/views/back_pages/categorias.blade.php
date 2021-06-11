@@ -9,7 +9,9 @@
                             <h6 class="m-0 font-weight-bold text-primary">Lista de Categorias</h6>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('categorias.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Categoria</button></a>
+                            @if (Auth::User()->tipo == 'A')
+                                <a href="{{ route('categorias.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Criar Categoria</button></a>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -29,6 +31,7 @@
                                             <tr>
                                                 <td>{{$categoria->id}}</td>
                                                 <td>{{$categoria->nome}}</td>
+                                                @if (Auth::User()->tipo == 'A')
                                                 <td >
                                                     <a href="{{route('categorias.edit', ['categoria' => $categoria->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
@@ -40,6 +43,7 @@
                                                             <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
                                                         </form>
                                                 </td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                     </tbody>

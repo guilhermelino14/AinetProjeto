@@ -18,10 +18,14 @@ class VerifyIsAdmin
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if($user->tipo == 'A' || $user->tipo == 'F'){
-            return $next($request);
+        if($user != null){
+            if($user->tipo == 'A' || $user->tipo == 'F'){
+                return $next($request);
+            }else{
+                return redirect()->route('homeT');
+            }
         }else{
-            return redirect()->route('homeT');
+            return redirect()->route('homeT')->with('error', 'Nao tem permissao para aceder a essa pagina');
         }
         
     }

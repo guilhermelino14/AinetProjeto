@@ -80,7 +80,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-12 mt-3 mb-3">
+                                    <div class="col-6 mt-3 mb-3">
                                         <div class="product__details__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
@@ -91,14 +91,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="primary-btn">ADD TO CARD</button>
-                                    </div>
-                                    <div class="col-12">
+                                    <div class="col-6 mt-3 mb-3">
                                         <button onclick="preview()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#preview">
                                             Preview
                                           </button>
                                     </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="primary-btn">ADD TO CARD</button>
+                                    </div>
+                                    
                                 </div>
                         </ul>
                     </div>

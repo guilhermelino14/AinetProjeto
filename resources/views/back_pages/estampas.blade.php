@@ -41,6 +41,7 @@
                                                     src="{{ route("estampas.privadas", $estampa->imagem_url) }}"
                                                     @endif alt="" width="100px" height="100px">
                                                 </td>
+                                                @if (Auth::User()->tipo == 'A')
                                                 <td style="vertical-align: middle;">
                                                     <a href="{{route('estampas.edit', ['estampa' => $estampa->id])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
@@ -52,6 +53,7 @@
                                                             <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
                                                         </form>
                                                 </td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                     </tbody>

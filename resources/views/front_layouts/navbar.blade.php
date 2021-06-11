@@ -46,16 +46,20 @@
                         </a>
                     </div>
 
-                    <ul style="top: 40px">
+                    <ul style="top: 40px;    width: 174px;">
+                        @if (Auth::User()->tipo != "F")
                         <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                Perfil
-                            </a></li>
+                            Perfil
+                        </a></li>
+                        @endif
+                        @if (Auth::User()->tipo == "C")
                         <li><a class="dropdown-item" href="{{ route('minhasEstampas') }}">
-                                Minhas Estampas
+                            Minhas Estampas
                             </a></li>
-                        <li><a class="dropdown-item" >
-                                Minhas Encomendas
-                            </a></li>
+                        @endif
+                        <li><a href="{{ route('minhasencomendas') }}" class="dropdown-item" >
+                            Minhas Encomendas
+                        </a></li>
                         @if (Auth::user()->tipo === 'A' || Auth::user()->tipo === 'F')
 
 
@@ -64,7 +68,7 @@
                                 </a></li>
                         @endif
                         <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
+                                                          document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -81,7 +85,12 @@
         <ul>
             <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
             <li><a href="{{ url('shopgrid') }}">Estampas</a></li>
+            @guest
+            @else
+            @if (Auth::User()->tipo == "C")
             <li><a href="{{ url('criarEstampa') }}">Criar Estampa</a></li>
+            @endif
+            @endguest
             <li><a href="{{ url('contact') }}">Contactos</a></li>
         </ul>
     </nav>
@@ -151,7 +160,7 @@
                                     </a>
                                 </div>
 
-                                <ul style="top: 40px">
+                                <ul style="top: 40px;    width: 174px;">
                                     @if (Auth::User()->tipo != "F")
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">
                                         Perfil
@@ -228,8 +237,8 @@
                                 <span>{{ Session::has('cart') ? Session::get('cart')->totalQty() : '0' }}</span></a>
                         </li>
                     </ul>
-                    <div class="header__cart__price">item:
-                        <span>{{ Session::has('cart') ? Session::get('cart')->totalPrice() : '0' }}€</span></div>
+                    <div class="header__cart__price">Total:
+                        <strong><span>{{ Session::has('cart') ? Session::get('cart')->totalPrice() : '0' }}€</span></strong></div>
                 </div>
             </div>
         </div>
@@ -274,7 +283,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>244 820 300</h5>
+                            <h5>xxx xxx xxx</h5>
                             <span>Suporte 24/7 </span>
                         </div>
                     </div>

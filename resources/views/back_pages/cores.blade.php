@@ -9,7 +9,9 @@
                             <h6 class="m-0 font-weight-bold text-primary">Lista de Cores</h6>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('cores.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Adicionar Cor</button></a>
+                            @if (Auth::User()->tipo == 'A')
+                                <a href="{{ route('cores.create') }}"><button type="button" class="btn btn-success" style="position: relative;margin-bottom: 17px;"> Adicionar Cor</button></a>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -32,6 +34,7 @@
                                                 <td style="vertical-align: middle;">{{$cor->nome}}</td>
                                                 <td style="vertical-align: middle;">{{$cor->codigo}}</td>
                                                 <td> <div style=" float: left; width: 60px; height: 60px; margin: 5px; border: 1px solid rgba(0, 0, 0, .2); background: #{{$cor->codigo}};"></div></td>
+                                                @if (Auth::User()->tipo == 'A')
                                                 <td >
                                                     <a href="{{route('cores.edit', ['core' => $cor->codigo])}}"
                                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
@@ -43,6 +46,7 @@
                                                             <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
                                                         </form>
                                                 </td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                     </tbody>
