@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class VerifyIsAdmin
+class VerifyIfIsUser
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class VerifyIsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
-        if($user->tipo == 'A' || $user->tipo == 'F'){
+        $user= Auth::User();
+        if($user != null && $user->tipo == 'C'){
             return $next($request);
         }else{
             return redirect()->route('homeT');

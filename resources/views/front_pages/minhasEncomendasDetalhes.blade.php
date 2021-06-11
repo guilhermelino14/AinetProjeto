@@ -57,7 +57,7 @@
                                         <span class="font-weight-bold mb-3">Referencia de Pagamento:</span>
                                         <p class="font-weight-normal">{{$encomenda->ref_pagamento}}</p>
                                     </div>
-                                    @if ($encomenda->estado == "fechada")
+                                    @if ($encomenda->estado == "fechada" && $encomenda->recibo_url != null)
                                     <div>
                                         <span class="font-weight-bold mb-3">Recibo:</span>
                                         <p class="font-weight-normal"><a href="{{ route("minhasencomendas.show.pdf", $encomenda) }}">Clique aqui</a></p>

@@ -64,6 +64,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'VerifyIsFuncionario' =>\App\Http\Middleware\VerifyIsFuncionario::class,
-        'VerifyIfEstampaIsFromUser' =>\App\Http\Middleware\VerifyIfEstampaIsFromUser::class
+        'VerifyIfEstampaIsFromUser' =>\App\Http\Middleware\VerifyIfEstampaIsFromUser::class,
+        'VerifyIfIsMyEstampa' =>\App\Http\Middleware\VerifyIfIsMyEstampa::class,
+        'VerifyEstampasPrivadasEdit' =>\App\Http\Middleware\VerifyEstampasPrivadasEdit::class,
+        'VerifyIfIsUser' =>\App\Http\Middleware\VerifyIfIsUser::class,
     ];
 }

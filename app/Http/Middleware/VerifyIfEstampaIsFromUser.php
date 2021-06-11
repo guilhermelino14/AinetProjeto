@@ -27,7 +27,7 @@ class VerifyIfEstampaIsFromUser
         }
         if($estampa->cliente_id !=null){
             if($user == null || $user->id !=$estampa->cliente_id){
-                return redirect()->back();
+                return redirect()->route('minhasEstampas')->with('error', 'Nao pode aceder a essa estampa');
             }
         }
 

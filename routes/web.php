@@ -82,25 +82,25 @@ Route::get('/admin/encomendas/state/{encomenda}{estado}', [EncomendaController::
 
 });
 
-Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
-Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');
 
-Route::get('/criarEstampa', [EstampasController::class, 'create'])->name('createEstampa');
-Route::post('/criarEstampa', [EstampasController::class, 'store'])->name('storeEstampa');
-Route::get('/minhasEstampas', [EstampasController::class, 'minhasEstampas'])->name('minhasEstampas');
-
+// ROTAS DE USER
 Route::get('/', [MainController::class, 'index'])->name('homeT');
-
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/shopdetails/{id}', [MainController::class, 'shopdetails'])->name('shopdetails')->middleware('VerifyIfEstampaIsFromUser');
 Route::get('/shoppingcart', [CartController::class, 'index'])->name('shoppingcart');
 Route::get('/search', [MainController::class, 'search'])->name('search');
+Route::get('/shopgrid', [App\Http\Controllers\EstampasController::class, 'index_front'])->name('shopgrid');
+Route::get('/shopgrid/{id}', [App\Http\Controllers\EstampasController::class, 'show_front'])->name('shopgrid_categorias');
+
 
 Route::middleware([VerifyIsFuncionario::class])->group(function () {
 
 Route::get('/profile', [UserController::class, 'edit_front'])->name('profile');
 Route::put('/profile/{user}', [UserController::class, 'update_front'])->name('profile_update');
 });
+
+
+// CART
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::get('/remove-From-Cart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::get('/edit-item-From-Cart/{id}{operator}', [CartController::class, 'editItemFromCart'])->name('editItemFromCart');
@@ -117,13 +117,25 @@ Route::get('verify-mail', function () {
 })->name('verify_email');
 
 
-Route::get('/estampas/{estampa}/imagem', [EstampasController::class, 'getEstampaPrivada'])->name('estampas.privadas');
-Route::delete('/estampas/{estampa}', [EstampasController::class, 'destroy_privadas'])->name('estampas.privadas.destroy')->middleware('VerifyIfEstampaIsFromUser');
-Route::get('/estampas/{estampa}/edit', [EstampasController::class, 'edit_privadas'])->name('estampas.privadas.edit')->middleware('VerifyIfEstampaIsFromUser');
-Route::PATCH('/estampas/{estampa}', [EstampasController::class, 'update_privadas'])->name('estampas.privadas.update')->middleware('VerifyIfEstampaIsFromUser');
 
+Route::middleware([VerifyIfIsUser::class])->group(function () {
+Route::get('/criarEstampa', [EstampasController::class, 'create'])->name('createEstampa');
+Route::post('/criarEstampa', [EstampasController::class, 'store'])->name('storeEstampa');
+Route::get('/minhasEstampas', [EstampasController::class, 'minhasEstampas'])->name('minhasEstampas');
+});
+
+Route::get('/estampas/{estampa}/imagem', [EstampasController::class, 'getEstampaPrivada'])->name('estampas.privadas');
+
+Route::middleware([VerifyIfEstampaIsFromUser::class])->group(function () {
+Route::delete('/estampas/{estampa}', [EstampasController::class, 'destroy_privadas'])->name('estampas.privadas.destroy');
+Route::get('/estampas/{estampa}/edit', [EstampasController::class, 'edit_privadas'])->name('estampas.privadas.edit');
+
+});
+Route::PATCH('/estampas/{estampa}', [EstampasController::class, 'update_privadas'])->name('estampas.privadas.update')->middleware('VerifyEstampasPrivadasEdit');
 
 Route::get('/minhasencomendas', [EncomendaController::class, 'index_front'])->name('minhasencomendas');
+
+Route::middleware([VerifyIfIsMyEstampa::class])->group(function () {
 Route::get('/minhasencomendas/{encomenda}', [EncomendaController::class, 'show_front'])->name('minhasencomendas.show');
 Route::get('/minhasencomendas/{encomenda}/pdf', [EncomendaController::class, 'show_front_pdf'])->name('minhasencomendas.show.pdf');
-
+});

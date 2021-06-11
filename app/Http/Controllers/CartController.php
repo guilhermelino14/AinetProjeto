@@ -47,8 +47,7 @@ class CartController extends Controller
         
         $cart->add($estampa, $estampa->id, $request->qty,$request->tamanho,$request->cor);
         $request->session()->put('cart',$cart);
-        
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Estampa adicionada com sucesso ao carrinho');
     }
 
     public function removeFromCart(Request $request, $index){
@@ -57,7 +56,7 @@ class CartController extends Controller
         $cart->remove($index);
 
         $request->session()->put('cart',$cart);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Estampa removida do carrinho');
     }
 
     public function editItemFromCart(Request $request, $index, $operator){
@@ -66,7 +65,12 @@ class CartController extends Controller
         $cart->editQuantity($index,$operator);
 
         $request->session()->put('cart',$cart);
-        return redirect()->back();
+        if($operator == "+"){
+            return redirect()->back()->with('success', 'Quantidade da estampa aumentada com sucesso');
+        }elseif($operator == "-"){
+            return redirect()->back()->with('success', 'Quantidade da estampa diminuida com sucesso');
+        }
+        
     }
 
     public function checkoutCart(Request $request){
@@ -138,6 +142,6 @@ class CartController extends Controller
         Session::forget('cart');
         Mail::to($user->email)->send(new MailEncomenda($encomenda));
         
-        return redirect()->route('minhasencomendas');
+        return redirect()->route('minhasencomendas')->with('success', 'Encomenda criada com sucesso');
     }
 }
