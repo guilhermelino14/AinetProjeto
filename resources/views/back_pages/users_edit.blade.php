@@ -62,7 +62,7 @@
                                     @enderror
                                 </div>
                                 @if (isset($user->foto_url))
-                                    <img src="{{ asset("storage/fotos/$user->foto_url") }}" />
+                                    <img src="{{ asset("storage/fotos/$user->foto_url") }}" width="30%" />
                                 @endif
                                 <div class="form-group">
                                 <div class="form-group text-right">

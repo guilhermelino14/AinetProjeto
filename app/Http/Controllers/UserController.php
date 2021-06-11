@@ -67,7 +67,9 @@ class UserController extends Controller
         $newUser->password = Hash::make($validated_data['password']);
         $newUser->tipo = $validated_data['tipo'];
         $newUser->bloqueado = $validated_data['bloqueado'];
-        $newUser->foto_url = $validated_data['foto_url'];
+        if(isset($validated_data['foto_url'])){
+            $newUser->foto_url = $validated_data['foto_url'];
+        }
         $newUser->save();
         return redirect('/admin/users')->with('success','Utilizador criado com sucesso');
     }

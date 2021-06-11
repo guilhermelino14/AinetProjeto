@@ -32,8 +32,14 @@
                                     <tbody>
                                             @foreach ($clientes as $cliente)
                                             <tr>
-                                                <td><a href="{{route('users.edit', ['user' => $cliente->id])}}">{{$cliente->id}}</a></td>
-                                                <td>{{$cliente->user->name}}</td>
+                                                @if ($cliente->user != null)
+                                                    <td><a href="{{route('users.edit', ['user' => $cliente->id])}}">{{$cliente->id}}</a></td>
+                                                
+                                                    <td>{{$cliente->user->name}}</td>
+                                                    @else
+                                                    <td>{{$cliente->id}}</td>
+                                                    <td></td>
+                                                @endif
                                                 <td>{{$cliente->nif}}</td>
                                                 <td>{{$cliente->endereco}}</td>
                                                 <td style="vertical-align: middle;">
