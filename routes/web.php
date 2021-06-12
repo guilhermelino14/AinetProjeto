@@ -139,3 +139,5 @@ Route::middleware([VerifyIfIsMyEstampa::class])->group(function () {
 Route::get('/minhasencomendas/{encomenda}', [EncomendaController::class, 'show_front'])->name('minhasencomendas.show');
 Route::get('/minhasencomendas/{encomenda}/pdf', [EncomendaController::class, 'show_front_pdf'])->name('minhasencomendas.show.pdf');
 });
+
+Route::post('/contact_email', [MainController::class, 'contact_email'])->name('contact_email');

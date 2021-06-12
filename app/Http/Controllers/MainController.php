@@ -56,4 +56,7 @@ class MainController extends Controller
         $categorias = Categoria::all();
         return view('front_pages.shop-grid', compact('estampas','estampasCount', 'preco', 'categorias'));
     }
+    public function contact_email(Request $request){
+        return redirect()->back()->with('success','Obrigado por nos ter contactado');
+    }
 }

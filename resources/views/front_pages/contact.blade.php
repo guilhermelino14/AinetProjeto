@@ -81,16 +81,17 @@
                     </div>
                 </div>
             </div>
-            <form action="#">
+            <form action="{{route('contact_email')}}" method="post">
+                @csrf
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Nome">
+                        <input type="text" placeholder="Nome" id="name" name="name">
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Email">
+                        <input type="email" placeholder="Email" id="email" name="email">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea placeholder="Mensagem"></textarea>
+                        <textarea placeholder="Mensagem" id="message" name="message"></textarea>
                         <button type="submit" class="site-btn">ENVIAR</button>
                     </div>
                 </div>
