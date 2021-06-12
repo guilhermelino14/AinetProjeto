@@ -40,7 +40,7 @@
             <div class="row">
                 
                 <div class="container-fluid">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logoAi.png'))) }}" width="200px">
+                    <img style="position: absolute;float: right;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logoAi.png'))) }}" width="200px">
                     <h1>MagicShirts</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -50,47 +50,44 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-lg-6 ">
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Nome do Cliente:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->cliente->user->name}}</span>
                                     </div>
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Numero da Encomenda:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->id}}</span>
                                     </div>
     
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Estado da Encomenda:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->estado}}</span>
                                     </div>
     
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Data da Encomenda:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->data}}</span>
                                     </div>
     
-                                    <div>
-                                        <span class="font-weight-bold mb-3"><strong>Preço Total da Encomenda:</strong></span>
-                                        <span class="font-weight-normal">{{$encomenda->preco_total}}€</span>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-12 col-lg-6 ">
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>NIF de Faturação:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->nif}}</span>
                                     </div>
     
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Endereço de Faturação:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->endereco}}</span>
                                     </div>
     
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Metodo de Pagamento:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->tipo_pagamento}}</span>
                                     </div>
     
-                                    <div>
+                                    <div style="padding-bottom: 10px;">
                                         <span class="font-weight-bold mb-3"><strong>Referencia de Pagamento:</strong></span>
                                         <span class="font-weight-normal">{{$encomenda->ref_pagamento}}</span>
                                     </div>
@@ -99,48 +96,53 @@
                             <div class="row">
                                 <div class="container">
                                     <h3 class="font-weight-bold mb-3">Encomenda:</h3>
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="    border: 1px solid #dee2e6;">
                                         <thead>
                                             <tr>
-                                                <th>Nome Da Estampa</th>
-                                                <th>Cor</th>
-                                                <th>Tamanho</th>
-                                                <th>Quantidade</th>
-                                                <th>Preço por Unidade</th>
-                                                <th>Preço Total</th>
+                                                <th style="vertical-align: bottom;border-bottom: 2px solid #dee2e6;border: 1px solid #dee2e6;">Nome Da Estampa</th>
+                                                <th style="vertical-align: bottom;border-bottom: 2px solid #dee2e6;border: 1px solid #dee2e6;">Cor</th>
+                                                <th style="vertical-align: bottom;border-bottom: 2px solid #dee2e6;border: 1px solid #dee2e6;">Tamanho</th>
+                                                <th style="vertical-align: bottom;border-bottom: 2px solid #dee2e6;border: 1px solid #dee2e6;">Quantidade</th>
+                                                <th style="vertical-align: bottom;border-bottom: 2px solid #dee2e6;border: 1px solid #dee2e6;">Preço por Unidade</th>
+                                                <th style="vertical-align: bottom;border-bottom: 2px solid #dee2e6;border: 1px solid #dee2e6;">Preço Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="display: table-row-group;vertical-align: middle;border-color: inherit;">
                                                 @foreach ($tshirts as $tshirt)
                                                 @php($estampa = App\Models\Estampa::where('id', $tshirt->estampa_id)->first())
                                                 @php($cor = App\Models\Cor::where('codigo', $tshirt->cor_codigo)->first())
-                                                <tr>
-                                                    <td>
+                                                <tr style="    display: table-row;vertical-align: inherit;border-color: inherit;">
+                                                    <td style="padding: 0.75rem;vertical-align: top;border-top: 1px solid #dee2e6;border: 1px solid #dee2e6;text-align: center;">
                                                         @if ($estampa != null)
                                                         {{$estampa->nome}}
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    <td style="padding: 0.75rem;vertical-align: top;border-top: 1px solid #dee2e6;border: 1px solid #dee2e6;text-align: center;">
                                                         @if ($cor != null)
                                                             {{$cor->nome}}
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    <td style="padding: 0.75rem;vertical-align: top;border-top: 1px solid #dee2e6;border: 1px solid #dee2e6;text-align: center;">
                                                         {{$tshirt->tamanho}}                                                        
                                                     </td>
-                                                    <td>
+                                                    <td style="padding: 0.75rem;vertical-align: top;border-top: 1px solid #dee2e6;border: 1px solid #dee2e6;text-align: center;">
                                                         {{$tshirt->quantidade}}     
                                                     </td>
-                                                    <td>
+                                                    <td style="padding: 0.75rem;vertical-align: top;border-top: 1px solid #dee2e6;border: 1px solid #dee2e6;text-align: center;">
                                                         {{$tshirt->preco_un}}€
                                                     </td>
-                                                    <td>
+                                                    <td style="padding: 0.75rem;vertical-align: top;border-top: 1px solid #dee2e6;border: 1px solid #dee2e6;text-align: center;">
                                                         {{$tshirt->subtotal}}€  
                                                     </td>
                                                 </tr>
                                                 @endforeach
                                         </tbody>
                                     </table>
+                                    <br>
+                                    <div style="position: absolute; right: 54px;">
+                                        <span class="font-weight-bold mb-3"><strong>Total:</strong></span>
+                                        <span class="font-weight-normal">{{$encomenda->preco_total}}€</span>
+                                    </div>
                                 </div>
                             </div>
 
