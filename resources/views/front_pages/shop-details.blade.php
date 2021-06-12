@@ -64,7 +64,7 @@
                         <ul>
                             <form method="GET" action="{{ route('addToCart', ['id' => $estampa->id]) }}">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-lg-6 ">
                                         <select name="tamanho" id="tamanho" class="form-control form-control-lg">
                                             <option value="XS">XS</option>
                                             <option value="S">S</option>
@@ -73,14 +73,14 @@
                                             <option value="XL">XL</option>
                                         </select>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-lg-6 ">
                                         <select name="cor" id="cor" class="form-control form-control-lg">
                                             @foreach ($cores as $cor)
                                                 <option value="{{$cor->codigo}}">{{$cor->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-6 mt-3 mb-3">
+                                    <div class="col-12 col-lg-12 mt-3 mb-3" style="text-align-last: center;">
                                         <div class="product__details__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
@@ -91,13 +91,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 mt-3 mb-3">
-                                        <button onclick="preview()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#preview">
+                                    <div class="col-12 col-lg-6 ">
+                                        <button style="padding: 16px 28px 14px;margin-right: 6px;margin-bottom: 5px;" onclick="preview()" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#preview">
                                             Preview
                                           </button>
                                     </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="primary-btn">ADD TO CARD</button>
+                                    <div class="col-12 col-lg-6 ">
+                                        <button type="submit" style="padding: 16px 28px 14px;margin-right: 6px;margin-bottom: 5px;" class="btn btn-primary btn-block" data-toggle="modal" >ADD TO CARD</button>
                                     </div>
                                     
                                 </div>
