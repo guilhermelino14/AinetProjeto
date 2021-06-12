@@ -40,7 +40,7 @@
             <div class="row">
                 
                 <div class="container-fluid">
-                    <img src="http://localhost:8000/img/logoAi.png">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logoAi.png'))) }}" width="200px">
                     <h1>MagicShirts</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
