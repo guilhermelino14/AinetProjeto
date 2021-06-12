@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class EncomendaController extends Controller
 {
@@ -26,6 +27,7 @@ class EncomendaController extends Controller
     public function index(Request $request)
     {
         $tipo = $request->tipo ?? '';
+        $data = $request->data ?? '';
         
         $user = Auth::User();
         if($user->tipo == 'F'){
@@ -36,14 +38,19 @@ class EncomendaController extends Controller
             }
             
         }elseif($user->tipo == 'A'){
-            if($tipo != ""){
-                $encomendas = Encomenda::where('estado',$tipo)->paginate(15);
+            if($tipo != "*" && $data != ''){
+                $encomendas = Encomenda::where('estado',$tipo)->where(DB::raw("DATE_FORMAT(created_at,'%Y')"), $data)->paginate(15);
+                
             }else{
-                $encomendas = Encomenda::paginate(15);
+                if($data == ''){
+                    $encomendas = Encomenda::paginate(15);
+                }else{
+                    $encomendas = Encomenda::where(DB::raw("DATE_FORMAT(created_at,'%Y')"), $data)->paginate(15);
+                }
             }
         }
         
-        return view('back_pages.encomendas', compact('encomendas', 'tipo'));
+        return view('back_pages.encomendas', compact('encomendas', 'tipo', 'data'));
     }
     public function index_front()
     {
