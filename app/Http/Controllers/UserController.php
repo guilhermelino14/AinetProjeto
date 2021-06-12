@@ -27,6 +27,12 @@ class UserController extends Controller
 
         $users = User::query();
 
+        if($key != "" && $tipo != '*'){
+            $users = $users->where('tipo',$tipo)
+                            ->where('name', 'like', "%$key%")
+                            ->orWhere('email', 'like', "%$key%")
+                            ->where('tipo',$tipo);
+        }
         if($key != ""){
             $users = $users->where('name', 'like', "%$key%")->orWhere('email', 'like', "%$key%");
         }
@@ -37,6 +43,10 @@ class UserController extends Controller
         }
 
         $users = $users->paginate(15);
+        if($tipo == '*' && $key == "")
+        {
+            $users = User::paginate(15);
+        }
 
         return view('back_pages.users', compact(['users', 'tipo', 'key']));
     }

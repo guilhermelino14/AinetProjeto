@@ -29,27 +29,18 @@ class EncomendaController extends Controller
         
         $user = Auth::User();
         if($user->tipo == 'F'){
-            if($tipo == "pendente"){
-                $encomendas = Encomenda::where('estado','pendente')->paginate(15);
-            }elseif($tipo == "paga"){
-                $encomendas = Encomenda::where('estado','paga')->paginate(15);
+            if($tipo == "pendente" || $tipo == "paga"){
+                $encomendas = Encomenda::where('estado',$tipo)->paginate(15);
             }else{
                 $encomendas = Encomenda::where('estado','pendente')->orwhere('estado','paga')->paginate(15);
             }
             
         }elseif($user->tipo == 'A'){
-            if($tipo == "pendente"){
-                $encomendas = Encomenda::where('estado','pendente')->paginate(15);
-            }elseif($tipo == "paga"){
-                $encomendas = Encomenda::where('estado','paga')->paginate(15);
-            }elseif($tipo == "fechada"){
-                $encomendas = Encomenda::where('estado','fechada')->paginate(15);
-            }elseif($tipo == "anulada"){
-                $encomendas = Encomenda::where('estado','anulada')->paginate(15);
+            if($tipo != ""){
+                $encomendas = Encomenda::where('estado',$tipo)->paginate(15);
             }else{
                 $encomendas = Encomenda::paginate(15);
             }
-            
         }
         
         return view('back_pages.encomendas', compact('encomendas', 'tipo'));

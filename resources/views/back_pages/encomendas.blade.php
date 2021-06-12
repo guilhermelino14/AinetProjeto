@@ -14,7 +14,7 @@
                                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="input-group">
                                         <select name="tipo" id="tipo" >
-                                            <option value="*")>Todos</option>
+                                            <option value="")>Todos</option>
                                             <option value="pendente" {{ old('tipo', $tipo) == "pendente" ? 'selected' : '' }}>Pendente</option>
                                             <option value="paga" {{ old('tipo', $tipo) == "paga" ? 'selected' : '' }}>Paga</option>
                                             @if (Auth::User()->tipo != 'F')
@@ -22,6 +22,13 @@
                                                 <option value="anulada" {{ old('tipo', $tipo) == "anulada" ? 'selected' : '' }}>Anulada</option>
                                             @endif
                                         </select>
+                                        {{-- <select name="data" id="data" >
+                                        @foreach(range(date('Y')-3, date('Y')) as $y)
+                                            <option value="{{$y}}" @if ($data == $y)
+                                                selected
+                                            @endif)>{{$y}}</option>
+                                        @endforeach
+                                        </select> --}}
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-search fa-sm"></i>
@@ -29,6 +36,7 @@
                                     </div>
                                 </div>
                             </form>
+                            
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -78,7 +86,7 @@
                                 </table>
                             </div>
                             <div class="col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
-                                {{ $encomendas->links() }}
+                                {{ $encomendas->appends(request()->query())->links() }}
                             </div>
 
                         </div>
