@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'VerifyIfIsMyEstampa' =>\App\Http\Middleware\VerifyIfIsMyEstampa::class,
         'VerifyEstampasPrivadasEdit' =>\App\Http\Middleware\VerifyEstampasPrivadasEdit::class,
         'VerifyIfIsUser' =>\App\Http\Middleware\VerifyIfIsUser::class,
+        'verifyIfUserIsBlocked' =>\App\Http\Middleware\verifyIfUserIsBlocked::class,
     ];
 }

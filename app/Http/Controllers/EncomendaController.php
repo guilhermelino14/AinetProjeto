@@ -177,10 +177,10 @@ class EncomendaController extends Controller
     public function show_front_pdf($id)
     {
         $encomenda = Encomenda::findOrFail($id);
-        $tshirts = Tshirt::where('encomenda_id', $id)->get();
-        $pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
-        return $pdf->download("teste.pdf");
-        //return response()->file(storage_path().'/app/pdf_recibos/'.$encomenda->recibo_url);
+        //$tshirts = Tshirt::where('encomenda_id', $id)->get();
+        //$pdf = PDF::loadView('pdf.minhasEncomendasDetalhes', compact('encomenda','tshirts'));
+        //return $pdf->download("teste.pdf");
+        return response()->file(storage_path().'/app/pdf_recibos/'.$encomenda->recibo_url);
     }
 
     public function changeEncomendaEstado($encomenda,$estado)
